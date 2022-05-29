@@ -1,5 +1,7 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
@@ -10,35 +12,29 @@ module.exports = {
       xl: '1280px',
       '2xl': '1536px',
     },
-    colors: ({ colors }) => ({
-      inherit: colors.inherit,
-      current: colors.current,
-      transparent: colors.transparent,
-      black: colors.black,
-      white: colors.white,
-      slate: colors.slate,
-      gray: colors.gray,
-      zinc: colors.zinc,
-      neutral: colors.neutral,
-      stone: colors.stone,
-      red: colors.red,
-      orange: colors.orange,
-      amber: colors.amber,
-      yellow: colors.yellow,
-      lime: colors.lime,
-      green: colors.green,
-      emerald: colors.emerald,
-      teal: colors.teal,
-      cyan: colors.cyan,
-      sky: colors.sky,
-      blue: colors.blue,
-      indigo: colors.indigo,
-      violet: colors.violet,
-      purple: colors.purple,
-      fuchsia: colors.fuchsia,
-      pink: colors.pink,
-      rose: colors.rose,
-    }),
+    colors: {
+      dark: {
+        100: '#121212',
+        200: '#181818',
+        300: '#15080A',
+        400: '#000',
+      },
+      white: '#fff',
+      gray: {
+        100: '#b2b2b2',
+        200: '#b3b3b3',
+        300: '#a7a7a7',
+        400: '#5e5e5e'
+      },
+      purple: {
+        100: '#4d18f3',
+        200: '#3611aa',
+      },
+      green: {
+        100: '#1ed760'
+      }
+    },
+
     columns: {
       auto: 'auto',
       1: '1',
@@ -348,33 +344,9 @@ module.exports = {
       DEFAULT: '1',
     },
     fontFamily: {
-      sans: [
-        'ui-sans-serif',
-        'system-ui',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        '"Noto Sans"',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"',
-      ],
-      serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-      mono: [
-        'ui-monospace',
-        'SFMono-Regular',
-        'Menlo',
-        'Monaco',
-        'Consolas',
-        '"Liberation Mono"',
-        '"Courier New"',
-        'monospace',
-      ],
+      circularBlack: ['Circular-Black', 'sans-serif'],
+      circularBook: ['Circular-Book', 'sans-serif'],
+      circularBold: ['Circular-Bold', 'sans-serif'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
