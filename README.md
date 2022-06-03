@@ -1,26 +1,50 @@
-## Installer:
-- `sass`
-- `sass-loader`
-- `React-router`
-- `es-lint`
-- `prettier`
-- `"Librairie qui gère les import absolue"`
+# Learn 
 
-## Organisation:
-- Regarder le React-modèle
-- Regarder un boilerplate template et s'en inspirer
+## Storybook
 
-## Mettre en place
-- Un reset / normalize css
+---
 
-## Stack
-- React
-- Typescipt
-- Scss
-- Tailwind Css
-- React router
+- Importer les styles de tailwind dans le fichier : 
+```js
+// => .storybook/previews.js
+// Import Tailwind styles
+import '../src/styles/index.css'
+  ```
 
+- Si une story est servis par le router ou utilise un élement du router, il faut utiliser le decorateur fournis par storybook : 
 
-## Next
-- Reat query
-- reset normalise
+[Doc](https://storybook.js.org/addons/storybook-addon-react-router-v6)
+
+```bash
+yarn add -D storybook-addon-react-router-v6
+````
+```js
+// .storybook/main.js
+module.exports = {
+    addons: ["storybook-addon-react-router-v6"],
+};
+```
+> Story :
+
+```js
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { withRouter } from 'storybook-addon-react-router-v6'; // => Importer le décorateur
+import MenuLink from './MenuLink';
+
+export default {
+  title: 'Menu/MenuLink',
+  component: MenuLink,
+  decorators: [withRouter], // => Rajouter le décorateur 
+} as ComponentMeta<typeof MenuLink>;
+
+const Template: ComponentStory<typeof MenuLink> = (args) => (
+  <MenuLink {...args} />
+);
+
+export const Default = Template.bind({});
+Default.args = { label: 'Nav Link', to: '/' };
+
+export const WithIcon = Template.bind({});
+WithIcon.args = { label: 'With icon', icon: true, to: '/' };
+
+```
