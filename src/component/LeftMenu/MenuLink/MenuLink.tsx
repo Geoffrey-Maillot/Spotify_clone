@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useMatch, Route } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 
-import H2 from '../H2/H2';
+import H2 from '../../H2/H2';
 
 // Import icon
 import { RiSearchFill } from 'react-icons/ri';
@@ -27,10 +27,18 @@ const MenuLink = ({
   to = '/',
 }: Props) => {
   const [isActive, setIsActive] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   const match = useMatch(to);
-  const iconFil: 'Fill' | 'Line' = isActive ? 'Fill' : 'Line';
+  const iconFil: 'Fill' | 'Line' = isActive || isHover ? 'Fill' : 'Line';
   const iconSize = '1.5rem';
-  const iconColor = isActive ? '#fff' : '#b3b3b3';
+  const iconColor = isActive || isHover ? '#fff' : '#b3b3b3';
+
+  const handlerOnMouseEnter = () => {
+    setIsHover(() => true);
+  };
+  const handlerOnMouseLeave = () => {
+    setIsHover(() => false);
+  };
 
   const icons = {
     searchLine: <RiSearchLine size={iconSize} color={iconColor} />,
@@ -49,12 +57,25 @@ const MenuLink = ({
 
   // Component =>
   return (
-    <NavLink to={to} className="flex items-center justify-start gap-4">
+    <NavLink
+      to={to}
+      className="flex items-center justify-start gap-4 hover:text-white my-5"
+      onMouseEnter={handlerOnMouseEnter}
+      onMouseLeave={handlerOnMouseLeave}
+    >
       {icon && <span>{icons[`${iconType}${iconFil}`]}</span>}
       {label ? (
-        <H2 label={label} size="sm" color={isActive ? 'white' : 'lightGray'} />
+        <H2
+          label={label}
+          size="sm"
+          color={isActive || isHover ? 'white' : 'lightGray'}
+        />
       ) : (
-        <H2 label={label} size="sm" color={isActive ? 'white' : 'lightGray'}>
+        <H2
+          label={label}
+          size="sm"
+          color={isActive || isHover ? 'white' : 'lightGray'}
+        >
           {children}
         </H2>
       )}

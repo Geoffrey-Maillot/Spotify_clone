@@ -12,7 +12,7 @@ const ButtonPlay = ({ size = 'small' }: Props) => {
 
   return (
     <button
-      className={` ${sizes[size]} border-none  rounded-full bg-green-200 hover:bg-green-100   flex justify-center items-center active:bg-green-300`}
+      className={` ${sizes[size]} border-none drop-shadow-xl rounded-full bg-green-200 hover:bg-green-100   flex justify-center items-center active:bg-green-300`}
     >
       <GrPlayFill color="#000" />
     </button>

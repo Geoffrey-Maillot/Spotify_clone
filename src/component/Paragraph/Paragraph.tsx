@@ -26,7 +26,9 @@ const Paragraph = ({
   size = 'sm',
   color = 'lightGray',
 }: Props) => (
-  <p className={`font-circularBook  ${colors[color]} ${fontSize[size]}`}>
+  <p
+    className={`font-circularBook ${colors[color]} ${fontSize[size]}`}
+  >
     {label ? label : children}
   </p>
 );

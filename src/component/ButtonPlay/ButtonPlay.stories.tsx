@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import ButtonPlay from './ButtonPlay';
 
 export default {
-  title: 'Component/ButtonPlay',
+  title: 'Button/ButtonPlay',
   component: ButtonPlay,
 } as ComponentMeta<typeof ButtonPlay>;
 
