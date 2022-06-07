@@ -3,7 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import HeaderNav from './HeaderNav';
 
 export default {
-  title: 'HeaderNav',
+  title: 'Header/HeaderNav',
   component: HeaderNav,
   decorators: [withRouter],
 } as ComponentMeta<typeof HeaderNav>;

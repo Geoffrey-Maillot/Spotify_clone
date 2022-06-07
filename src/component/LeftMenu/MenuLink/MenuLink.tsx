@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useMatch } from 'react-router-dom';
 
-import H2 from '../../H2/H2';
+import H2 from '../../Typo/H2/H2';
 
 // Import icon
 import { RiSearchFill } from 'react-icons/ri';

@@ -2,9 +2,9 @@
 import { Link } from 'react-router-dom';
 
 // Import component
-import H2 from '../H2/H2';
-import ButtonPlay from '../ButtonPlay/ButtonPlay';
-import Paragraph from '../Paragraph/Paragraph';
+import H2 from '../Typo/H2/H2';
+import ButtonPlay from '../Button/ButtonPlay/ButtonPlay';
+import Paragraph from '../Typo/Paragraph/Paragraph';
 
 interface Props {
   img?: string;

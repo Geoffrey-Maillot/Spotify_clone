@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 // Import Router
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import NavLink from './NavLink';
 
 // Import Component
-import H2 from '../H2/H2';
+import H2 from '../Typo/H2/H2';
 import RenderIf from '../UtilsComponents/RenderIf';
 
 // Import React Icon
@@ -21,6 +22,8 @@ import { GrClose } from 'react-icons/gr';
 const HeaderNav = () => {
   const [search, setSearch] = useState('');
   const path = useLocation().pathname;
+  const testPath = /\/collection/;
+  const isCollection: boolean = testPath.test(path);
 
   const searchOnChange = (e: React.ChangeEvent) => {
     const value: string = (e.target as HTMLInputElement).value;
@@ -46,6 +49,14 @@ const HeaderNav = () => {
           </span>
         </button>
       </div>
+      <RenderIf bool={isCollection}>
+        <ul className="flex items-center content-center">
+          <NavLink to="/collection/playlists" label="Playlists" />
+          <NavLink to="/collection/podcats" label="Podcasts" />
+          <NavLink to="/collection/artists" label="Artistes" />
+          <NavLink to="/collection/albums" label="Albums" />
+        </ul>
+      </RenderIf>
       <RenderIf bool={path === '/search'}>
         <div className="max-w-[364px] w-full h-10 bg-white flex justify-start items-center gap-4 px-4 rounded-full ">
           <RiSearchLine size="1.5rem" color="#000" />

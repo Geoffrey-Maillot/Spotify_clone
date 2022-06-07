@@ -3,7 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import NavLink from './NavLink';
 
 export default {
-  title: 'Menu/NavLink',
+  title: 'Header/NavLink',
   component: NavLink,
   decorators: [withRouter],
 } as ComponentMeta<typeof NavLink>;
@@ -14,4 +14,4 @@ const Template: ComponentStory<typeof NavLink> = (args) => (
 );
 
 export const navLink = Template.bind({});
-navLink.args = { to: '/', label: 'Nav Link' };
+navLink.args = { to: '/', label: 'Playlists' };
