@@ -1,5 +1,5 @@
 interface Props {
-  children?: string;
+  children?: any;
   label?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
   color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray';
@@ -22,9 +22,9 @@ const colors: { [x: string]: string } = {
 };
 
 const H2 = ({ children, label, size = 'sm', color = 'white' }: Props) => (
-  <p className={`font-circularBold  ${colors[color]} ${fontSize[size]}`}>
+  <h2 className={`font-circularBold  ${colors[color]} ${fontSize[size]}`}>
     {label ? label : children}
-  </p>
+  </h2>
 );
 
 export default H2;

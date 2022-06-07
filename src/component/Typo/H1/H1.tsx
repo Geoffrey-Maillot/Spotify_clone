@@ -1,12 +1,12 @@
 interface Props {
-  children?: string;
+  children?: any;
   label?: string;
 }
 
 const H1 = ({ children, label }: Props) => (
-  <p className={`font-circularBlack  text-white text-8xl tracking-tight`}>
+  <h1 className={`font-circularBlack  text-white text-8xl tracking-tight`}>
     {label ? label : children}
-  </p>
+  </h1>
 );
 
 export default H1;
