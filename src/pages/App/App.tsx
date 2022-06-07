@@ -1,11 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
-import './app.scss';
 import Home from '../../component/Home/Home';
+
+//Todo : Faire une 404
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="search" element={<Home />} />
+      <Route path="collection">
+        <Route index element={<Home />} />
+        <Route path="playlists" element={<Home />} />
+        <Route path="*" element={<div>404</div>} />
+      </Route>
     </Routes>
   );
 }

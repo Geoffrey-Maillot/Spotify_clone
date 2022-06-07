@@ -1,10 +1,10 @@
 import './home.scss';
 
-import CardMusic from '../Cards/CardMusic';
+import HeaderNav from '../HeaderNav/HeaderNav';
 const Home = () => {
   return (
-    <section className=" w-full h-screen bg-dark-100 flex justify-center items-center flex-col gap-5">
-      <CardMusic />
+    <section className=" w-full h-screen bg-dark-100">
+      <HeaderNav />
     </section>
   );
 };
