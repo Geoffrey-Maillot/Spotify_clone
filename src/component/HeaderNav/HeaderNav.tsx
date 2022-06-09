@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // Import Router
 import { useLocation } from 'react-router-dom';
@@ -23,7 +23,16 @@ const HeaderNav = () => {
   const [search, setSearch] = useState('');
   const path = useLocation().pathname;
   const testPath = /\/collection/;
-  const isCollection: boolean = testPath.test(path);
+  const link: string = path.split('/')[2];
+  const isPathCollection: boolean = testPath.test(path);
+  const [headerWidth, setheaderWidth] = useState<number>(0);
+
+  const links: { [x: string]: string } = {
+    playlists: 'Playlists',
+    podcasts: 'Podcasts',
+    artists: 'Artistes',
+    albums: 'Albums',
+  };
 
   const searchOnChange = (e: React.ChangeEvent) => {
     const value: string = (e.target as HTMLInputElement).value;
@@ -34,8 +43,21 @@ const HeaderNav = () => {
     setSearch('');
   };
 
+  const header = useRef<HTMLHeadElement | null>(null);
+
+  //? La récupération de la width du header doit se faire au resize de la fenêtre du LeftMenu quand il sera en place
+  // TODO: le useEffect doit écouter le resize
+  useEffect(() => {
+    if (header.current) {
+      setheaderWidth(header.current?.clientWidth);
+    }
+  }, []);
+
   return (
-    <header className="flex items-center content-start bg-transparent px-8 py-4 gap-4">
+    <header
+      ref={header}
+      className="flex items-center content-start bg-transparent px-8 py-4 gap-4"
+    >
       {/* //? Voir pour faire un composant des boutons si on les retrouves encore ailleurs*/}
       <div className="flex content-start items-start gap-4">
         <button className="w-8 h-8 bg-dark-400/70 flex justify-center items-center cursor-pointer  rounded-full">
@@ -49,12 +71,25 @@ const HeaderNav = () => {
           </span>
         </button>
       </div>
-      <RenderIf bool={isCollection}>
-        <ul className="flex items-center content-center">
+      <RenderIf bool={isPathCollection}>
+        <ul className="flex items-center content-center gap-2">
           <NavLink to="/collection/playlists" label="Playlists" />
-          <NavLink to="/collection/podcats" label="Podcasts" />
-          <NavLink to="/collection/artists" label="Artistes" />
-          <NavLink to="/collection/albums" label="Albums" />
+          <RenderIf bool={headerWidth > 640}>
+            <NavLink to="/collection/podcasts" label="Podcasts" />
+          </RenderIf>
+          <RenderIf bool={headerWidth > 850}>
+            <NavLink to="/collection/artists" label="Artistes" />
+            <NavLink to="/collection/albums" label="Albums" />
+          </RenderIf>
+          <RenderIf bool={headerWidth < 850}>
+            <div>
+              <button className="flex justify-center items-center gap-2 bg-white/10 px-4 py-2 rounded">
+                {' '}
+                <H2 label={links[link]} size="sm" color="white" />
+                <RiArrowDownSFill color="white" size="1.4rem" />
+              </button>
+            </div>
+          </RenderIf>
         </ul>
       </RenderIf>
       <RenderIf bool={path === '/search'}>
@@ -92,8 +127,10 @@ const HeaderNav = () => {
               alt="Profil"
             />
           </div>
-          <H2 label="Geoffrey Maillot" size="sm" color="white" />
-          <RiArrowDownSFill color="white" />
+          <span className=" justify-start items-center g-2 hidden lg:flex">
+            <H2 label="Geoffrey Maillot" size="sm" color="white" />
+            <RiArrowDownSFill color="white" size="1.4rem" />
+          </span>
         </button>
       </div>
     </header>

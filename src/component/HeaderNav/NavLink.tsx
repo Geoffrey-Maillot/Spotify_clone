@@ -23,7 +23,7 @@ const NavLink = ({ to, label, children }: Props) => {
   return (
     <BaseLink
       to={to}
-      className={`px-4 py-2 md:py-4 w-20 block rounded ${
+      className={`px-4 py-4  block rounded ${
         isActive ? 'bg-white/10' : 'bg-transparant'
       }`}
     >

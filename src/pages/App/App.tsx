@@ -11,7 +11,7 @@ function App() {
       <Route path="collection">
         <Route index element={<Home />} />
         <Route path="playlists" element={<Home />} />
-        <Route path="podcats" element={<Home />} />
+        <Route path="podcasts" element={<Home />} />
         <Route path="artists" element={<Home />} />
         <Route path="albums" element={<Home />} />
         <Route path="*" element={<div>404</div>} />
