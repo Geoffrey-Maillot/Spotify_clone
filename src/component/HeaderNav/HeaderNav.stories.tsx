@@ -8,7 +8,31 @@ export default {
   decorators: [withRouter],
 } as ComponentMeta<typeof HeaderNav>;
 
-//👇 We create a “template” of how args map to rendering
 const Template: ComponentStory<typeof HeaderNav> = () => <HeaderNav />;
 
-export const headerNav = Template;
+export const defaultHeader = Template;
+defaultHeader.story = {
+  parameters: {
+    reactRouter: {
+      routePath: '/',
+    },
+  },
+};
+
+export const collectionHeader = Template;
+collectionHeader.story = {
+  parameters: {
+    reactRouter: {
+      routePath: '/collection',
+    },
+  },
+};
+
+export const searchHeader = Template;
+searchHeader.story = {
+  parameters: {
+    reactRouter: {
+      routePath: '/search',
+    },
+  },
+};

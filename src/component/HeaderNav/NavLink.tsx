@@ -10,24 +10,24 @@ interface Props {
   to: string;
   label?: string;
   children?: string;
+  color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray' | 'blue';
 }
 
-const NavLink = ({ to, label, children }: Props) => {
+const NavLink = ({ to, label, children, color }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const path = useLocation().pathname;
 
   useEffect(() => {
     path === to ? setIsActive(true) : setIsActive(false);
   }, [path, to]);
-  console.log(isActive, label);
   return (
     <BaseLink
       to={to}
-      className={`px-4 py-4  block rounded ${
-        isActive ? 'bg-white/10' : 'bg-transparant'
+      className={`px-4 py-4  block rounded w-full ${
+        isActive ? 'bg-dark-350' : 'bg-transparant'
       }`}
     >
-      <H2 size="sm" color="white" label={label}>
+      <H2 size="sm" color={color && isActive ? color : 'white'} label={label}>
         {children}
       </H2>
     </BaseLink>

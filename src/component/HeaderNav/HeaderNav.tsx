@@ -8,6 +8,9 @@ import NavLink from './NavLink';
 import H2 from '../Typo/H2/H2';
 import RenderIf from '../UtilsComponents/RenderIf';
 
+// Import Hook
+import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
+
 // Import React Icon
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { HiOutlineChevronRight } from 'react-icons/hi';
@@ -26,6 +29,12 @@ const HeaderNav = () => {
   const link: string = path.split('/')[2];
   const isPathCollection: boolean = testPath.test(path);
   const [headerWidth, setheaderWidth] = useState<number>(0);
+  const [popupLinkIsVisible, togglePopupLinkIsVisible] = useState(false);
+  const windowWidth = useGetWindowWidth();
+
+  const openClosePoupNavLink = () => {
+    togglePopupLinkIsVisible(!popupLinkIsVisible);
+  };
 
   const links: { [x: string]: string } = {
     playlists: 'Playlists',
@@ -46,17 +55,17 @@ const HeaderNav = () => {
   const header = useRef<HTMLHeadElement | null>(null);
 
   //? La récupération de la width du header doit se faire au resize de la fenêtre du LeftMenu quand il sera en place
-  // TODO: le useEffect doit écouter le resize
+  // TODO: le useEffect doit écouter le resize pour déclencher le useEffect et faire apparaitre / retirer les navLinks
   useEffect(() => {
     if (header.current) {
       setheaderWidth(header.current?.clientWidth);
     }
-  }, []);
+  }, [windowWidth]);
 
   return (
     <header
       ref={header}
-      className="flex items-center content-start bg-transparent px-8 py-4 gap-4"
+      className="flex items-center content-start bg-dark-200 px-8 py-4 gap-4 "
     >
       {/* //? Voir pour faire un composant des boutons si on les retrouves encore ailleurs*/}
       <div className="flex content-start items-start gap-4">
@@ -81,13 +90,40 @@ const HeaderNav = () => {
             <NavLink to="/collection/artists" label="Artistes" />
             <NavLink to="/collection/albums" label="Albums" />
           </RenderIf>
+          {/* Dépliant navLinks */}
           <RenderIf bool={headerWidth < 850}>
-            <div>
-              <button className="flex justify-center items-center gap-2 bg-white/10 px-4 py-2 rounded">
+            <div className="relative ">
+              <button
+                onClick={openClosePoupNavLink}
+                className="flex justify-center items-center gap-2 bg-white/10 px-4 py-2 rounded"
+              >
                 {' '}
                 <H2 label={links[link]} size="sm" color="white" />
                 <RiArrowDownSFill color="white" size="1.4rem" />
               </button>
+              <RenderIf bool={popupLinkIsVisible}>
+                <div className="w-40 p-1 rounded absolute left-0 top-[calc(100%_+_0.5rem)] flex flex-col justify-start items-start bg-dark-50">
+                  <RenderIf bool={headerWidth < 640}>
+                    <NavLink
+                      to="/collection/podcasts"
+                      color="blue"
+                      label="Podcasts"
+                    />
+                  </RenderIf>
+                  <RenderIf bool={headerWidth < 850}>
+                    <NavLink
+                      to="/collection/artists"
+                      color="blue"
+                      label="Artistes"
+                    />
+                    <NavLink
+                      to="/collection/albums"
+                      color="blue"
+                      label="Albums"
+                    />
+                  </RenderIf>
+                </div>
+              </RenderIf>
             </div>
           </RenderIf>
         </ul>

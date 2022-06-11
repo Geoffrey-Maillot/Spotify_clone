@@ -8,5 +8,6 @@
     - Responsive (Voir Spotify)       
   - Faire un hook  perso pour les link active
   - Placeholder plus petit sur petits écran
-  - Storybook: Voir pour faire des exemples en fonction du path
+  - Storybook: 
+    - HeaderNav : Les trois stories avec un path différent charge le même path sur stotybook
 

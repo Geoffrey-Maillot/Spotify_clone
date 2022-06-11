@@ -2,7 +2,7 @@ interface Props {
   children?: string;
   label?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
-  color?: 'white' | 'gray' | 'lightGray';
+  color?: 'white' | 'gray' | 'lightGray' | 'blue';
 }
 
 const fontSize: { [x: string]: string } = {
@@ -18,6 +18,7 @@ const colors: { [x: string]: string } = {
   white: 'text-white',
   gray: 'text-gray-300',
   lightGray: 'text-gray-200',
+  blue: 'text-blue-100',
 };
 
 //Todo: Utiliser le truncate de tailwind pour mettre les 3 petits points quand un texte dépasse.  Voir sur Spotify, seul la 2nd ligne dépasse...

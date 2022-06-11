@@ -2,7 +2,7 @@ interface Props {
   children?: any;
   label?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
-  color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray';
+  color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray' | 'blue';
 }
 
 const fontSize: { [x: string]: string } = {
@@ -19,6 +19,7 @@ const colors: { [x: string]: string } = {
   gray: 'text-gray-300',
   lightGray: 'text-gray-200',
   veryLightGray: 'text-gray-100',
+  blue: 'text-blue-100',
 };
 
 const H2 = ({ children, label, size = 'sm', color = 'white' }: Props) => (
