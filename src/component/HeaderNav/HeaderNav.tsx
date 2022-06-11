@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 
 // Import Router
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import NavLink from './NavLink';
 
 // Import Component
 import H2 from '../Typo/H2/H2';
+import Paragraph from '../Typo/Paragraph/Paragraph';
 import RenderIf from '../UtilsComponents/RenderIf';
 
 // Import Hook
@@ -17,6 +18,7 @@ import { HiOutlineChevronRight } from 'react-icons/hi';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiSearchLine } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
+import { BiLinkExternal } from 'react-icons/bi';
 
 //Todo: Background transparent quand scoll est en haut puis change de couleur quand on scoll avec une opacité en fonction de la distance du haut de la fenêtre
 //Todo: Disable les boutons de nav si il n'y a pas de nav (voir su spotify)
@@ -30,10 +32,15 @@ const HeaderNav = () => {
   const isPathCollection: boolean = testPath.test(path);
   const [headerWidth, setheaderWidth] = useState<number>(0);
   const [popupLinkIsVisible, togglePopupLinkIsVisible] = useState(false);
+  const [popupAccountIsVisible, togglePopupAccountIsVisible] = useState(false);
   const windowWidth = useGetWindowWidth();
+  console.log(path);
 
   const openClosePoupNavLink = () => {
     togglePopupLinkIsVisible(!popupLinkIsVisible);
+  };
+  const openClosePoupAccount = () => {
+    togglePopupAccountIsVisible(!popupAccountIsVisible);
   };
 
   const links: { [x: string]: string } = {
@@ -74,7 +81,7 @@ const HeaderNav = () => {
             <HiOutlineChevronLeft size="1.2rem" color="#fff" />
           </span>
         </button>
-        <button className="w-8 h-8 bg-dark-400/70 flex justify-center items-center cursor-pointer rounded-full">
+        <button className="w-8 h-8 bg-dark-400/70  justify-center items-center cursor-pointer rounded-full hidden lg:flex">
           <span>
             <HiOutlineChevronRight size="1.2rem" color="#fff" />
           </span>
@@ -82,14 +89,23 @@ const HeaderNav = () => {
       </div>
       <RenderIf bool={isPathCollection}>
         <ul className="flex items-center content-center gap-2">
-          <NavLink to="/collection/playlists" label="Playlists" />
+          <li>
+            <NavLink to="/collection/playlists" label="Playlists" />
+          </li>
           <RenderIf bool={headerWidth > 640}>
-            <NavLink to="/collection/podcasts" label="Podcasts" />
+            <li>
+              <NavLink to="/collection/podcasts" label="Podcasts" />
+            </li>
           </RenderIf>
           <RenderIf bool={headerWidth > 850}>
-            <NavLink to="/collection/artists" label="Artistes" />
-            <NavLink to="/collection/albums" label="Albums" />
+            <li>
+              <NavLink to="/collection/artists" label="Artistes" />
+            </li>
+            <li>
+              <NavLink to="/collection/albums" label="Albums" />
+            </li>
           </RenderIf>
+
           {/* Dépliant navLinks */}
           <RenderIf bool={headerWidth < 850}>
             <div className="relative ">
@@ -104,23 +120,32 @@ const HeaderNav = () => {
               <RenderIf bool={popupLinkIsVisible}>
                 <div className="w-40 p-1 rounded absolute left-0 top-[calc(100%_+_0.5rem)] flex flex-col justify-start items-start bg-dark-50">
                   <RenderIf bool={headerWidth < 640}>
-                    <NavLink
-                      to="/collection/podcasts"
-                      color="blue"
-                      label="Podcasts"
-                    />
+                    <li className="w-full">
+                      <NavLink
+                        to="/collection/podcasts"
+                        color="blue"
+                        label="Podcasts"
+                        type="Secondary"
+                      />
+                    </li>
                   </RenderIf>
                   <RenderIf bool={headerWidth < 850}>
-                    <NavLink
-                      to="/collection/artists"
-                      color="blue"
-                      label="Artistes"
-                    />
-                    <NavLink
-                      to="/collection/albums"
-                      color="blue"
-                      label="Albums"
-                    />
+                    <li className="w-full">
+                      <NavLink
+                        to="/collection/artists"
+                        color="blue"
+                        label="Artistes"
+                        type="Secondary"
+                      />
+                    </li>
+                    <li className="w-full">
+                      <NavLink
+                        to="/collection/albums"
+                        color="blue"
+                        label="Albums"
+                        type="Secondary"
+                      />
+                    </li>
                   </RenderIf>
                 </div>
               </RenderIf>
@@ -149,25 +174,58 @@ const HeaderNav = () => {
         </div>
       </RenderIf>
       <div className="ml-auto flex items-center justify-center gap-7">
-        <a
-          className=" block bg-transparent border border-solid border-gray-500 rounded-full hover:scale-[1.04] hover:bg-dark-400 hover:border-white transition py-2 px-4"
-          href="https://www.spotify.com/fr/premium/?utm_source=app&utm_medium=desktop&utm_campaign=upgrade"
-        >
-          <H2 label="S'abonner" color="white" size="sm" />
-        </a>
-        <button className="flex items-center justify-center gap-2 p-1 rounded-full bg-dark-400 hover:bg-dark-50">
-          <div className="w-7 h-7 ">
-            <img
-              className="rounded-full object-cover"
-              src="https://source.unsplash.com/random/28x28"
-              alt="Profil"
-            />
-          </div>
-          <span className=" justify-start items-center g-2 hidden lg:flex">
-            <H2 label="Geoffrey Maillot" size="sm" color="white" />
-            <RiArrowDownSFill color="white" size="1.4rem" />
-          </span>
-        </button>
+        <RenderIf bool={path === '/'}>
+          <a
+            className=" block bg-transparent border border-solid border-gray-500 rounded-full hover:scale-[1.04] hover:bg-dark-400 hover:border-white transition py-2 px-4"
+            href="https://www.spotify.com/fr/premium/?utm_source=app&utm_medium=desktop&utm_campaign=upgrade"
+          >
+            <H2 label="S'abonner" color="white" size="sm" />
+          </a>
+        </RenderIf>
+        <div className="relative">
+          <button
+            className="flex items-center justify-center gap-2 p-1 rounded-full bg-dark-400 hover:bg-dark-50"
+            onClick={openClosePoupAccount}
+          >
+            <div className="w-7 h-7 ">
+              <img
+                className="rounded-full object-cover"
+                src="https://source.unsplash.com/random/28x28"
+                alt="Profil"
+              />
+            </div>
+            <span className=" justify-start items-center g-2 hidden lg:flex">
+              <H2 label="Geoffrey Maillot" size="sm" color="white" />
+              <span className={`${popupAccountIsVisible && 'rotate-180 '}`}>
+                <RiArrowDownSFill color="white" size="1.4rem" />
+              </span>
+            </span>
+          </button>
+          <RenderIf bool={popupAccountIsVisible}>
+            <div className="absolute w-[12.25rem] bg-dark-50 rounded p-1 flex flex-col right-0 top-[calc(100%_+_0.5rem)]">
+              <a href="/">
+                <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
+                  <Paragraph label="Compte" color="lightWhite" />
+                  <BiLinkExternal color="#ffffffe6" size="1.4rem" />
+                </span>
+              </a>
+              <Link to="#" className="py-3 pr-2 pl-2 rounded hover:bg-white/10">
+                {' '}
+                <Paragraph label="Profil" color="lightWhite" />
+              </Link>
+              <a href="https://www.spotify.com/fr/premium/">
+                <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
+                  <Paragraph label="Passer à Premium" color="lightWhite" />
+                  <BiLinkExternal color="#ffffffe6" size="1.4rem" />
+                </span>
+              </a>
+              <button className="py-3 pr-2 pl-2 rounded hover:bg-white/10 text-left">
+                {' '}
+                <Paragraph label="Déconnexion" color="lightWhite" />
+              </button>
+            </div>
+          </RenderIf>
+        </div>
       </div>
     </header>
   );

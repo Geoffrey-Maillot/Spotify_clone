@@ -2,7 +2,13 @@ interface Props {
   children?: string;
   label?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
-  color?: 'white' | 'gray' | 'lightGray' | 'blue';
+  color?:
+    | 'white'
+    | 'gray'
+    | 'lightGray'
+    | 'veryLightGray'
+    | 'blue'
+    | 'lightWhite';
 }
 
 const fontSize: { [x: string]: string } = {
@@ -16,8 +22,10 @@ const fontSize: { [x: string]: string } = {
 
 const colors: { [x: string]: string } = {
   white: 'text-white',
+  lightWhite: 'text-white/90',
   gray: 'text-gray-300',
   lightGray: 'text-gray-200',
+  veryLightGray: 'text-gray-100',
   blue: 'text-blue-100',
 };
 
