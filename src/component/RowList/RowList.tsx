@@ -9,57 +9,10 @@ import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
 interface Props {
   title: string;
   subTitle?: string;
+  albums: Array<{ img: string; title: string; content: string }>;
 }
 
-const originalList = [
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-];
-
-const RowList = ({ title = 'Titre de la liste', subTitle }: Props) => {
+const RowList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => {
   const [nbrCols, setNbrCols] = useState(0);
   const windowWidth = useGetWindowWidth();
 
@@ -80,7 +33,7 @@ const RowList = ({ title = 'Titre de la liste', subTitle }: Props) => {
     return nbrCols;
   };
 
-  const listSlice = originalList.slice(0, nbrCols);
+  const listSlice = albums.slice(0, nbrCols);
 
   useEffect(() => {
     if (rowList.current) {
@@ -90,9 +43,9 @@ const RowList = ({ title = 'Titre de la liste', subTitle }: Props) => {
 
   return (
     <div className="mb-4" ref={rowList}>
-      <div className="flex items-center justify-start">
+      <div className="flex items-center justify-start pb-4 pt-1">
         <div className="grow">
-          <H2 label={title} />
+          <H2 label={title} size="xl2" />
           <RenderIf bool={!!subTitle}>
             <Paragraph label={subTitle} />
           </RenderIf>

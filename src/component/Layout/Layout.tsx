@@ -7,13 +7,14 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => (
-  <>
-    <div className="">
-      <LeftMenu />
-      <main className="ml-80 min-h-[calc(100vh_-_5.625rem)]">{children}</main>
-    </div>
+  <div
+    className="grid grid-cols-[var(--leftMenuWidth)_1fr] grid-rows-[1fr_5.625rem]"
+    style={{ ['--leftMenuWidth' as any]: '320px' }}
+  >
+    <LeftMenu />
+    <main>{children}</main>
     <Footer />
-  </>
+  </div>
 );
 
 export default Layout;
