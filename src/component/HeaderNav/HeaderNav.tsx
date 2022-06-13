@@ -34,7 +34,6 @@ const HeaderNav = () => {
   const [popupLinkIsVisible, togglePopupLinkIsVisible] = useState(false);
   const [popupAccountIsVisible, togglePopupAccountIsVisible] = useState(false);
   const windowWidth = useGetWindowWidth();
-  console.log(path);
 
   const openClosePoupNavLink = () => {
     togglePopupLinkIsVisible(!popupLinkIsVisible);
