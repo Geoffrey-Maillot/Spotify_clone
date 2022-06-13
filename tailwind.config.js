@@ -16,6 +16,7 @@ module.exports = {
       dark: {
         50: '#282828',
         100: '#121212',
+        150: '#5a5a5a',
         200: '#181818',
         250: "#282828",
         300: '#15080A',
@@ -935,5 +936,5 @@ module.exports = {
     'active',
     'disabled',
   ],
-  plugins: [],
+  plugins: [require('tailwind-scrollbar'),],
 }

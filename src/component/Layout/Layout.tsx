@@ -1,6 +1,6 @@
 //Import Component
 import LeftMenu from '../LeftMenu/LeftMenu';
-import Footer from '../Footer/Footer';
+import Footer from '../PlayBar/PlayBar';
 
 interface Props {
   children: any;
@@ -8,11 +8,13 @@ interface Props {
 
 const Layout = ({ children }: Props) => (
   <div
-    className="grid grid-cols-[var(--leftMenuWidth)_1fr] grid-rows-[1fr_5.625rem]"
+    className="grid grid-cols-[var(--leftMenuWidth)_1fr] grid-rows-[1fr_5.625rem] "
     style={{ ['--leftMenuWidth' as any]: '320px' }}
   >
     <LeftMenu />
-    <main>{children}</main>
+    <main className="bg-dark-100  max-h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
+      {children}
+    </main>
     <Footer />
   </div>
 );

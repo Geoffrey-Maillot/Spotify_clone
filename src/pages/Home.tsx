@@ -83,43 +83,41 @@ const albumNews = [
 
 const Home = () => (
   <Layout>
-    <main className="bg-dark-100  max-h-[calc(100vh_-_5.625rem)] ">
-      <HeaderNav />
-      <div className="px-8 pt-6 grid gap-6 ">
-        <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
-        <RowList title="Réécoutez vos anciens favoris" albums={albumNews} />
-        <RowList
-          title="Nouveautés tendance"
-          subTitle="Des playlists rassemblant toutes les dernières nouveautés"
-          albums={albumNews}
-        />
-        <RowList
-          title="Place au contenu que vous aimez"
-          subTitle="Ecoutez tous ce que vous adorez"
-          albums={albumNews}
-        />
-        <RowList title="Ecoutés récemment" albums={albumNews} />
-        <RowList
-          title="Populaire chez les auditeurs de Artisan Développeur"
-          albums={albumNews}
-        />
-        <RowList
-          title="A ne pas manquer aujourd'hui"
-          subTitle="Des playlists rassemblant toutes les dernières nouveautés"
-          albums={albumNews}
-        />
-        <RowList
-          title="Lié à vos écoutes récentes"
-          subTitle="Des playlists rassemblant toutes les dernières nouveautés"
-          albums={albumNews}
-        />
-        <RowList
-          title="Conçu pour Maillot Geoffrey"
-          subTitle="Des playlists rassemblant toutes les dernières nouveautés"
-          albums={albumNews}
-        />
-      </div>
-    </main>
+    <HeaderNav />
+    <div className="px-8 pt-6 grid gap-6 ">
+      <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
+      <RowList title="Réécoutez vos anciens favoris" albums={albumNews} />
+      <RowList
+        title="Nouveautés tendance"
+        subTitle="Des playlists rassemblant toutes les dernières nouveautés"
+        albums={albumNews}
+      />
+      <RowList
+        title="Place au contenu que vous aimez"
+        subTitle="Ecoutez tous ce que vous adorez"
+        albums={albumNews}
+      />
+      <RowList title="Ecoutés récemment" albums={albumNews} />
+      <RowList
+        title="Populaire chez les auditeurs de Artisan Développeur"
+        albums={albumNews}
+      />
+      <RowList
+        title="A ne pas manquer aujourd'hui"
+        subTitle="Des playlists rassemblant toutes les dernières nouveautés"
+        albums={albumNews}
+      />
+      <RowList
+        title="Lié à vos écoutes récentes"
+        subTitle="Des playlists rassemblant toutes les dernières nouveautés"
+        albums={albumNews}
+      />
+      <RowList
+        title="Conçu pour Maillot Geoffrey"
+        subTitle="Des playlists rassemblant toutes les dernières nouveautés"
+        albums={albumNews}
+      />
+    </div>
   </Layout>
 );
 
