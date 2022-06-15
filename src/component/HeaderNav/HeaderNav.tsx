@@ -201,7 +201,7 @@ const HeaderNav = () => {
             </span>
           </button>
           <RenderIf bool={popupAccountIsVisible}>
-            <div className="absolute w-[12.25rem] bg-dark-50 rounded p-1 flex flex-col right-0 top-[calc(100%_+_0.5rem)]">
+            <div className=" z-50 absolute w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col right-0 top-[calc(100%_+_0.5rem)]">
               <a href="/">
                 <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
                   <Paragraph label="Compte" color="lightWhite" />

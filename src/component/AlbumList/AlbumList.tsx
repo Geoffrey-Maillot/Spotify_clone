@@ -12,23 +12,23 @@ interface Props {
   albums: Array<{ img: string; title: string; content: string }>;
 }
 
-const RowList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => {
+const AlbumList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => {
   const [nbrCols, setNbrCols] = useState(0);
   const windowWidth = useGetWindowWidth();
 
-  const rowList = useRef<HTMLDivElement>(null);
+  const albumList = useRef<HTMLDivElement>(null);
 
   const calcNbrCols = (width: number): number => {
     let nbrCols: number = 0;
-
-    if (width < 530) nbrCols = 2;
-    if (width > 530 && width < 730) nbrCols = 3;
-    if (width > 730 && width < 1060) nbrCols = 4;
-    if (width > 1060 && width < 1260) nbrCols = 5;
-    if (width > 1260 && width < 1447) nbrCols = 6;
-    if (width > 1447 && width < 1673) nbrCols = 7;
-    if (width > 1673 && width < 1874) nbrCols = 8;
-    if (width > 1874) nbrCols = 9;
+    if(width < 350) nbrCols = 1
+    if ( width >= 350 && width < 530) nbrCols = 2;
+    if (width >= 530 && width < 730) nbrCols = 3;
+    if (width >= 730 && width < 1060) nbrCols = 4;
+    if (width >= 1060 && width < 1260) nbrCols = 5;
+    if (width >= 1260 && width < 1447) nbrCols = 6;
+    if (width >= 1447 && width < 1673) nbrCols = 7;
+    if (width >= 1673 && width < 1874) nbrCols = 8;
+    if (width >= 1874) nbrCols = 9;
 
     return nbrCols;
   };
@@ -36,13 +36,13 @@ const RowList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => {
   const listSlice = albums.slice(0, nbrCols);
 
   useEffect(() => {
-    if (rowList.current) {
-      setNbrCols(calcNbrCols(rowList.current.clientWidth));
+    if (albumList.current) {
+      setNbrCols(calcNbrCols(albumList.current.clientWidth));
     }
   }, [windowWidth]);
 
   return (
-    <div className="mb-4" ref={rowList}>
+    <div className="mb-4" ref={albumList}>
       <div className="flex items-center justify-start pb-4 pt-1">
         <div className="grow">
           <H2 label={title} size="xl2" />
@@ -74,4 +74,4 @@ const RowList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => {
   );
 };
 
-export default RowList;
+export default AlbumList;

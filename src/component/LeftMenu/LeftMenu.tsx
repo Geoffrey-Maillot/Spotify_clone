@@ -8,22 +8,27 @@ import LikedTraksLink from './LikedTraksLink';
 
 const LeftMenu = () => {
   return (
-    <div className="p-0 pl-6 pt-6 pr-3 bg-dark-400 max-h-[calc(100vh_-_5.625rem)] grid justify-items-start">
-      <div className="w-[7.8rem] h-10 mb-9">
+    <div className=" w-full p-0  pt-6  bg-dark-400 max-h-[calc(100vh_-_5.625rem)] grid justify-items-start">
+      <div className="w-[8.1875rem] h-10 mb-9 ml-6    ">
         <img src={logo} alt="Logo Spotify" />
       </div>
-      <ul className="mb-9">
+      <ul className="mb-5 px-6 w-full">
         <li>
-          <MenuLink to="#" icon iconType="home" label="Acceuil" />
-          <MenuLink to="#" icon iconType="search" label="Rechercher" />
-          <MenuLink to="#" icon iconType="library" label="Bibliothèque" />
+          <MenuLink to="/" icon iconType="home" label="Acceuil" />
+          <MenuLink to="/search" icon iconType="search" label="Rechercher" />
+          <MenuLink to="/collection" icon iconType="library" label="Bibliothèque" />
         </li>
       </ul>
-      <CreatePlaylistButton />
-      <LikedTraksLink to="#" />
-      <div className="w-full h-[.5px] bg-gray-200 shadow-[0_3px-2px_rgba(0,0,0,.6)] rounded" />
+      <ul className="px-6">
+        <CreatePlaylistButton />
+        <LikedTraksLink to="#" />
+      </ul>
+      <div className="relative w-full h-[1px]">
+        <hr className="w-full h-[1px] bg-dark-250  border-none rounded relative z-50" />
+        <div className="absolute  z-10 right-4 left-0  top-0 h-4 bg-gradient-to-b from-[#00000070]/70 to-transparent " />
+      </div>
 
-      <ul className="overflow-auto h-full scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-400">
+      <ul className=" w-full overflow-y-scroll h-full scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-400 px-6">
         {' '}
         <MenuLink to="#" label="Hits du Moment" />{' '}
         <MenuLink to="#" label="Carnival" /> <MenuLink to="#" label="Osocity" />{' '}

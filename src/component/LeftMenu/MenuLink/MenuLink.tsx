@@ -59,7 +59,7 @@ const MenuLink = ({
   return (
     <NavLink
       to={to}
-      className="flex items-center justify-start gap-4 hover:text-white my-5"
+      className="flex items-center justify-start gap-4 hover:text-white my-5 select-none"
       onMouseEnter={handlerOnMouseEnter}
       onMouseLeave={handlerOnMouseLeave}
     >

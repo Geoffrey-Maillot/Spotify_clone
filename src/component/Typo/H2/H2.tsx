@@ -23,7 +23,7 @@ const colors: { [x: string]: string } = {
 };
 
 const H2 = ({ children, label, size = 'sm', color = 'white' }: Props) => (
-  <h2 className={`font-circularBold  ${colors[color]} ${fontSize[size]}`}>
+  <h2 className={`font-circularBold truncate max-w-[21.5625rem]  ${colors[color]} ${fontSize[size]}`}>
     {label ? label : children}
   </h2>
 );

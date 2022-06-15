@@ -2,7 +2,7 @@
 import Layout from '../component/Layout/Layout';
 import HeaderNav from '../component/HeaderNav/HeaderNav';
 import AlbumFirstSuggestion from '../component/AlbumFirstSuggestion/AlbumFirstSuggestion';
-import RowList from '../component/RowList/RowList';
+import AlbumList from '../component/AlbumList/AlbumList';
 
 const listAlbumFirstSuggestion = [
   {
@@ -33,86 +33,86 @@ const listAlbumFirstSuggestion = [
   },
 ];
 
-const albumNews = [
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-  {
-    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-    title: 'Futur Hits',
-    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-  },
-];
+  const albumNews = [
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+    {
+      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+      title: 'Futur Hits',
+      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+    },
+  ];
 
 const Home = () => (
   <Layout>
     <HeaderNav />
     <div className="px-8 pt-6 grid gap-6 ">
       <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
-      <RowList title="Réécoutez vos anciens favoris" albums={albumNews} />
-      <RowList
+      <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} />
+      <AlbumList
         title="Nouveautés tendance"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
       />
-      <RowList
+      <AlbumList
         title="Place au contenu que vous aimez"
         subTitle="Ecoutez tous ce que vous adorez"
         albums={albumNews}
       />
-      <RowList title="Ecoutés récemment" albums={albumNews} />
-      <RowList
+      <AlbumList title="Ecoutés récemment" albums={albumNews} />
+      <AlbumList
         title="Populaire chez les auditeurs de Artisan Développeur"
         albums={albumNews}
       />
-      <RowList
+      <AlbumList
         title="A ne pas manquer aujourd'hui"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
       />
-      <RowList
+      <AlbumList
         title="Lié à vos écoutes récentes"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
       />
-      <RowList
+      <AlbumList
         title="Conçu pour Maillot Geoffrey"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}

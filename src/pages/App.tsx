@@ -1,8 +1,13 @@
 // Import Router
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route , Navigate} from 'react-router-dom';
 
 // Import Component
 import Home from './Home';
+import Search from './Search';
+import Playlist from './Collection/Playlist';
+import Podcasts from './Collection/Podcats';
+import Artists from './Collection/Artists';
+import Albums from './Collection/Albums';
 
 //Todo : Faire une 404
 
@@ -10,16 +15,15 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      {/* 
-      <Route path="search" element={<Home />} />
+      <Route path="search" element={<Search />} />
       <Route path="collection">
-        <Route index element={<Home />} />
-        <Route path="playlists" element={<Home />} />
-        <Route path="podcasts" element={<Home />} />
-        <Route path="artists" element={<Home />} />
-        <Route path="albums" element={<Home />} />
+        <Route index element={<Navigate to="/collection/playlists" replace/>} />
+        <Route path="playlists" element={<Playlist />} />
+        <Route path="podcasts" element={<Podcasts />} />
+        <Route path="artists" element={<Artists />} />
+        <Route path="albums" element={<Albums />} />
       </Route>
-*/}
+
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );

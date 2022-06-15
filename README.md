@@ -1,5 +1,7 @@
 # Learn 
 
+---
+
 ## Storybook
 
 ---
@@ -48,3 +50,13 @@ export const WithIcon = Template.bind({});
 WithIcon.args = { label: 'With icon', icon: true, to: '/' };
 
 ```
+---
+
+## Tailwind
+---
+
+### Addon  :
+- tailwind-scrollbar
+
+
+

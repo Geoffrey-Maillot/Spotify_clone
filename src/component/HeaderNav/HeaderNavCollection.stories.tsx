@@ -3,18 +3,18 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import HeaderNav from './HeaderNav';
 
 export default {
-  title: 'Header/HeaderNav/Default',
+  title: 'Header/HeaderNav/Collection',
   component: HeaderNav,
   decorators: [withRouter],
 } as ComponentMeta<typeof HeaderNav>;
 
 const Template: ComponentStory<typeof HeaderNav> = () => <HeaderNav />;
 
-export const defaultHeader = Template;
-defaultHeader.story = {
+export const collectionHeader = Template;
+collectionHeader.story = {
   parameters: {
     reactRouter: {
-      routePath: '/',
+      routePath: '/collection',
     },
   },
 };
