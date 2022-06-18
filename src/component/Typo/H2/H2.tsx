@@ -1,7 +1,7 @@
 interface Props {
   children?: any;
   label?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
+  size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3' | 'xl5';
   color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray' | 'blue';
 }
 
@@ -12,6 +12,7 @@ const fontSize: { [x: string]: string } = {
   lg: 'text-lg',
   xl2: 'text-2xl',
   xl3: 'text-3xl',
+  xl5: 'text-5xl'
 };
 
 const colors: { [x: string]: string } = {

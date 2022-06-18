@@ -8,8 +8,8 @@ import LikedTraksLink from './LikedTraksLink';
 
 const LeftMenu = () => {
   return (
-    <div className=" w-full p-0  pt-6  bg-dark-400 max-h-[calc(100vh_-_5.625rem)] grid justify-items-start">
-      <div className="w-[8.1875rem] h-10 mb-9 ml-6    ">
+    <div className=" w-full p-0  pt-6  bg-dark-400 max-h-[calc(100vh_-_5.625rem)]  grid justify-items-start ">
+      <div className="w-[8.1875rem] h-10 mb-4 ml-6    ">
         <img src={logo} alt="Logo Spotify" />
       </div>
       <ul className="mb-5 px-6 w-full">

@@ -370,7 +370,7 @@ module.exports = {
       '2xl': ['1.5rem', { lineHeight: '1.75rem' }], // size: 24px; height: 28px
       '3xl': ['1.875rem', { lineHeight: '2.25rem' }], // size: 32px; height: 36px
       '4xl': ['2rem', { lineHeight: '2.25rem' }],
-      '5xl': ['3rem', { lineHeight: '1' }],
+      '5xl': ['2.5rem', { lineHeight: '3.25rem' }], // size: 40px; height: 52px
       '6xl': ['3.75rem', { lineHeight: '1' }],
       '7xl': ['4.5rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '6rem' }], // size:  96px; height: 96px

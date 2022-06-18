@@ -39,7 +39,7 @@ const LikedTraksLink = ({ to = '/' }: Props) => {
       onMouseLeave={handlerOnMouseLeave}
     >
       <span
-        className={`h-7 w-7 rounded inline-flex justify-center items-center ${bgGradient} `}
+        className={`h-6 w-6 rounded inline-flex justify-center items-center ${bgGradient} `}
       >
         <AiFillHeart
           size="1rem"

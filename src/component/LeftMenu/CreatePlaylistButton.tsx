@@ -23,11 +23,11 @@ const MenuLink = () => {
       onMouseLeave={handlerOnMouseLeave}
     >
       <span
-        className={`h-7 w-7 rounded inline-flex justify-center items-center mr-4 ${
+        className={`h-6 w-6 rounded inline-flex justify-center items-center mr-4 ${
           isHover ? 'bg-white' : 'bg-gray-100'
         }`}
       >
-        <AiOutlinePlus size="1rem" />
+        <AiOutlinePlus  />
       </span>
       <span className="inline-block">
         <H2
