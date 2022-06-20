@@ -1,17 +1,34 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
+import CardGender from '../Cards/CardGender';
 
 // TODO: Remplacer any par le composant CardGender
 interface Props {
-  children: Array<any>
+  cards: Array<any>;
 }
 
-const Carroussel = ({children}: Props) => {
-  console.log(children)
-
-return (
-  <div className="grid grid-flow-col gap-6 overflow-auto w-full grid-cols-[repeat(8,_208px)]   auto-rows-[13.75rem] py-4">
-    {children}
-  </div>
-)};
+const Carroussel = ({ cards }: Props) => {
+  return (
+    <Swiper
+      className="w-full  my-4"
+      grid={{
+        rows: 1,
+      }}
+      slidesPerView={'auto'}
+      spaceBetween={24}
+      navigation={true}
+      modules={[Navigation]}
+    >
+      {cards.map((card, i) => (
+        <SwiperSlide key={i} className="w-[440px] h-[13.75rem]">
+          <CardGender {...card} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+};
 
 export default Carroussel;

@@ -12,7 +12,7 @@ const fontSize: { [x: string]: string } = {
   lg: 'text-lg',
   xl2: 'text-2xl',
   xl3: 'text-3xl',
-  xl5: 'text-5xl'
+  xl5: 'text-5xl',
 };
 
 const colors: { [x: string]: string } = {
@@ -24,7 +24,9 @@ const colors: { [x: string]: string } = {
 };
 
 const H2 = ({ children, label, size = 'sm', color = 'white' }: Props) => (
-  <h2 className={`font-circularBold truncate max-w-[21.5625rem]  ${colors[color]} ${fontSize[size]}`}>
+  <h2
+    className={`font-circularBold tracking-tighter  truncate max-w-[21.5625rem]  ${colors[color]} ${fontSize[size]}`}
+  >
     {label ? label : children}
   </h2>
 );

@@ -12,7 +12,11 @@ interface Props {
   albums: Array<{ img: string; title: string; content: string }>;
 }
 
-const AlbumList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => {
+const AlbumList = ({
+  title = 'Titre de la liste',
+  subTitle,
+  albums,
+}: Props) => {
   const [nbrCols, setNbrCols] = useState(0);
   const windowWidth = useGetWindowWidth();
 
@@ -20,8 +24,8 @@ const AlbumList = ({ title = 'Titre de la liste', subTitle, albums }: Props) => 
 
   const calcNbrCols = (width: number): number => {
     let nbrCols: number = 0;
-    if(width < 350) nbrCols = 1
-    if ( width >= 350 && width < 530) nbrCols = 2;
+    if (width < 350) nbrCols = 1;
+    if (width >= 350 && width < 530) nbrCols = 2;
     if (width >= 530 && width < 730) nbrCols = 3;
     if (width >= 730 && width < 1060) nbrCols = 4;
     if (width >= 1060 && width < 1260) nbrCols = 5;

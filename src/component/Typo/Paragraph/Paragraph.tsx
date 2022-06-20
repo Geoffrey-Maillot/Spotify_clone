@@ -5,6 +5,7 @@ interface Props {
   color?:
     | 'white'
     | 'gray'
+    | 'mediumGray'
     | 'lightGray'
     | 'veryLightGray'
     | 'blue'
@@ -24,6 +25,7 @@ const colors: { [x: string]: string } = {
   white: 'text-white',
   lightWhite: 'text-white/90',
   gray: 'text-gray-300',
+  mediumGray: 'text-gray-150',
   lightGray: 'text-gray-200',
   veryLightGray: 'text-gray-100',
   blue: 'text-blue-100',
