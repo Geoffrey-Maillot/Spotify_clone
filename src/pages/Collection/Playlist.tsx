@@ -57,7 +57,6 @@ const playlist = [
 // == Component =>
 const Playlist = () => (
   <Layout>
-    <HeaderNav />
     <div className="px-8 pt-6">
       <section>
         <H2 size="xl2"> Playlist </H2>

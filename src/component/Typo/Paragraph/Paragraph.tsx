@@ -23,7 +23,7 @@ const fontSize: { [x: string]: string } = {
 
 const colors: { [x: string]: string } = {
   white: 'text-white',
-  lightWhite: 'text-white/90',
+  lightWhite: 'text-white/70',
   gray: 'text-gray-300',
   mediumGray: 'text-gray-150',
   lightGray: 'text-gray-200',

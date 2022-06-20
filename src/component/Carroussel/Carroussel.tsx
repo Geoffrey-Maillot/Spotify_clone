@@ -1,3 +1,5 @@
+
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
@@ -11,6 +13,9 @@ interface Props {
 }
 
 const Carroussel = ({ cards }: Props) => {
+
+
+
   return (
     <Swiper
       className="w-full  my-4"
@@ -21,9 +26,10 @@ const Carroussel = ({ cards }: Props) => {
       spaceBetween={24}
       navigation={true}
       modules={[Navigation]}
+
     >
       {cards.map((card, i) => (
-        <SwiperSlide key={i} className="w-[440px] h-[13.75rem]">
+        <SwiperSlide key={i} className="w-[440px] h-[13.75rem] ">
           <CardGender {...card} />
         </SwiperSlide>
       ))}

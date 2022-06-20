@@ -1,0 +1,50 @@
+// Swiper
+
+div.swiper-button-prev {
+  width: 48px;
+  height: 48px;
+  background-color: #efefef !important;
+  background: url('../assets/img/back.svg') center center/ 80% no-repeat;
+  border-radius: 50%;
+
+  &:hover {
+    transform: scale(1.04);
+    background-color: #f6f6f6 !important;
+  }
+
+  &:active {
+    transform: scale(1);
+    background-color: #b7b7b7 !important;
+  }
+
+  &::after {
+    content: '';
+  }
+}
+
+div.swiper-button-next {
+  width: 48px;
+  height: 48px;
+  background-color: #efefef !important;
+  background: url('../assets/img/next.svg') center center/ 80% no-repeat;
+  border-radius: 50%;
+
+  &:hover {
+    transform: scale(1.04);
+    background-color: #f6f6f6 !important;
+  }
+
+  &:active {
+    transform: scale(1);
+    background-color: #b7b7b7 !important;
+  }
+
+  &::after {
+    content: '';
+  }
+}
+
+div.swiper-button-prev.swiper-button-disabled,
+div.swiper-button-next.swiper-button-disabled {
+  display: none;
+}

@@ -4,7 +4,6 @@ import HeaderNav from '../../component/HeaderNav/HeaderNav';
 import H2 from '../../component/Typo/H2/H2';
 import Grid from '../../component/Grid/Grid';
 import CardMusic from '../../component/Cards/CardMusic';
-import CardFirst from '../../component/Cards/CardFirst';
 
 const playlist = [
   {
@@ -57,7 +56,7 @@ const playlist = [
 // == Component =>
 const Albums = () => (
   <Layout>
-    <HeaderNav />
+
     <div className="px-8 pt-6">
       <section>
         <H2 size="xl2"> Albums </H2>

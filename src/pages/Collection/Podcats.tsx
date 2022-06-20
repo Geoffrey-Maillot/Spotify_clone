@@ -1,6 +1,6 @@
 // Import component
 import Layout from '../../component/Layout/Layout';
-import HeaderNav from '../../component/HeaderNav/HeaderNav';
+
 import H2 from '../../component/Typo/H2/H2';
 import Grid from '../../component/Grid/Grid';
 import CardMusic from '../../component/Cards/CardMusic';
@@ -37,7 +37,6 @@ const podcasts = [
 // == Component =>
 const Podcasts = () => (
   <Layout>
-    <HeaderNav />
     <div className="px-8 pt-6">
       <section>
         <H2 size="xl2"> Podcasts </H2>

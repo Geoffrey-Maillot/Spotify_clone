@@ -8,6 +8,7 @@ import Playlist from './Collection/Playlist';
 import Podcasts from './Collection/Podcats';
 import Artists from './Collection/Artists';
 import Albums from './Collection/Albums';
+import TraksPlaylist from './TracksPlaylist';
 
 //Todo : Faire une 404
 
@@ -23,7 +24,7 @@ function App() {
         <Route path="artists" element={<Artists />} />
         <Route path="albums" element={<Albums />} />
       </Route>
-
+      <Route path='playlist/:id' element={<TraksPlaylist />} />
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );

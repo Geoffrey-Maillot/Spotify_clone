@@ -71,7 +71,7 @@ const HeaderNav = () => {
   return (
     <header
       ref={header}
-      className="flex items-center content-start bg-dark-200 px-8 py-4 gap-4 "
+      className="flex items-center content-start bg-dark-200 px-8 py-4 gap-4 sticky z-50 top-0 left-0 right-0"
     >
       {/* //? Voir pour faire un composant des boutons si on les retrouves encore ailleurs*/}
       <div className="flex content-start items-start gap-4">

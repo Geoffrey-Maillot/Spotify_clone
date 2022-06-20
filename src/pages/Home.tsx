@@ -83,7 +83,7 @@ const listAlbumFirstSuggestion = [
 
 const Home = () => (
   <Layout>
-    <HeaderNav />
+
     <div className="px-8 pt-6 grid gap-6 ">
       <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
       <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} />

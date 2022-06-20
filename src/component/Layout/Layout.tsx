@@ -1,4 +1,5 @@
 //Import Component
+import HeaderNav from '../HeaderNav/HeaderNav';
 import LeftMenu from '../LeftMenu/LeftMenu';
 import Footer from '../PlayBar/PlayBar';
 
@@ -12,7 +13,8 @@ const Layout = ({ children }: Props) => (
     style={{ ['--leftMenuWidth' as any]: '320px' }}
   >
     <LeftMenu />
-    <main className="bg-dark-100  max-h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
+    <main className="relative bg-dark-100  max-h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
+      <HeaderNav />
       {children}
     </main>
     <Footer />
