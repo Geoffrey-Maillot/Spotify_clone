@@ -1,5 +1,4 @@
 // Swiper
-
 div.swiper-button-prev {
   width: 48px;
   height: 48px;
@@ -48,3 +47,20 @@ div.swiper-button-prev.swiper-button-disabled,
 div.swiper-button-next.swiper-button-disabled {
   display: none;
 }
+
+
+// PrimeReact Table
+.p-datatable {
+  font-family: 'Circular-Book', 'sans-serif';
+  padding: 0 16px;
+}
+
+.p-datatable-table {
+  width: 100%;
+
+}
+
+.p-datatable-table thead  tr[role = row] {
+  border-bottom: 1px solid #b3b3b3;
+}
+

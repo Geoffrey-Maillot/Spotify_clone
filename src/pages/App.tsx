@@ -8,7 +8,7 @@ import Playlist from './Collection/Playlist';
 import Podcasts from './Collection/Podcats';
 import Artists from './Collection/Artists';
 import Albums from './Collection/Albums';
-import TraksPlaylist from './TracksPlaylist';
+import TraksPlaylist from './PlaylistListTracks/TracksPlaylist';
 
 //Todo : Faire une 404
 
