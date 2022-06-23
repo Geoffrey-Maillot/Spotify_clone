@@ -5,6 +5,8 @@ import App from './pages/App';
 import './styles/font.css';
 import './styles/tailwind.css';
 import './styles/styles.scss';
+import './styles/carroussel.scss';
+import './styles/table.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

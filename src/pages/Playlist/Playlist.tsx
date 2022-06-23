@@ -11,7 +11,7 @@ import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 import H2 from '../../component/Typo/H2/H2';
 import PlaylistTable from './PlaylistTable';
 
-const PlaylistListTracks = () => {
+const Playlist = () => {
   const { id } = useParams();
   console.log(id);
 
@@ -24,8 +24,9 @@ const PlaylistListTracks = () => {
         artist: 'Artiste',
       },
       album: 'Album',
-      added: 5,
-      dutation: '3:21',
+      added: 10,
+      duration: '3:21',
+      liked: true,
     },
     {
       track: 2,
@@ -35,8 +36,105 @@ const PlaylistListTracks = () => {
         artist: 'Artiste 2',
       },
       album: 'Album 2',
-      added: 5,
-      dutation: '3:36',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 3,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 4,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 5,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 6,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 7,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre super long',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 8,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 9,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
+    },
+    {
+      track: 10,
+      title: {
+        img: 'https://source.unsplash.com/random/64x64',
+        name: 'Titre 2',
+        artist: 'Artiste 2',
+      },
+      album: 'Album 2',
+      added: 10,
+      duration: '3:36',
+      liked: false,
     },
   ];
 
@@ -82,9 +180,10 @@ const PlaylistListTracks = () => {
           </span>
         </div>
       </header>
+
       <PlaylistTable tracksList={tracksList} />
     </Layout>
   );
 };
 
-export default PlaylistListTracks;
+export default Playlist;
