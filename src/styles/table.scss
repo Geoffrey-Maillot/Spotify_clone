@@ -1,0 +1,52 @@
+// PrimeReact Table
+.p-datatable {
+  font-family: 'Circular-Book', 'sans-serif';
+  padding: 0 16px;
+  font-size: 0.75rem;
+}
+
+.p-datatable-table {
+  width: 100%;
+}
+
+.p-datatable-table thead tr[role='row'] {
+  border-bottom: 1px solid #ffffff1a;
+  text-transform: uppercase;
+}
+
+.p-datatable tbody {
+  font-size: 0.875rem;
+}
+
+.p-datatable tbody tr {
+  border-radius: 8px !important;
+  
+  &:hover {
+    background: rgba(#ffffff, 0.1);
+  }
+}
+
+.p-datatable tbody tr:hover .tableButtonLike, .p-selectable-row.p-highlight  .tableButtonLike {
+  opacity: 1;
+}
+
+.p-datatable .tableButtonLike {
+  opacity: 0;
+}
+
+.p-selectable-row.p-highlight {
+  background: rgba(#ffffff, 0.3) !important;
+}
+
+// Media Querries
+@media screen and (max-width: 780px ) {
+    .p-datatable tbody tr {
+      display: block;
+    border-bottom: 1px solid #ffffff1a;
+    padding: 10px;
+}
+
+    .p-datatable .tableButtonLike {
+  opacity: 1;
+}
+}

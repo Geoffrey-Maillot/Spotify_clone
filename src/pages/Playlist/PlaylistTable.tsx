@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Import Hook
+import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
 
 // Import PrimeReact
 import {
-  DataTable,
-  DataTableSelectAllChangeParams,
+  DataTable, DataTableResponsiveLayoutType,
 } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
@@ -14,9 +16,9 @@ import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 
 // TODO : Remplacer any par les infos provenant de l'api
-interface Props {
-  tracksList: Array<{
-    track: number;
+
+interface Track {
+  track: number;
     title: {
       img: string;
       name: string;
@@ -26,11 +28,22 @@ interface Props {
     added: number;
     duration: string;
     liked: boolean;
-  }>;
+}
+
+interface Props {
+  tracksList: Array<Track>;
 }
 
 const PlaylistTable = ({ tracksList }: Props) => {
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState<Track | null>(null);
+  const [responsiveTableStyle,setResponsiveTableStyle ] = useState<DataTableResponsiveLayoutType>('scroll')
+  const windowWidth: number = useGetWindowWidth()
+
+  useEffect(() => {
+  const responsiveStyle = windowWidth <= 780 ? 'stack' : 'scroll'
+  setResponsiveTableStyle(responsiveStyle)
+
+}, [windowWidth])
 
   const onSelectRow = (e: any) => {
     setSelectedRow(e.value);
@@ -54,7 +67,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
 
   const titleContent = (rowData: any) => {
     return (
-      <div className="flex justify-start items-center gap-3">
+      <div className="flex justify-start flex-row-reverse md:flex-row items-center text-right md:text-left gap-3">
         <div className="w-10 h-10 object-cover object-center">
           <img src={rowData?.title?.img} alt={rowData.title.name} />
         </div>
@@ -71,12 +84,13 @@ const PlaylistTable = ({ tracksList }: Props) => {
   };
 
   return (
-    <div className="px-8">
+    <div className="px-1 md:px-8">
       <DataTable
         value={tracksList}
         dataKey="track"
         selectionMode="single"
-        responsiveLayout="scroll"
+        responsiveLayout={responsiveTableStyle}
+        breakpoint='780px'
         className=" text-gray-200 text-left"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
@@ -101,13 +115,14 @@ const PlaylistTable = ({ tracksList }: Props) => {
           body={titleContent}
         />
 
-        <Column field="album" bodyStyle={{ width: '20%' }} header="Album" />
+        <Column field="album" bodyStyle={{ width: '20%', minWidth: '100px' }} header="Album" />
 
         <Column
           field="added"
           bodyStyle={{ width: '20%' }}
           header="Ajoutée le"
           body={addedContent}
+          className="hidden lg:table-cell"
         />
 
         <Column
@@ -115,6 +130,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
           header=""
           bodyStyle={{ width: '60px', textAlign: 'end' }}
           body={buttonLike}
+          className="tableButtonLike"
         />
         <Column
           headerStyle={{
