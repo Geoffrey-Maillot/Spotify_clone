@@ -16,7 +16,12 @@ const LeftMenu = () => {
         <li>
           <MenuLink to="/" icon iconType="home" label="Acceuil" />
           <MenuLink to="/search" icon iconType="search" label="Rechercher" />
-          <MenuLink to="/collection" icon iconType="library" label="Bibliothèque" />
+          <MenuLink
+            to="/collection"
+            icon
+            iconType="library"
+            label="Bibliothèque"
+          />
         </li>
       </ul>
       <ul className="px-6">

@@ -117,7 +117,7 @@ const HeaderNav = () => {
                 <RiArrowDownSFill color="white" size="1.4rem" />
               </button>
               <RenderIf bool={popupLinkIsVisible}>
-                <div className="w-40 p-1 rounded absolute left-0 top-[calc(100%_+_0.5rem)] flex flex-col justify-start items-start bg-dark-50">
+                <div className="w-40 p-1 rounded absolute left-0 top-[calc(100%_+_0.5rem)] flex flex-col justify-start items-start bg-dark-250">
                   <RenderIf bool={headerWidth < 640}>
                     <li className="w-full">
                       <NavLink

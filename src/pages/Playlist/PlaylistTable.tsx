@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
 
 // Import PrimeReact
-import {
-  DataTable, DataTableResponsiveLayoutType,
-} from 'primereact/datatable';
+import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
 // Import Icon
@@ -19,15 +17,15 @@ import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 
 interface Track {
   track: number;
-    title: {
-      img: string;
-      name: string;
-      artist: string;
-    };
-    album: string;
-    added: number;
-    duration: string;
-    liked: boolean;
+  title: {
+    img: string;
+    name: string;
+    artist: string;
+  };
+  album: string;
+  added: number;
+  duration: string;
+  liked: boolean;
 }
 
 interface Props {
@@ -36,14 +34,14 @@ interface Props {
 
 const PlaylistTable = ({ tracksList }: Props) => {
   const [selectedRow, setSelectedRow] = useState<Track | null>(null);
-  const [responsiveTableStyle,setResponsiveTableStyle ] = useState<DataTableResponsiveLayoutType>('scroll')
-  const windowWidth: number = useGetWindowWidth()
+  const [responsiveTableStyle, setResponsiveTableStyle] =
+    useState<DataTableResponsiveLayoutType>('scroll');
+  const windowWidth: number = useGetWindowWidth();
 
   useEffect(() => {
-  const responsiveStyle = windowWidth <= 780 ? 'stack' : 'scroll'
-  setResponsiveTableStyle(responsiveStyle)
-
-}, [windowWidth])
+    const responsiveStyle = windowWidth <= 780 ? 'stack' : 'scroll';
+    setResponsiveTableStyle(responsiveStyle);
+  }, [windowWidth]);
 
   const onSelectRow = (e: any) => {
     setSelectedRow(e.value);
@@ -90,7 +88,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
         dataKey="track"
         selectionMode="single"
         responsiveLayout={responsiveTableStyle}
-        breakpoint='780px'
+        breakpoint="780px"
         className=" text-gray-200 text-left"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
@@ -115,7 +113,11 @@ const PlaylistTable = ({ tracksList }: Props) => {
           body={titleContent}
         />
 
-        <Column field="album" bodyStyle={{ width: '20%', minWidth: '100px' }} header="Album" />
+        <Column
+          field="album"
+          bodyStyle={{ width: '20%', minWidth: '100px' }}
+          header="Album"
+        />
 
         <Column
           field="added"

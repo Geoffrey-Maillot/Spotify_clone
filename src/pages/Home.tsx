@@ -1,6 +1,6 @@
 // Import Component
 import Layout from '../component/Layout/Layout';
-import HeaderNav from '../component/HeaderNav/HeaderNav';
+
 import AlbumFirstSuggestion from '../component/AlbumFirstSuggestion/AlbumFirstSuggestion';
 import AlbumList from '../component/AlbumList/AlbumList';
 
@@ -33,57 +33,56 @@ const listAlbumFirstSuggestion = [
   },
 ];
 
-  const albumNews = [
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-    {
-      img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
-      title: 'Futur Hits',
-      content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
-    },
-  ];
+const albumNews = [
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+  {
+    img: 'https://i.scdn.co/image/ab67706f00000002ace305fec57431145ae4aca5',
+    title: 'Futur Hits',
+    content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
+  },
+];
 
 const Home = () => (
   <Layout>
-
     <div className="px-8 pt-6 grid gap-6 ">
       <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
       <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} />
@@ -118,6 +117,7 @@ const Home = () => (
         albums={albumNews}
       />
     </div>
+    <input type="range" style={{ height: '500px', width: '400px' }} />
   </Layout>
 );
 
