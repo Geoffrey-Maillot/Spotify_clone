@@ -32,7 +32,7 @@ const CardFirst = ({ type = 'playlist', listTitle, colSpan = 2 }: Props) => {
 
   return (
     <Link
-      to="#"
+      to={`/collection/${type === 'playlist' ? 'tracks' : 'episodes'}`}
       className={` relative group col-span-1 md:col-span-2 self-stretch rounded-md flex flex-col gap-6 justify-end items-start p-[20px] place-self-stretch ${types[type].background}`}
     >
       {listTitle && (

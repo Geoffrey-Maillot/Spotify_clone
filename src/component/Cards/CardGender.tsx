@@ -1,15 +1,13 @@
 // Import Router
 import { Link } from 'react-router-dom';
 
-// Import Component
-import H2 from '../Typo/H2/H2';
-
 interface Props {
   title: string;
   img: string;
   alt: string;
   color: string;
   size: string;
+  id?: string;
 }
 
 // == Component =>
@@ -19,6 +17,7 @@ const CardGender = ({
   alt = 'Image Alt',
   color = '#7695c9',
   size = 'small',
+  id='id12345'
 }: Props) => {
   const spanSizes: { [x: string]: string } = {
     small: 'col-span-1',
@@ -37,7 +36,7 @@ const CardGender = ({
 
   return (
     <Link
-      to="#"
+      to={`/genrepage/${id}`}
       className={`${
         spanSizes[size]
       } block relative rounded-lg overflow-hidden place-self-stretch h-full ${

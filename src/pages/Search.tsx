@@ -155,7 +155,6 @@ const dataGender = [
 // == Component =>
 const Search = () => (
   <Layout>
-
     <div className="px-8 pt-6 ">
       <section>
         <H2 size="xl2"> Vos genre préférés </H2>

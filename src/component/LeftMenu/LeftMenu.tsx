@@ -34,32 +34,33 @@ const LeftMenu = () => {
       </div>
 
       <ul className=" w-full overflow-y-scroll h-full scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-400 px-6">
-        {' '}
-        <MenuLink to="#" label="Hits du Moment" />{' '}
-        <MenuLink to="#" label="Carnival" /> <MenuLink to="#" label="Osocity" />{' '}
-        <MenuLink to="#" label="sega" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Radios" /> <MenuLink to="#" label="Rousseau" />{' '}
-        <MenuLink to="#" label="Fr" /> <MenuLink to="#" label="Epic Musique" />{' '}
-        <MenuLink to="#" label="Playlist Piano" />{' '}
-        <MenuLink to="#" label="Solo Guitare" />{' '}
-        <MenuLink to="#" label="Reggae" />{' '}
-        <MenuLink to="#" label="Classique détente" />{' '}
-        <MenuLink to="#" label="Posée" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Sport" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="tabata" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Rap Us" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Podcast" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Zen" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="974 Sega" /> <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Titres Shazam" />{' '}
-        <MenuLink to="#" label="Soirée" />{' '}
-        <MenuLink to="#" label="Classique musique pour lire" />{' '}
-        <MenuLink to="#" label="Soirée" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Hits du Moment" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Carnival" /> <MenuLink to={`/playlist/${'id12345'}`} label="Osocity" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="sega" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Radios" /> <MenuLink to={`/playlist/${'id12345'}`} label="Rousseau" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Fr" /> <MenuLink to={`/playlist/${'id12345'}`} label="Epic Musique" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Playlist Piano" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Solo Guitare" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Reggae" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Classique détente" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Posée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Sport" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="tabata" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Rap Us" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Podcast" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Zen" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="974 Sega" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Titres Shazam" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Classique musique pour lire" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
         <MenuLink
-          to="#"
+          to={`/playlist/${'id12345'}`}
           label="Titre super long pour styliser les trois petits points"
-        />{' '}
-        <MenuLink to="#" label="Soirée" />{' '}
+        />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
       </ul>
     </div>
   );

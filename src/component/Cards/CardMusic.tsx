@@ -11,6 +11,7 @@ interface Props {
   title?: string;
   content?: string; //? Le contenu sera peu être sous forme d'objet quand les datas viendront de l'api
   artist?: boolean;
+  id?: string;
 }
 
 const CardMusic = ({
@@ -18,10 +19,11 @@ const CardMusic = ({
   title = 'Daily Mix 1',
   content = 'Mes super titres',
   artist = false,
+  id='id12345',
 }: Props) => {
   return (
     <Link
-      to="#"
+      to={`/${artist ? 'artist' : 'playlist'}/${id}`}
       className="max-w-xs block rounded-md p-5 bg-white/5 hover:bg-white/20 text-left group transition ease-in-out duration-300  aspect-[0.72]"
     >
       <div className="w-full rounded-md aspect-square relative overflow-hidden">

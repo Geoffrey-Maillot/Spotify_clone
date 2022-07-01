@@ -10,12 +10,14 @@ interface Props {
   title: string;
   subTitle?: string;
   albums: Array<{ img: string; title: string; content: string }>;
+  idGenre?: string;
 }
 
 const AlbumList = ({
   title = 'Titre de la liste',
   subTitle,
   albums,
+  idGenre,
 }: Props) => {
   const [nbrCols, setNbrCols] = useState(0);
   const windowWidth = useGetWindowWidth();
@@ -55,7 +57,7 @@ const AlbumList = ({
           </RenderIf>
         </div>
         <Link
-          to="#"
+          to={`/genre/${idGenre}`}
           className="ml-4 hover:underline text-gray-200 text-sm font-circularBold uppercase tracking-wide"
         >
           Voir Tous

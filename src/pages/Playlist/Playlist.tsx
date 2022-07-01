@@ -11,9 +11,14 @@ import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 import H2 from '../../component/Typo/H2/H2';
 import PlaylistTable from './PlaylistTable';
 
-const Playlist = () => {
+interface Props {
+  isLikedTracks? : boolean;
+}
+
+const Playlist = ({isLikedTracks = false} : Props) => {
   const { id } = useParams();
-  console.log(id);
+  console.log(isLikedTracks)
+
 
   const tracksList = [
     {
@@ -148,7 +153,7 @@ const Playlist = () => {
           backgroundSize: 'cover',
         }}
       >
-        <span className="  mb-4">
+        <span className="mb-4">
           <H2 label="PLAYLIST" />
         </span>
         <H1 label="Futur Hits" />

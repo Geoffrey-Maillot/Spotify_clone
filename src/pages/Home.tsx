@@ -85,39 +85,44 @@ const Home = () => (
   <Layout>
     <div className="px-8 pt-6 grid gap-6 ">
       <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
-      <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} />
+      <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} idGenre={'idgenre'}/>
       <AlbumList
         title="Nouveautés tendance"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
+        idGenre={'idGenre'}
       />
       <AlbumList
         title="Place au contenu que vous aimez"
         subTitle="Ecoutez tous ce que vous adorez"
         albums={albumNews}
+        idGenre={'idGenre'}
       />
       <AlbumList title="Ecoutés récemment" albums={albumNews} />
       <AlbumList
         title="Populaire chez les auditeurs de Artisan Développeur"
         albums={albumNews}
+        idGenre={'idGenre'}
       />
       <AlbumList
         title="A ne pas manquer aujourd'hui"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
+        idGenre={'idGenre'}
       />
       <AlbumList
         title="Lié à vos écoutes récentes"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
+        idGenre={'idGenre'}
       />
       <AlbumList
         title="Conçu pour Maillot Geoffrey"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
+        idGenre={'idGenre'}
       />
     </div>
-    <input type="range" style={{ height: '500px', width: '400px' }} />
   </Layout>
 );
 

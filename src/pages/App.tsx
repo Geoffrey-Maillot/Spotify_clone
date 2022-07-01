@@ -9,6 +9,9 @@ import Podcasts from './Collection/Podcats';
 import Artists from './Collection/Artists';
 import Albums from './Collection/Albums';
 import TraksPlaylist from './Playlist/Playlist';
+import LikedTraks from './Collection/LikedTracks';
+import GenrePage from './GenrePage';
+import Genre from './Collection/Genre';
 
 //Todo : Faire une 404
 
@@ -26,8 +29,12 @@ function App() {
         <Route path="podcasts" element={<Podcasts />} />
         <Route path="artists" element={<Artists />} />
         <Route path="albums" element={<Albums />} />
+        <Route path="tracks" element={<LikedTraks />} />
       </Route>
       <Route path="playlist/:id" element={<TraksPlaylist />} />
+      <Route path="genrepage/:genre" element={<GenrePage />} />
+      <Route path='genre/:genre' element={<Genre />}/>
+    
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );

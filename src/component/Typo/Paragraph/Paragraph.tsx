@@ -40,7 +40,7 @@ const Paragraph = ({
   color = 'lightGray',
 }: Props) => (
   <p
-    className={`font-circularBook truncate ${colors[color]} ${fontSize[size]}`}
+    className={`font-circularBook truncate line-clamp ${colors[color]} ${fontSize[size]}`}
   >
     {label ? label : children}
   </p>
