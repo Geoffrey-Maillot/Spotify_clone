@@ -4,3 +4,9 @@
   -webkit-box-orient: vertical;
   white-space: normal;
 }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: breakword;
+}

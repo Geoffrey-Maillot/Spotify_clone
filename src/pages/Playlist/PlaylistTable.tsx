@@ -51,9 +51,10 @@ const PlaylistTable = ({ tracksList }: Props) => {
     return (
       <span className="w-full flex justify-end">
         {rowData.liked ? (
-          <AiFillHeart color="#1ed760" size="1.2rem" />
+          <AiFillHeart color="#1ed760" className=' buttonLike liked' size="1.2rem" />
         ) : (
-          <AiOutlineHeart size="1.2rem" />
+            
+          <AiOutlineHeart className='buttonLike text-lightGray hover:text-white'  size="1.2rem" />
         )}
       </span>
     );
@@ -69,7 +70,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
         <div className="w-10 h-10 object-cover object-center">
           <img src={rowData?.title?.img} alt={rowData.title.name} />
         </div>
-        <div className="min-w-[200px] overflow-hidden">
+        <div className="min-w-[200px] overflow-hidden title">
           <Paragraph size="lg" color="white" label={rowData?.title?.name} />
           <Paragraph
             size="sm"
@@ -81,8 +82,10 @@ const PlaylistTable = ({ tracksList }: Props) => {
     );
   };
 
+
+
   return (
-    <div className="px-1 md:px-8">
+    <div>
       <DataTable
         value={tracksList}
         dataKey="track"
@@ -117,6 +120,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
           field="album"
           bodyStyle={{ width: '20%', minWidth: '100px' }}
           header="Album"
+          className='album'
         />
 
         <Column
@@ -132,7 +136,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
           header=""
           bodyStyle={{ width: '60px', textAlign: 'end' }}
           body={buttonLike}
-          className="tableButtonLike"
+        
         />
         <Column
           headerStyle={{

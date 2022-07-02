@@ -17,52 +17,52 @@ const genreList = [
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro. Santé !'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 {
   img: 'https://i.scdn.co/image/ab67706f00000002e05f3d5279170c0130fa8cbf',
   title: 'Apéro !',
-  content: 'La bande-son de votre apéro.  snaté santé danbst Santé  ffefef fefefefef fefeff fefffe!'
+  content: 'La bande-son de votre apéro. A écoutez a jeun !'
 },
 ]
 
