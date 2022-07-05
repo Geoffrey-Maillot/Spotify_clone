@@ -14,10 +14,11 @@ import { OverlayPanel } from 'primereact/overlaypanel';
 
 interface Props {
   type: 'playlist' | 'artist' | 'podcast';
+  subscriber?: boolean;
 }
 
 // == Component =>
-const HeadBandPlay = ({ type = 'playlist' }: Props) => {
+const HeadBandPlay = ({ type = 'playlist', subscriber }: Props) => {
   const showOptionPanel = (e: React.MouseEvent) => {
     if (optionPanel.current) {
       optionPanel.current.toggle(e);
@@ -33,8 +34,8 @@ const HeadBandPlay = ({ type = 'playlist' }: Props) => {
         <ButtonPlay size="large" />
       </RenderIf>
       <RenderIf bool={type === 'artist' || type === 'podcast'}>
-        <button className=" px-4 h-9 rounded border-gray-500 hover:border-white border">
-          <H2 label="S'abonner" size="lg" />
+        <button className=" py-2 px-4 h-9 rounded border-gray-500 hover:border-white border uppercase">
+          <H2 label={subscriber ? 'Abonné' : 'S\'abonné'} size="sm" />
         </button>
       </RenderIf>
       <div className="relative">

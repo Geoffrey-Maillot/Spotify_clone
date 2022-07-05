@@ -43,7 +43,7 @@ const Podcasts = () => (
         <Grid>
           <CardFirst type="podcast" />
           {podcasts.map((item, i) => (
-            <CardMusic key={i} {...item} />
+            <CardMusic key={i} {...item} type={'show'}/>
           ))}
         </Grid>
       </section>

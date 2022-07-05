@@ -10,7 +10,7 @@ import H1 from '../../component/Typo/H1/H1';
 import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 import H2 from '../../component/Typo/H2/H2';
 import PlaylistTable from './PlaylistTable';
-import HeadBandPlay from '../../component/HeadbandPlay/HeadBandPlay';
+import HeadBandPlay from '../../component/HeadBandPlay/HeadBandPlay';
 
 interface Props {
   isLikedTracks? : boolean;

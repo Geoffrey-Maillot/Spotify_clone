@@ -12,6 +12,7 @@ import TraksPlaylist from './Playlist/Playlist';
 import LikedTraks from './Collection/LikedTracks';
 import GenrePage from './GenrePage';
 import Genre from './Collection/Genre';
+import Podcast from './Podcast/Podcast';
 
 //Todo : Faire une 404
 
@@ -34,6 +35,7 @@ function App() {
       <Route path="playlist/:id" element={<TraksPlaylist />} />
       <Route path="genrepage/:genre" element={<GenrePage />} />
       <Route path='genre/:genre' element={<Genre />}/>
+      <Route path='show/:id' element={<Podcast />}/>
     
       <Route path="*" element={<div>404</div>} />
     </Routes>

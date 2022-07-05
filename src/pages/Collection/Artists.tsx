@@ -61,7 +61,7 @@ const Artists = () => (
         <H2 size="xl2"> Artistes </H2>
         <Grid>
           {podcasts.map((item, i) => (
-            <CardMusic key={i} {...item} artist />
+            <CardMusic key={i} {...item} type={'artist'} />
           ))}
         </Grid>
       </section>

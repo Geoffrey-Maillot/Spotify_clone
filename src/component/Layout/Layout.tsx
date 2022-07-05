@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 
 //Import Component
 import HeaderNav from '../HeaderNav/HeaderNav';
@@ -17,7 +17,7 @@ const Layout = ({ children }: Props) => {
     setResizeIsActive(true);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const panelSizeFromStorage: string | null =
       localStorage.getItem('panelSize');
     console.log(panelSizeFromStorage);
@@ -36,8 +36,6 @@ const Layout = ({ children }: Props) => {
     };
 
     const onReziseStop = (): void => {
-      console.log(panelSize);
-
       localStorage.setItem('panelSize', panelSize.toString());
       setResizeIsActive(false);
     };
@@ -75,7 +73,7 @@ const Layout = ({ children }: Props) => {
             className="absolute z-0opacity-0"
           />{' '}
         </div>
-        <HeaderNav />
+        <HeaderNav panelSize={panelSize}/>
         {children}
       </main>
       <Footer />

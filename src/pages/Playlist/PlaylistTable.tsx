@@ -92,7 +92,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
         selectionMode="single"
         responsiveLayout={responsiveTableStyle}
         breakpoint="780px"
-        className=" text-gray-200 text-left"
+        className=" text-gray-200 text-left table-tracks"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
       >

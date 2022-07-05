@@ -20,11 +20,15 @@ import { RiSearchLine } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
 import { BiLinkExternal } from 'react-icons/bi';
 
+
+interface Props {
+  panelSize: number;
+}
 //Todo: Background transparent quand scoll est en haut puis change de couleur quand on scoll avec une opacité en fonction de la distance du haut de la fenêtre
 //Todo: Disable les boutons de nav si il n'y a pas de nav (voir su spotify)
 //Todo: Supprimer les sugestions de l'input search
 
-const HeaderNav = () => {
+const HeaderNav = ({panelSize} : Props) => {
   const [search, setSearch] = useState('');
   const path = useLocation().pathname;
   const testPath = /\/collection/;
@@ -60,13 +64,11 @@ const HeaderNav = () => {
 
   const header = useRef<HTMLHeadElement | null>(null);
 
-  //? La récupération de la width du header doit se faire au resize de la fenêtre du LeftMenu quand il sera en place
-  // TODO: le useEffect doit écouter le resize pour déclencher le useEffect et faire apparaitre / retirer les navLinks
   useEffect(() => {
     if (header.current) {
       setheaderWidth(header.current?.clientWidth);
     }
-  }, [windowWidth]);
+  }, [windowWidth, panelSize]);
 
   return (
     <header

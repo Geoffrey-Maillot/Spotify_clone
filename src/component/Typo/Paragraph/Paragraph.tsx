@@ -2,6 +2,7 @@ interface Props {
   children?: string;
   label?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
+  truncate?: boolean;
   color?:
     | 'white'
     | 'gray'
@@ -38,9 +39,10 @@ const Paragraph = ({
   label,
   size = 'sm',
   color = 'lightGray',
+  truncate = true
 }: Props) => (
   <p
-    className={`font-circularBook truncate line-clamp ${colors[color]} ${fontSize[size]}`}
+    className={`font-circularBook ${truncate && 'truncate line-clamp'} ${colors[color]} ${fontSize[size]}`}
   >
     {label ? label : children}
   </p>

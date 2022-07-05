@@ -8,7 +8,7 @@ export default {
   decorators: [withRouter],
 } as ComponentMeta<typeof HeaderNav>;
 
-const Template: ComponentStory<typeof HeaderNav> = () => <HeaderNav />;
+const Template: ComponentStory<typeof HeaderNav> = () => <HeaderNav panelSize={320}/>;
 
 export const searchHeader = Template;
 searchHeader.story = {
