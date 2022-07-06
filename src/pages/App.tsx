@@ -13,8 +13,11 @@ import LikedTraks from './Collection/LikedTracks';
 import GenrePage from './GenrePage';
 import Genre from './Collection/Genre';
 import Podcast from './Podcast/Podcast';
+import Episode from './Episode';
 
 //Todo : Faire une 404
+// Todo : Faire un composant pour les headers
+// Todo : Pour les headers, conditionner l'image du background ou la couleur et l'image de gauche si il y en une
 
 function App() {
   return (
@@ -34,9 +37,10 @@ function App() {
       </Route>
       <Route path="playlist/:id" element={<TraksPlaylist />} />
       <Route path="genrepage/:genre" element={<GenrePage />} />
-      <Route path='genre/:genre' element={<Genre />}/>
-      <Route path='show/:id' element={<Podcast />}/>
-    
+      <Route path="genre/:genre" element={<Genre />} />
+      <Route path="show/:id" element={<Podcast />} />
+      <Route path="episode/:id" element={<Episode />} />
+
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );

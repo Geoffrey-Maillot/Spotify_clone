@@ -50,7 +50,7 @@ const PodcastTable = ({ episodesList }: Props) => {
   const TableEpisodesContent = (rowData: Episode) => {
     return (
       <Link
-        to={`/episodes/${rowData.id}`}
+        to={`/episode/${rowData.id}`}
         className="link p-4 rounded-lg flex items-center justify-start gap-8 group"
       >
         <div className="w-[7.375rem] h-[7.375rem] flex-none">

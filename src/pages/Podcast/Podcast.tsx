@@ -9,23 +9,14 @@ import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 import H2 from '../../component/Typo/H2/H2';
 import PlaylistTable from './PodcastTable';
 import HeadBandPlay from '../../component/HeadBandPlay/HeadBandPlay';
+import PanelHideContent from '../../component/UtilsComponents/PanelHideContent';
 
 interface Props {
   isLikedTracks?: boolean;
 }
 
 const Podcast = ({ isLikedTracks = false }: Props) => {
-  const [contentIsOpen, toggleContentisOpen] = useState(false);
   const { id } = useParams();
-
-  const showContent = () => {
-    toggleContentisOpen(true);
-  };
-
-  const hideContent = () => {
-    toggleContentisOpen(false);
-  };
-
   const episodesList = [
     {
       img: 'https://source.unsplash.com/random/201x201',
@@ -82,31 +73,17 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
           <span className="pt-4">
             <H2 size="xl2" label="Plus d'infos" />
           </span>
-          <div>
-            <div
-              className={`overflow-hidden ${contentIsOpen ? 'h-auto' : 'h-24'}`}
-            >
-              <Paragraph size="lg" truncate={false}>
-                Nota Bene, c'est une autre façon de découvrir l'Histoire de
-                France et du monde ! L'Histoire est sociale, économique,
-                scientifique, politique, elle touche à tous les domaines. A
-                travers des émissions thématiques et des entretiens avec des
-                historiens, archéologues et chercheurs, voyagez de l'Antiquité à
-                nos jours et redécouvrez la richesse de cette Histoire !
-              </Paragraph>
-            </div>
-            {contentIsOpen ? (
-              <span className="block mt-2">
-                <button onClick={hideContent}>
-                  <H2 size="lg" color="white" label="masquer" />
-                </button>
-              </span>
-            ) : (
-              <button onClick={showContent}>
-                <H2 size="lg" color="white" label="... Afficher plus" />
-              </button>
-            )}
-          </div>
+          <PanelHideContent>
+            <Paragraph size="lg" truncate={false}>
+              Nota Bene, c'est une autre façon de découvrir l'Histoire de France
+              et du monde ! L'Histoire est sociale, économique, scientifique,
+              politique, elle touche à tous les domaines. A travers des
+              émissions thématiques et des entretiens avec des historiens,
+              archéologues et chercheurs, voyagez de l'Antiquité à nos jours et
+              redécouvrez la richesse de cette Histoire !
+            </Paragraph>
+          </PanelHideContent>
+
           <div>
             <span className="bg-[#ffffff1a] text-white text-sm font-circularBold inline-block h-7 px-3 py-2 rounded-full mr-2 mb-2">
               Culture

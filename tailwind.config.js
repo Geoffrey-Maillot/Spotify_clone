@@ -11,6 +11,7 @@ module.exports = {
       lg: '1024px',
       xl: '1280px',
       '2xl': '1536px',
+        '3xl': '1800px'
     },
     colors: {
       dark: {
@@ -373,8 +374,8 @@ module.exports = {
       '3xl': ['1.875rem', { lineHeight: '2.25rem' }], // size: 32px; height: 36px
       '4xl': ['2rem', { lineHeight: '2.25rem' }],
       '5xl': ['2.5rem', { lineHeight: '3.25rem' }], // size: 40px; height: 52px
-      '6xl': ['3.75rem', { lineHeight: '1' }],
-      '7xl': ['4.5rem', { lineHeight: '1' }],
+      '6xl': ['3rem', { lineHeight: '3rem' }], // size: 48px; height: 48px
+      '7xl': ['4.5rem', { lineHeight: '4.5rem' }], // size 72px; height: 72px
       '8xl': ['6rem', { lineHeight: '6rem' }], // size:  96px; height: 96px
       '9xl': ['8rem', { lineHeight: '1' }],
     },
