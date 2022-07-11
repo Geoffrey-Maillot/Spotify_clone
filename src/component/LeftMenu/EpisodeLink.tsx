@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useMatch } from 'react-router-dom';
 
-import { AiFillHeart } from 'react-icons/ai';
+import { BsBookmarkFill } from 'react-icons/bs';
 import H2 from '../Typo/H2/H2';
 
 interface Props {
   to: string;
 }
 
-const LikedTraksLink = ({ to = '/' }: Props) => {
+const EpisodeLink = ({ to = '/' }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const match = useMatch(to);
@@ -25,10 +25,10 @@ const LikedTraksLink = ({ to = '/' }: Props) => {
     }
   }, [match]);
 
-  const bgGradient =
+  const bgColor =
     isActive || isHover
-      ? 'bg-gradient-to-tl from-[#BCE0DA] to-[#501DF3]'
-      : 'bg-gradient-to-tl from-[#829A9A] to-[#3611AA]';
+      ? 'bg-green-600'
+      : 'bg-green-500';
 
   // Component =>
   return (
@@ -39,16 +39,16 @@ const LikedTraksLink = ({ to = '/' }: Props) => {
       onMouseLeave={handlerOnMouseLeave}
     >
       <span
-        className={`h-6 w-6 rounded inline-flex justify-center items-center ${bgGradient} `}
+        className={`h-6 w-6 rounded inline-flex justify-center items-center ${bgColor} `}
       >
-        <AiFillHeart
-          size="1rem"
-          color={isActive || isHover ? '#fff' : '#b2b2b2'}
+        <BsBookmarkFill
+          size=".9rem"
+          color={isActive || isHover ? '#1ed760' : '#159643'}
         />
       </span>
 
       <H2
-        label="Titres likés"
+        label="Vos épisodes"
         size="sm"
         color={isActive || isHover ? 'white' : 'veryLightGray'}
       />
@@ -56,4 +56,4 @@ const LikedTraksLink = ({ to = '/' }: Props) => {
   );
 };
 
-export default LikedTraksLink;
+export default EpisodeLink;

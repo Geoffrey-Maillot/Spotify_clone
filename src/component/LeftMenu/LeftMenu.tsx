@@ -5,6 +5,7 @@ import CreatePlaylistButton from './CreatePlaylistButton';
 // Import Image =>
 import logo from '../../assets/img/Spotify_Logo.png';
 import LikedTraksLink from './LikedTraksLink';
+import EpisodeLink from './EpisodeLink';
 
 const LeftMenu = () => {
   return (
@@ -26,7 +27,9 @@ const LeftMenu = () => {
       </ul>
       <ul className="px-6">
         <CreatePlaylistButton />
-        <LikedTraksLink to="#" />
+        {/*//Todo : Liked Tracks si il y a des titres likés / EpisodesLink si il y a des episodes likés  */}
+        <LikedTraksLink to="/collection/tracks" />
+        <EpisodeLink to="/collection/episodes" />
       </ul>
       <div className="relative w-full h-[1px]">
         <hr className="w-full h-[1px] bg-dark-250  border-none rounded relative z-50" />

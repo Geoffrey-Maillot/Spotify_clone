@@ -93,7 +93,7 @@ const Episode = () => {
         )}
       </section>
       <HeadBandPlay type="episode" />
-      <section className="pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
+      <section className="max-w-[42rem] pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
         <H2 size="xl2" label="Description de l'épisode" />
         <PanelHideContent>
           <Paragraph size="lg" truncate={false}>

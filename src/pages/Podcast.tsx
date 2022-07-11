@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // Import Component
-import Layout from '../../component/Layout/Layout';
-import H1 from '../../component/Typo/H1/H1';
-import Paragraph from '../../component/Typo/Paragraph/Paragraph';
-import H2 from '../../component/Typo/H2/H2';
-import PlaylistTable from './PodcastTable';
-import HeadBandPlay from '../../component/HeadBandPlay/HeadBandPlay';
-import PanelHideContent from '../../component/UtilsComponents/PanelHideContent';
+import Layout from '../component/Layout/Layout';
+import H1 from '../component/Typo/H1/H1';
+import Paragraph from '../component/Typo/Paragraph/Paragraph';
+import H2 from '../component/Typo/H2/H2';
+import PlaylistTable from '../component/Tables/TableEpisodes';
+import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
+import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
 
 interface Props {
   isLikedTracks?: boolean;

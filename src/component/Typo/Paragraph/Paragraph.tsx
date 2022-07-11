@@ -10,7 +10,8 @@ interface Props {
     | 'lightGray'
     | 'veryLightGray'
     | 'blue'
-    | 'lightWhite';
+    | 'lightWhite'
+    | 'dark';
 }
 
 const fontSize: { [x: string]: string } = {
@@ -30,6 +31,7 @@ const colors: { [x: string]: string } = {
   lightGray: 'text-gray-200',
   veryLightGray: 'text-gray-100',
   blue: 'text-blue-100',
+  dark: 'text-dark-400',
 };
 
 //Todo: Utiliser le truncate de tailwind pour mettre les 3 petits points quand un texte dépasse.  Voir sur Spotify, seul la 2nd ligne dépasse...
@@ -42,7 +44,7 @@ const Paragraph = ({
   truncate = true
 }: Props) => (
   <p
-    className={`font-circularBook ${truncate && 'truncate line-clamp'} ${colors[color]} ${fontSize[size]}`}
+    className={`font-circularBook ${truncate && 'line-clamp'} ${colors[color]} ${fontSize[size]}`}
   >
     {label ? label : children}
   </p>

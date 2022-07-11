@@ -5,20 +5,17 @@ import { useParams } from 'react-router-dom';
 import { GoPrimitiveDot } from 'react-icons/go';
 
 // Import Component
-import Layout from '../../component/Layout/Layout';
-import H1 from '../../component/Typo/H1/H1';
-import Paragraph from '../../component/Typo/Paragraph/Paragraph';
-import H2 from '../../component/Typo/H2/H2';
-import PlaylistTable from './PlaylistTable';
-import HeadBandPlay from '../../component/HeadBandPlay/HeadBandPlay';
+import Layout from '../component/Layout/Layout';
+import H1 from '../component/Typo/H1/H1';
+import Paragraph from '../component/Typo/Paragraph/Paragraph';
+import H2 from '../component/Typo/H2/H2';
+import TableTracks from '../component/Tables/TableTracks';
+import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
 
-interface Props {
-  isLikedTracks? : boolean;
-}
 
-const Playlist = ({isLikedTracks = false} : Props) => {
+const Playlist = () => {
   const { id } = useParams();
-  console.log(isLikedTracks)
+
 
 
   const tracksList = [
@@ -187,7 +184,7 @@ const Playlist = ({isLikedTracks = false} : Props) => {
         </div>
       </header>
       <HeadBandPlay type='playlist'/>
-      <PlaylistTable tracksList={tracksList} />
+      <TableTracks tracksList={tracksList} />
     </Layout>
   );
 };

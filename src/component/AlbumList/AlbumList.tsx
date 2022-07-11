@@ -7,18 +7,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
 
 interface Props {
-  title: string;
+  title?: string;
   subTitle?: string;
   albums: Array<{ img: string; title: string; content: string }>;
-  idGenre?: string;
+  link: string;
 }
 
-const AlbumList = ({
-  title = 'Titre de la liste',
-  subTitle,
-  albums,
-  idGenre,
-}: Props) => {
+const AlbumList = ({ title, subTitle, albums, link }: Props) => {
   const [nbrCols, setNbrCols] = useState(0);
   const windowWidth = useGetWindowWidth();
 
@@ -51,13 +46,16 @@ const AlbumList = ({
     <div className="mb-4" ref={albumList}>
       <div className="flex items-center justify-start pb-4 pt-1">
         <div className="grow">
-          <H2 label={title} size="xl2" />
+          <RenderIf bool={!!title}>
+            <H2 label={title} size="xl2" />
+          </RenderIf>
           <RenderIf bool={!!subTitle}>
             <Paragraph label={subTitle} />
           </RenderIf>
         </div>
+      {/* "Voir tous" ne dois apparaitre que si le nombre d'element à afficher est supérieur au nombre affiché */}
         <Link
-          to={`/genre/${idGenre}`}
+          to={`${link}`}
           className="ml-4 hover:underline text-gray-200 text-sm font-circularBold uppercase tracking-wide"
         >
           Voir Tous

@@ -54,7 +54,7 @@
 
 // Media Querries
 @media screen and (max-width: 780px) {
-  .p-datatable tbody tr {
+  .p-datatable.table-tracks tbody tr {
     display: block;
     border-bottom: 1px solid #ffffff1a;
     padding: 10px;

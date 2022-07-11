@@ -65,9 +65,9 @@ const GenrePage = () => {
         <H1>Rock</H1>
       </span>
       <div className="px-8 pt-6 grid gap-6 ">
-        <AlbumList title="Playlist populaire" albums={listGenre} idGenre={'idGenre'}/>
-        <AlbumList title="Playlist populaire" albums={listGenre} idGenre={'idGenre'}/>
-        <AlbumList title="Playlist populaire" albums={listGenre} idGenre={'idGenre'}/>
+        <AlbumList title="Playlist populaire" albums={listGenre} link={'/genre/dqd4545'}/>
+        <AlbumList title="Playlist populaire" albums={listGenre} link={'/genre/8s5552c'}/>
+        <AlbumList title="Playlist populaire" albums={listGenre} link={'/genre/s985552d'}/>
       </div>
     </Layout>
   );

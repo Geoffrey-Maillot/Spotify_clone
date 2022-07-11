@@ -41,7 +41,10 @@ module.exports = {
       green: {
         100: "#1fdf64",
         200: '#1ed760',
-        300: '#169C46'
+        300: '#169C46',
+        400: '#159643',
+        500: '#004638',
+        600: '#006450',
       },
       brown: {
         100: "#521A24"
@@ -365,7 +368,7 @@ module.exports = {
       circularBold: ['Circular-Bold', 'sans-serif'],
     },
     fontSize: {
-      xs: ['0.6875rem', { lineHeight: '1rem' }], // size: 11px; height: 16px
+      xs: ['0.75rem', { lineHeight: '1rem' }], // size: 11px; height: 16px
       sm: ['0.875rem', { lineHeight: '1rem' }], // size: 14px; height: 16px
       md: ['0.875rem', { lineHeight: '1.25rem' }], // size: 14px; height: 20px
       lg: ['1rem', { lineHeight: '1.5rem' }], // size: 16px; height: 24px

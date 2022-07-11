@@ -21,6 +21,7 @@ import { MdOutlineIosShare } from 'react-icons/md';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { BsCheckLg } from 'react-icons/bs';
+import ButtonPlayLight from '../Button/ButtonPlay/ButtonPlayLight';
 
 // TODO : Remplacer any par les infos provenant de l'api
 interface Episode {
@@ -37,7 +38,7 @@ interface Props {
   episodesList: Array<Episode>;
 }
 
-const PodcastTable = ({ episodesList }: Props) => {
+const TableEpisodes = ({ episodesList }: Props) => {
   const [responsiveTableStyle, setResponsiveTableStyle] =
     useState<DataTableResponsiveLayoutType>('scroll');
   const windowWidth: number = useGetWindowWidth();
@@ -51,7 +52,7 @@ const PodcastTable = ({ episodesList }: Props) => {
     return (
       <Link
         to={`/episode/${rowData.id}`}
-        className="link p-4 rounded-lg flex items-center justify-start gap-8 group"
+        className="link p-4 rounded-lg flex items-start justify-start flex-col sm:flex-row gap-8 group"
       >
         <div className="w-[7.375rem] h-[7.375rem] flex-none">
           <img
@@ -62,20 +63,18 @@ const PodcastTable = ({ episodesList }: Props) => {
         </div>
         <div className="flex flex-col gap-4 justify-start items-start">
           <H2 label={rowData.title} size='lg' />
-          <Paragraph label={rowData.content} />
-          <div className="flex items-center justify-between w-full">
+          <Paragraph truncate label={rowData.content} />
+          <div className="flex items-center justify-between w-full flex-wrap gap-4">
             <div className="flex items-center justify-start gap-6 ">
-              <button className="bg-white rounded-full w-8 h-8 flex items-center justify-center  transition hover:scale-105 active:bg-gray-200 active:scale-95">
-                <GrPlayFill className="translate-x-0.5" />
-              </button>
+             <ButtonPlayLight />
               <span className="flex items-center justify-start gap-1">
                 <Paragraph label={rowData.date} />
                 <GoPrimitiveDot size={'.4rem'} />
                 <Paragraph label={rowData.duration + ' min'} />
               </span>
             </div>
-            <div className="flex items justify-start gap-6 ">
-              <button className='opacity-0 group-hover:opacity-100 cursor-default'>
+            <div className="flex items justify-start gap-6">
+              <button className='opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default'>
                 <MdOutlineIosShare size="1.5rem" className='hover:text-white'/>
               </button>
               {rowData.isSave ? (
@@ -83,12 +82,12 @@ const PodcastTable = ({ episodesList }: Props) => {
                   <BsCheckLg color='#000' size=".8rem" />
                 </button>
               ) : (
-                <button className="opacity-0 group-hover:opacity-100 cursor-default" >
+                <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default" >
                   <IoAddCircleOutline className='hover:text-white' size="1.5rem" />
                 </button>
               )}
 
-              <button className='opacity-0 group-hover:opacity-100 cursor-default' >
+              <button className='opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default' >
                 {' '}
                 <IoEllipsisHorizontalSharp size="1.5rem" className='hover:text-white'/>
               </button>
@@ -106,8 +105,7 @@ const PodcastTable = ({ episodesList }: Props) => {
         dataKey="track"
         selectionMode="single"
         responsiveLayout="scroll"
-        breakpoint="780px"
-        className=" text-gray-200 text-left table-podcasts"
+        className=" text-gray-200 text-left table-podcasts " 
         emptyMessage="Vous n'avez pas encore d'épisodes"
       >
         <Column
@@ -120,4 +118,4 @@ const PodcastTable = ({ episodesList }: Props) => {
   );
 };
 
-export default PodcastTable;
+export default TableEpisodes;

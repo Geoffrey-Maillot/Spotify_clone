@@ -11,7 +11,7 @@ import { Column } from 'primereact/column';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
-import Paragraph from '../../component/Typo/Paragraph/Paragraph';
+import Paragraph from '../Typo/Paragraph/Paragraph';
 
 // TODO : Remplacer any par les infos provenant de l'api
 
@@ -32,7 +32,7 @@ interface Props {
   tracksList: Array<Track>;
 }
 
-const PlaylistTable = ({ tracksList }: Props) => {
+const TableTracks = ({ tracksList }: Props) => {
   const [selectedRow, setSelectedRow] = useState<Track | null>(null);
   const [responsiveTableStyle, setResponsiveTableStyle] =
     useState<DataTableResponsiveLayoutType>('scroll');
@@ -51,10 +51,16 @@ const PlaylistTable = ({ tracksList }: Props) => {
     return (
       <span className="w-full flex justify-end">
         {rowData.liked ? (
-          <AiFillHeart color="#1ed760" className=' buttonLike liked' size="1.2rem" />
+          <AiFillHeart
+            color="#1ed760"
+            className=" buttonLike liked"
+            size="1.2rem"
+          />
         ) : (
-            
-          <AiOutlineHeart className='buttonLike text-lightGray hover:text-white'  size="1.2rem" />
+          <AiOutlineHeart
+            className="buttonLike text-lightGray hover:text-white"
+            size="1.2rem"
+          />
         )}
       </span>
     );
@@ -81,8 +87,6 @@ const PlaylistTable = ({ tracksList }: Props) => {
       </div>
     );
   };
-
-
 
   return (
     <div>
@@ -120,7 +124,7 @@ const PlaylistTable = ({ tracksList }: Props) => {
           field="album"
           bodyStyle={{ width: '20%', minWidth: '100px' }}
           header="Album"
-          className='album'
+          className="album"
         />
 
         <Column
@@ -136,7 +140,6 @@ const PlaylistTable = ({ tracksList }: Props) => {
           header=""
           bodyStyle={{ width: '60px', textAlign: 'end' }}
           body={buttonLike}
-        
         />
         <Column
           headerStyle={{
@@ -160,4 +163,4 @@ const PlaylistTable = ({ tracksList }: Props) => {
   );
 };
 
-export default PlaylistTable;
+export default TableTracks;

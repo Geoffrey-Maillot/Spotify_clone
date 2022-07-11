@@ -85,42 +85,42 @@ const Home = () => (
   <Layout>
     <div className="px-8 pt-6 grid gap-6 ">
       <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
-      <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} idGenre={'idgenre'}/>
+      <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} link={'section/idgenre'}/>
       <AlbumList
         title="Nouveautés tendance"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
-        idGenre={'idGenre'}
+        link={'/section/4ffe55'}
       />
       <AlbumList
         title="Place au contenu que vous aimez"
         subTitle="Ecoutez tous ce que vous adorez"
         albums={albumNews}
-        idGenre={'idGenre'}
+        link={'/section/fef84'}
       />
-      <AlbumList title="Ecoutés récemment" albums={albumNews} />
+      <AlbumList title="Ecoutés récemment" albums={albumNews} link='genre/dd4441dd7'/>
       <AlbumList
         title="Populaire chez les auditeurs de Artisan Développeur"
         albums={albumNews}
-        idGenre={'idGenre'}
+        link={'/section/zfzef45'}
       />
       <AlbumList
         title="A ne pas manquer aujourd'hui"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
-        idGenre={'idGenre'}
+        link={'/section/fzef8f54z4f'}
       />
       <AlbumList
         title="Lié à vos écoutes récentes"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
-        idGenre={'idGenre'}
+        link={'/section/dzfe855'}
       />
       <AlbumList
         title="Conçu pour Maillot Geoffrey"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
         albums={albumNews}
-        idGenre={'idGenre'}
+        link={'/section/fze8f445'}
       />
     </div>
   </Layout>

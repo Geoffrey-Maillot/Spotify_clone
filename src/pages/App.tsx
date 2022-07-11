@@ -8,12 +8,18 @@ import Playlist from './Collection/Playlists';
 import Podcasts from './Collection/Podcats';
 import Artists from './Collection/Artists';
 import Albums from './Collection/Albums';
-import TraksPlaylist from './Playlist/Playlist';
+import TraksPlaylist from './Playlist';
 import LikedTraks from './Collection/LikedTracks';
 import GenrePage from './GenrePage';
-import Genre from './Collection/Genre';
-import Podcast from './Podcast/Podcast';
+import Section from './Section';
+import Podcast from './Podcast';
 import Episode from './Episode';
+import Episodes from './Collection/Episodes';
+import Artist from './Artist';
+import DiscographyAll from './Discography/DiscographyAll';
+import DiscographyAlbums from './Discography/DiscographyAlbums';
+import DiscographySingles from './Discography/DiscographySingles';
+import DiscographyCompiles from './Discography/DiscographyCompiles';
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
@@ -34,12 +40,22 @@ function App() {
         <Route path="artists" element={<Artists />} />
         <Route path="albums" element={<Albums />} />
         <Route path="tracks" element={<LikedTraks />} />
+        <Route path="episodes" element={<Episodes />} />
       </Route>
       <Route path="playlist/:id" element={<TraksPlaylist />} />
       <Route path="genrepage/:genre" element={<GenrePage />} />
-      <Route path="genre/:genre" element={<Genre />} />
+      <Route path="section/:id" element={<Section />} />
+      <Route path="genre/:id" element={<Section />} />
       <Route path="show/:id" element={<Podcast />} />
       <Route path="episode/:id" element={<Episode />} />
+      <Route path="artist/:id" element={<Artist />} />
+      <Route path="artist/:id/discography">
+        <Route index element={<Navigate to="/artist/:id/discography/all" />} />
+        <Route path="all" element={<DiscographyAll />} />
+        <Route path="albums" element={<DiscographyAlbums />} />
+        <Route path="singles" element={<DiscographySingles />} />
+        <Route path="compilations" element={<DiscographyCompiles />} />
+      </Route>
 
       <Route path="*" element={<div>404</div>} />
     </Routes>
