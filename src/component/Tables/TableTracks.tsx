@@ -17,11 +17,9 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 
 interface Track {
   track: number;
-  title: {
     img: string;
-    name: string;
+    title: string;
     artist: string;
-  };
   album: string;
   added: number;
   duration: string;
@@ -74,14 +72,14 @@ const TableTracks = ({ tracksList }: Props) => {
     return (
       <div className="flex justify-start flex-row-reverse md:flex-row items-center text-right md:text-left gap-3">
         <div className="w-10 h-10 object-cover object-center">
-          <img src={rowData?.title?.img} alt={rowData.title.name} />
+          <img src={rowData?.img} alt={rowData?.title} />
         </div>
         <div className="min-w-[200px] overflow-hidden title">
-          <Paragraph size="lg" color="white" label={rowData?.title?.name} />
+          <Paragraph size="lg" color="white" label={rowData?.title} />
           <Paragraph
             size="sm"
             color="lightGray"
-            label={rowData?.title?.artist}
+            label={rowData?.artist}
           />
         </div>
       </div>

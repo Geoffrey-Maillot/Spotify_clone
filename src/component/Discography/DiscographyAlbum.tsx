@@ -7,8 +7,10 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import ButtonPlayLight from '../Button/ButtonPlay/ButtonPlayLight';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
+import TableDiscography from '../Tables/TableDiscography';
 
 interface Track {
+  track: number;
   title: string;
   artist: string;
   duration: string;
@@ -21,7 +23,7 @@ interface Props {
   type: string;
   year: string;
   liked: boolean;
-  trackList: Array<Track>;
+  tracksList: Array<Track>;
 }
 
 const DiscographyAlbum = ({
@@ -30,25 +32,27 @@ const DiscographyAlbum = ({
   type,
   year,
   liked,
-  trackList,
+  tracksList,
 }: Props) => {
-  const nbrTrack = trackList.length;
+  const nbrTrack = tracksList.length;
 
   return (
-    <div className="p-8 flex justify-start items-start gap-6">
+    <article className='pb-6 bg-gradient-to-b from-dark-50 to-dark-100'>
+    <div className="p-8 flex justify-start items-start gap-6 h-[12.5rem] ">
       <div className="w-[8.5rem] h-[8.5rem] ">
         <img className="object-cover object-center" src={img} alt={title} />
       </div>
-      <div className="flex flex-col justify-between items-start ">
+      <div className="flex flex-col justify-between items-start h-full ">
         <div>
-          <H2 label={title} size="xl2" />
-          <div className="flex items-center justify-start gap-1">
+          <H2 label={title} size="xl3" />
+          <div className="flex items-center justify-start gap-1 mt-2">
             <Paragraph label={type} />
             <GoPrimitiveDot size=".5rem" color="#b3b3b3" />
             <Paragraph label={year} />
             <GoPrimitiveDot size=".5rem" color="#b3b3b3" />
-            <Paragraph label={`${nbrTrack} titre${nbrTrack > 1 && 's'}`} />
+            <Paragraph label={`${nbrTrack} titre${nbrTrack > 1 ? 's' : ''}`} />
           </div>
+        </div>
           <div className="flex items-center justify-start gap-3">
             <ButtonPlayLight />
             {liked ? (
@@ -59,14 +63,15 @@ const DiscographyAlbum = ({
               />
             ) : (
               <AiOutlineHeart
-                className="buttonLike text-lightGray hover:text-white"
+                className="buttonLike text-gray-200 hover:text-white"
                 size="1.7rem"
               />
             )}
           </div>
-        </div>
       </div>
     </div>
+      <TableDiscography tracksList={tracksList}/>
+</article>
   );
 };
 

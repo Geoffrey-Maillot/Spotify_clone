@@ -12,19 +12,15 @@ import H2 from '../../component/Typo/H2/H2';
 import TableTracks from '../../component/Tables/TableTracks';
 import ButtonPlay from '../../component/Button/ButtonPlay/ButtonPlay';
 
-
 const LikedTracks = () => {
   const { id } = useParams();
-
 
   const tracksList = [
     {
       track: 1,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre',
-        artist: 'Artiste',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre',
+      artist: 'Artiste',
       album: 'Album',
       added: 10,
       duration: '3:21',
@@ -32,11 +28,9 @@ const LikedTracks = () => {
     },
     {
       track: 2,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -44,11 +38,9 @@ const LikedTracks = () => {
     },
     {
       track: 3,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -56,11 +48,9 @@ const LikedTracks = () => {
     },
     {
       track: 4,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -68,11 +58,9 @@ const LikedTracks = () => {
     },
     {
       track: 5,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -80,11 +68,9 @@ const LikedTracks = () => {
     },
     {
       track: 6,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -92,11 +78,9 @@ const LikedTracks = () => {
     },
     {
       track: 7,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre super long',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre super long',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -104,11 +88,9 @@ const LikedTracks = () => {
     },
     {
       track: 8,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -116,11 +98,9 @@ const LikedTracks = () => {
     },
     {
       track: 9,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -128,11 +108,9 @@ const LikedTracks = () => {
     },
     {
       track: 10,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -155,21 +133,20 @@ const LikedTracks = () => {
         </span>
         <H1 label="Titres Likés" />
         <div className="mt-4 flex items-center justify-start gap-1">
-          <div className='w-6 h-6 rounded-full object-cover object-center overflow-hidden'>
-            <img src="https://source.unsplash.com/random/30x30" alt="Unsplash" />
+          <div className="w-6 h-6 rounded-full object-cover object-center overflow-hidden">
+            <img
+              src="https://source.unsplash.com/random/30x30"
+              alt="Unsplash"
+            />
           </div>
-          <H2
-            size="lg"
-            color="white"
-            label="Geoffrey Maillot"
-          />
-          <GoPrimitiveDot color='white' size='.5rem'/>
-          <Paragraph label='418 titres' color='white' size='lg'/>
+          <H2 size="lg" color="white" label="Geoffrey Maillot" />
+          <GoPrimitiveDot color="white" size=".5rem" />
+          <Paragraph label="418 titres" color="white" size="lg" />
         </div>
       </header>
-      <div className='pt-8 pl-10 pb-4'>
-      <ButtonPlay size='large'/>
-    </div>
+      <div className="pt-8 pl-10 pb-4">
+        <ButtonPlay size="large" />
+      </div>
       <TableTracks tracksList={tracksList} />
     </Layout>
   );

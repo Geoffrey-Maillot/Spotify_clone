@@ -21,6 +21,10 @@
   }
 }
 
+.p-datatable thead th {
+  padding-block: 10px;
+}
+
 .p-datatable tbody tr:hover .buttonLike,
 .p-selectable-row.p-highlight .buttonLike {
   opacity: 1;
@@ -42,7 +46,7 @@
 }
 
 //Table tracks
-.p-datatable-table.table-tracks thead tr[role='row'] {
+.p-datatable.table-tracks thead tr[role='row'] {
   border-bottom: 1px solid #ffffff1a;
   text-transform: uppercase;
 }

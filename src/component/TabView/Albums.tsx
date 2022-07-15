@@ -54,7 +54,7 @@ interface Props {
 }
 
 const Albums = ({ artistId }: Props) => (
-  <AlbumList albums={albums} link={`/artist/${artistId}/discography/albums`} />
+  <AlbumList albums={albums} link={`/artist/${artistId}/discography/album`} />
 );
 
 export default Albums;

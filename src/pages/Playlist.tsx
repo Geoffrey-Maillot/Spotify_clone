@@ -12,20 +12,15 @@ import H2 from '../component/Typo/H2/H2';
 import TableTracks from '../component/Tables/TableTracks';
 import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
 
-
 const Playlist = () => {
   const { id } = useParams();
-
-
 
   const tracksList = [
     {
       track: 1,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre',
-        artist: 'Artiste',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre',
+      artist: 'Artiste',
       album: 'Album',
       added: 10,
       duration: '3:21',
@@ -33,11 +28,9 @@ const Playlist = () => {
     },
     {
       track: 2,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -45,11 +38,9 @@ const Playlist = () => {
     },
     {
       track: 3,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -57,11 +48,9 @@ const Playlist = () => {
     },
     {
       track: 4,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -69,11 +58,9 @@ const Playlist = () => {
     },
     {
       track: 5,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -81,11 +68,9 @@ const Playlist = () => {
     },
     {
       track: 6,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -93,11 +78,9 @@ const Playlist = () => {
     },
     {
       track: 7,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre super long',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'titre super long',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -105,11 +88,9 @@ const Playlist = () => {
     },
     {
       track: 8,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -117,11 +98,9 @@ const Playlist = () => {
     },
     {
       track: 9,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -129,11 +108,9 @@ const Playlist = () => {
     },
     {
       track: 10,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-        artist: 'Artiste 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
+      artist: 'Artiste 2',
       album: 'Album 2',
       added: 10,
       duration: '3:36',
@@ -183,7 +160,7 @@ const Playlist = () => {
           </span>
         </div>
       </header>
-      <HeadBandPlay type='playlist'/>
+      <HeadBandPlay type="playlist" />
       <TableTracks tracksList={tracksList} />
     </Layout>
   );

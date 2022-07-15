@@ -56,7 +56,7 @@ interface Props {
 const Compiles = ({ artistId }: Props) => (
   <AlbumList
     albums={albums}
-    link={`/artist/${artistId}/discography/compilations`}
+    link={`/artist/${artistId}/discography/compilation`}
   />
 );
 

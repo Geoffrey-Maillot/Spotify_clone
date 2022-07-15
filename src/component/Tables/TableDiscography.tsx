@@ -1,11 +1,11 @@
-import { useState} from 'react';
+import { useState } from 'react';
 
 // Import PrimeReact
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
 // Import Icon
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineClockCircle, AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
 
@@ -13,9 +13,8 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 
 interface Track {
   track: number;
-  img: string;
   title: string;
-  like: number;
+  artist: string;
   duration: string;
   liked: boolean;
 }
@@ -24,21 +23,8 @@ interface Props {
   tracksList: Array<Track>;
 }
 
-const TableTracks = ({ tracksList }: Props) => {
+const TableDiscography = ({ tracksList }: Props) => {
   const [selectedRow, setSelectedRow] = useState<Track | null>(null);
-
-  const trackList5 = tracksList.slice(0, 5);
-  const trackList10 = tracksList.slice(0, 10);
-
-  const [tableIsVisible, toggleTableIsVisible] = useState(false);
-
-  const showTable = () => {
-    toggleTableIsVisible(true);
-  };
-
-  const hideTable = () => {
-    toggleTableIsVisible(false);
-  };
 
   const onSelectRow = (e: any) => {
     setSelectedRow(e.value);
@@ -65,40 +51,37 @@ const TableTracks = ({ tracksList }: Props) => {
 
   const titleContent = (rowData: any) => {
     return (
-      <div className="flex justify-start flex-row items-center text-left gap-3">
-        <div className="w-10 h-10 object-cover object-center">
-          <img src={rowData?.img} alt={rowData?.title} />
-        </div>
-        <div className="min-w-[200px] overflow-hidden title">
-          <Paragraph size="lg" color="white" label={rowData?.title} />
-        </div>
+      <div className="title">
+        <Paragraph size="lg" color="white" label={rowData?.title} />
+        <Paragraph size="sm" color="lightGray" label={rowData?.artist} />
       </div>
     );
   };
 
   return (
-    <div>
+    <div className="px-5">
       <DataTable
-        value={tableIsVisible ? trackList10 : trackList5}
+        value={tracksList}
         dataKey="track"
         selectionMode="single"
         responsiveLayout="scroll"
-        className=" text-gray-200 text-left "
+        className=" text-gray-200 text-left table-tracks"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
         rows={5}
       >
         <Column
-          bodyStyle={{ textAlign: 'center', fontSize: '1rem', width: '40px' }}
+          bodyStyle={{ textAlign: 'center', width: '40px',fontSize: '1rem' }}
           field="track"
+          header="#"
+          headerStyle={{ width: '40px', textAlign: 'center', fontSize: '1rem' }}
         />
         <Column
           field="title"
           bodyStyle={{ width: '', padding: '8px 0' }}
           body={titleContent}
+          header="Title"
         />
-
-        <Column field="like" bodyStyle={{ width: '' }} />
 
         <Column
           field=""
@@ -107,32 +90,24 @@ const TableTracks = ({ tracksList }: Props) => {
           body={buttonLike}
         />
         <Column
+          headerStyle={{
+            width: '90px',
+            paddingRight: '16px',
+          }}
           field="duration"
           bodyStyle={{
             textAlign: 'end',
-            paddingRight: '30px',
-            width: '100px',
-            maxWidth: '100px',
+            paddingRight: '16px',
           }}
+          header={
+            <span className="flex justify-end">
+              <AiOutlineClockCircle size="1.2rem" />
+            </span>
+          }
         />
       </DataTable>
-      {tableIsVisible ? (
-        <button
-          onClick={hideTable}
-          className="uppercase text-gray-200 hover:text-white font-circularBold text-xs mt-4"
-        >
-          Afficher moins
-        </button>
-      ) : (
-        <button
-          onClick={showTable}
-          className="uppercase text-gray-200 hover:text-white font-circularBold text-xs mt-4"
-        >
-          Afficher plus
-        </button>
-      )}
     </div>
   );
 };
 
-export default TableTracks;
+export default TableDiscography;

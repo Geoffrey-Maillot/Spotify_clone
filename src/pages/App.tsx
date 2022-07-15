@@ -16,10 +16,8 @@ import Podcast from './Podcast';
 import Episode from './Episode';
 import Episodes from './Collection/Episodes';
 import Artist from './Artist';
-import DiscographyAll from './Discography/DiscographyAll';
-import DiscographyAlbums from './Discography/DiscographyAlbums';
-import DiscographySingles from './Discography/DiscographySingles';
-import DiscographyCompiles from './Discography/DiscographyCompiles';
+import Discography from './Discography';
+
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
@@ -49,13 +47,7 @@ function App() {
       <Route path="show/:id" element={<Podcast />} />
       <Route path="episode/:id" element={<Episode />} />
       <Route path="artist/:id" element={<Artist />} />
-      <Route path="artist/:id/discography">
-        <Route index element={<Navigate to="/artist/:id/discography/all" />} />
-        <Route path="all" element={<DiscographyAll />} />
-        <Route path="albums" element={<DiscographyAlbums />} />
-        <Route path="singles" element={<DiscographySingles />} />
-        <Route path="compilations" element={<DiscographyCompiles />} />
-      </Route>
+      <Route path="artist/:id/discography/:albumType" element={<Discography />} />
 
       <Route path="*" element={<div>404</div>} />
     </Routes>

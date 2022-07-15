@@ -65,22 +65,17 @@ const Artist = () => {
   const tracksList = [
     {
       track: 1,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre',
-        artist: 'Artiste',
-      },
-      album: 'Album',
+
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre',
       like: 145450,
       duration: '3:21',
       liked: true,
     },
     {
       track: 2,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
 
       like: 1956560,
       duration: '3:36',
@@ -88,43 +83,32 @@ const Artist = () => {
     },
     {
       track: 3,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
-
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
       like: 105645,
       duration: '3:36',
       liked: false,
     },
     {
       track: 4,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
-
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
       like: 10895,
       duration: '3:36',
       liked: false,
     },
     {
       track: 5,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
-
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
       like: 10,
       duration: '3:36',
       liked: false,
     },
     {
       track: 6,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
 
       like: 10,
       duration: '3:36',
@@ -132,21 +116,18 @@ const Artist = () => {
     },
     {
       track: 7,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre super long',
-      },
 
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre super long',
       like: 10,
       duration: '3:36',
       liked: false,
     },
     {
       track: 8,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
+
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
 
       like: 10,
       duration: '3:36',
@@ -154,10 +135,9 @@ const Artist = () => {
     },
     {
       track: 9,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
+
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
 
       like: 10,
       duration: '3:36',
@@ -165,10 +145,9 @@ const Artist = () => {
     },
     {
       track: 10,
-      title: {
-        img: 'https://source.unsplash.com/random/64x64',
-        name: 'Titre 2',
-      },
+
+      img: 'https://source.unsplash.com/random/64x64',
+      title: 'Titre 2',
 
       like: 10,
       duration: '3:36',
@@ -255,7 +234,7 @@ const Artist = () => {
           albums={albums}
           link={`/section/fdf9854`}
         />
-          <AlbumList
+        <AlbumList
           title="Apparaît sur"
           albums={albums}
           link={`/section/fdf9854`}
