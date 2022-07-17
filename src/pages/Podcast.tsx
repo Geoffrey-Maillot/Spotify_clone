@@ -8,7 +8,7 @@ import H1 from '../component/Typo/H1/H1';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import H2 from '../component/Typo/H2/H2';
 import PlaylistTable from '../component/Tables/TableEpisodes';
-import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
+import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
 
 interface Props {

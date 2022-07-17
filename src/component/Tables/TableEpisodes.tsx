@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // Import Hook
-import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // Import PrimeReact
 import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
@@ -62,11 +62,11 @@ const TableEpisodes = ({ episodesList }: Props) => {
           />
         </div>
         <div className="flex flex-col gap-4 justify-start items-start">
-          <H2 label={rowData.title} size='lg' />
+          <H2 label={rowData.title} size="lg" />
           <Paragraph truncate label={rowData.content} />
           <div className="flex items-center justify-between w-full flex-wrap gap-4">
             <div className="flex items-center justify-start gap-6 ">
-             <ButtonPlayLight />
+              <ButtonPlayLight />
               <span className="flex items-center justify-start gap-1">
                 <Paragraph label={rowData.date} />
                 <GoPrimitiveDot size={'.4rem'} />
@@ -74,22 +74,28 @@ const TableEpisodes = ({ episodesList }: Props) => {
               </span>
             </div>
             <div className="flex items justify-start gap-6">
-              <button className='opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default'>
-                <MdOutlineIosShare size="1.5rem" className='hover:text-white'/>
+              <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default">
+                <MdOutlineIosShare size="1.5rem" className="hover:text-white" />
               </button>
               {rowData.isSave ? (
                 <button className="bg-green-200 rounded-full w-[1.375rem] h-[1.375rem] flex items-center justify-center cursor-default">
-                  <BsCheckLg color='#000' size=".8rem" />
+                  <BsCheckLg color="#000" size=".8rem" />
                 </button>
               ) : (
-                <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default" >
-                  <IoAddCircleOutline className='hover:text-white' size="1.5rem" />
+                <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default">
+                  <IoAddCircleOutline
+                    className="hover:text-white"
+                    size="1.5rem"
+                  />
                 </button>
               )}
 
-              <button className='opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default' >
+              <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default">
                 {' '}
-                <IoEllipsisHorizontalSharp size="1.5rem" className='hover:text-white'/>
+                <IoEllipsisHorizontalSharp
+                  size="1.5rem"
+                  className="hover:text-white"
+                />
               </button>
             </div>
           </div>
@@ -105,7 +111,7 @@ const TableEpisodes = ({ episodesList }: Props) => {
         dataKey="track"
         selectionMode="single"
         responsiveLayout="scroll"
-        className=" text-gray-200 text-left table-podcasts " 
+        className=" text-gray-200 text-left table-podcasts "
         emptyMessage="Vous n'avez pas encore d'épisodes"
       >
         <Column

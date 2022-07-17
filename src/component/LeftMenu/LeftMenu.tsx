@@ -6,6 +6,7 @@ import CreatePlaylistButton from './CreatePlaylistButton';
 import logo from '../../assets/img/Spotify_Logo.png';
 import LikedTraksLink from './LikedTraksLink';
 import EpisodeLink from './EpisodeLink';
+import { Route } from 'react-router-dom';
 
 const LeftMenu = () => {
   return (
@@ -38,10 +39,14 @@ const LeftMenu = () => {
 
       <ul className=" w-full overflow-y-scroll h-full scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-400 px-6">
         <MenuLink to={`/playlist/${'id12345'}`} label="Hits du Moment" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Carnival" /> <MenuLink to={`/playlist/${'id12345'}`} label="Osocity" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="sega" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Radios" /> <MenuLink to={`/playlist/${'id12345'}`} label="Rousseau" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Fr" /> <MenuLink to={`/playlist/${'id12345'}`} label="Epic Musique" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Carnival" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Osocity" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="sega" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Radios" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Rousseau" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Fr" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Epic Musique" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Playlist Piano" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Solo Guitare" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Reggae" />
@@ -50,14 +55,22 @@ const LeftMenu = () => {
         <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Sport" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="tabata" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Rap Us" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Podcast" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Zen" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="974 Sega" /> <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="tabata" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Rap Us" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Podcast" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="Zen" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
+        <MenuLink to={`/playlist/${'id12345'}`} label="974 Sega" />{' '}
+        <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Titres Shazam" />
         <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
-        <MenuLink to={`/playlist/${'id12345'}`} label="Classique musique pour lire" />
+        <MenuLink
+          to={`/playlist/${'id12345'}`}
+          label="Classique musique pour lire"
+        />
         <MenuLink to={`/playlist/${'id12345'}`} label="Soirée" />
         <MenuLink
           to={`/playlist/${'id12345'}`}

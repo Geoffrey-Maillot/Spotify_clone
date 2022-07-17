@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Import Hook
-import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // Import PrimeReact
 import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
@@ -17,9 +17,9 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 
 interface Track {
   track: number;
-    img: string;
-    title: string;
-    artist: string;
+  img: string;
+  title: string;
+  artist: string;
   album: string;
   added: number;
   duration: string;
@@ -76,11 +76,7 @@ const TableTracks = ({ tracksList }: Props) => {
         </div>
         <div className="min-w-[200px] overflow-hidden title">
           <Paragraph size="lg" color="white" label={rowData?.title} />
-          <Paragraph
-            size="sm"
-            color="lightGray"
-            label={rowData?.artist}
-          />
+          <Paragraph size="sm" color="lightGray" label={rowData?.artist} />
         </div>
       </div>
     );

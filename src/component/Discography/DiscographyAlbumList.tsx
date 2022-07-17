@@ -26,7 +26,8 @@ interface Props {
   tracksList: Array<Track>;
 }
 
-const DiscographyAlbum = ({
+// == Component =>
+const DiscographyAlbumList = ({
   img,
   title,
   type,
@@ -37,22 +38,24 @@ const DiscographyAlbum = ({
   const nbrTrack = tracksList.length;
 
   return (
-    <article className='pb-6 bg-gradient-to-b from-dark-50 to-dark-100'>
-    <div className="p-8 flex justify-start items-start gap-6 h-[12.5rem] ">
-      <div className="w-[8.5rem] h-[8.5rem] ">
-        <img className="object-cover object-center" src={img} alt={title} />
-      </div>
-      <div className="flex flex-col justify-between items-start h-full ">
-        <div>
-          <H2 label={title} size="xl3" />
-          <div className="flex items-center justify-start gap-1 mt-2">
-            <Paragraph label={type} />
-            <GoPrimitiveDot size=".5rem" color="#b3b3b3" />
-            <Paragraph label={year} />
-            <GoPrimitiveDot size=".5rem" color="#b3b3b3" />
-            <Paragraph label={`${nbrTrack} titre${nbrTrack > 1 ? 's' : ''}`} />
-          </div>
+    <article className="pb-6 bg-gradient-to-b from-dark-50 to-dark-100 pt-[3.5rem]">
+      <div className="p-8 flex justify-start items-start gap-6 h-[12.5rem] ">
+        <div className="w-[8.5rem] h-[8.5rem] ">
+          <img className="object-cover object-center" src={img} alt={title} />
         </div>
+        <div className="flex flex-col justify-between items-start h-full ">
+          <div>
+            <H2 label={title} size="xl3" />
+            <div className="flex items-center justify-start gap-1 mt-2">
+              <Paragraph label={type} />
+              <GoPrimitiveDot size=".5rem" color="#b3b3b3" />
+              <Paragraph label={year} />
+              <GoPrimitiveDot size=".5rem" color="#b3b3b3" />
+              <Paragraph
+                label={`${nbrTrack} titre${nbrTrack > 1 ? 's' : ''}`}
+              />
+            </div>
+          </div>
           <div className="flex items-center justify-start gap-3">
             <ButtonPlayLight />
             {liked ? (
@@ -68,11 +71,11 @@ const DiscographyAlbum = ({
               />
             )}
           </div>
+        </div>
       </div>
-    </div>
-      <TableDiscography tracksList={tracksList}/>
-</article>
+      <TableDiscography tracksList={tracksList} />
+    </article>
   );
 };
 
-export default DiscographyAlbum;
+export default DiscographyAlbumList;

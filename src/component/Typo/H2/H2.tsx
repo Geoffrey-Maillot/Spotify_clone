@@ -3,6 +3,7 @@ interface Props {
   label?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3' | 'xl5';
   color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray' | 'blue';
+  truncate?: boolean;
 }
 
 const fontSize: { [x: string]: string } = {
@@ -23,9 +24,17 @@ const colors: { [x: string]: string } = {
   blue: 'text-blue-100',
 };
 
-const H2 = ({ children, label, size = 'sm', color = 'white' }: Props) => (
+const H2 = ({
+  children,
+  label,
+  size = 'sm',
+  color = 'white',
+  truncate,
+}: Props) => (
   <h2
-    className={`font-circularBold tracking-tighter truncate max-w-[21.5625rem]  ${colors[color]} ${fontSize[size]}`}
+    className={`font-circularBold tracking-tighter truncate max-w-[21.5625rem]  ${
+      colors[color]
+    } ${fontSize[size]}  ${truncate && 'line-clamp'}`}
   >
     {label ? label : children}
   </h2>

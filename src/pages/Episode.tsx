@@ -7,7 +7,7 @@ import H1 from '../component/Typo/H1/H1';
 import H2 from '../component/Typo/H2/H2';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
-import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
+import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
 import CardMusic from '../component/Cards/CardMusic';
 
 // Import icon

@@ -1,10 +1,19 @@
+import { useState, useEffect, useRef } from 'react';
+
+// Import Router
+import { Link } from 'react-router-dom';
+
+// Hook
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
+
+// Utils
+import { calcGridNbrCols } from '../../service/utils/calcGridNbrCols';
+
+// Import Component
 import H2 from '../Typo/H2/H2';
 import Paragraph from '../Typo/Paragraph/Paragraph';
-import { Link } from 'react-router-dom';
 import RenderIf from '../UtilsComponents/RenderIf';
 import CardMusic from '../Cards/CardMusic';
-import { useState, useEffect, useRef } from 'react';
-import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
 
 interface Props {
   title?: string;
@@ -12,33 +21,18 @@ interface Props {
   albums: Array<{ img: string; title: string; content: string }>;
   link: string;
 }
-
+// == Component =>
 const AlbumList = ({ title, subTitle, albums, link }: Props) => {
   const [nbrCols, setNbrCols] = useState(0);
   const windowWidth = useGetWindowWidth();
 
   const albumList = useRef<HTMLDivElement>(null);
 
-  const calcNbrCols = (width: number): number => {
-    let nbrCols: number = 0;
-    if (width < 350) nbrCols = 1;
-    if (width >= 350 && width < 530) nbrCols = 2;
-    if (width >= 530 && width < 730) nbrCols = 3;
-    if (width >= 730 && width < 1060) nbrCols = 4;
-    if (width >= 1060 && width < 1260) nbrCols = 5;
-    if (width >= 1260 && width < 1447) nbrCols = 6;
-    if (width >= 1447 && width < 1673) nbrCols = 7;
-    if (width >= 1673 && width < 1874) nbrCols = 8;
-    if (width >= 1874) nbrCols = 9;
-
-    return nbrCols;
-  };
-
   const listSlice = albums.slice(0, nbrCols);
 
   useEffect(() => {
     if (albumList.current) {
-      setNbrCols(calcNbrCols(albumList.current.clientWidth));
+      setNbrCols(calcGridNbrCols(albumList.current.clientWidth));
     }
   }, [windowWidth]);
 
@@ -53,7 +47,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
             <Paragraph label={subTitle} />
           </RenderIf>
         </div>
-      {/* "Voir tous" ne dois apparaitre que si le nombre d'element à afficher est supérieur au nombre affiché */}
+        {/* "Voir tous" ne dois apparaitre que si le nombre d'element à afficher est supérieur au nombre affiché */}
         <Link
           to={`${link}`}
           className="ml-4 hover:underline text-gray-200 text-sm font-circularBold uppercase tracking-wide"

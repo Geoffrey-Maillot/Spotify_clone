@@ -2,28 +2,27 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Component
-import Home from './Home';
-import Search from './Search';
-import Playlist from './Collection/Playlists';
-import Podcasts from './Collection/Podcats';
-import Artists from './Collection/Artists';
-import Albums from './Collection/Albums';
-import TraksPlaylist from './Playlist';
-import LikedTraks from './Collection/LikedTracks';
-import GenrePage from './GenrePage';
-import Section from './Section';
-import Podcast from './Podcast';
-import Episode from './Episode';
-import Episodes from './Collection/Episodes';
-import Artist from './Artist';
-import Discography from './Discography';
-
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Playlist from './pages/Collection/Playlists';
+import Podcasts from './pages/Collection/Podcats';
+import Artists from './pages/Collection/Artists';
+import Albums from './pages/Collection/Albums';
+import TraksPlaylist from './pages/Playlist';
+import LikedTraks from './pages/Collection/LikedTracks';
+import GenrePage from './pages/GenrePage';
+import Section from './pages/Section';
+import Podcast from './pages/Podcast';
+import Episode from './pages/Episode';
+import Episodes from './pages/Collection/Episodes';
+import Artist from './pages/Artist';
+import Discography from './pages/Discography';
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
 // Todo : Pour les headers, conditionner l'image du background ou la couleur et l'image de gauche si il y en une
 
-function App() {
+const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -47,11 +46,14 @@ function App() {
       <Route path="show/:id" element={<Podcast />} />
       <Route path="episode/:id" element={<Episode />} />
       <Route path="artist/:id" element={<Artist />} />
-      <Route path="artist/:id/discography/:albumType" element={<Discography />} />
+      <Route
+        path="artist/:id/discography/:albumType"
+        element={<Discography />}
+      />
 
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );
 }
 
-export default App;
+export default Router;

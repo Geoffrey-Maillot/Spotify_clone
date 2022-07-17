@@ -1,11 +1,15 @@
+import { useState, useEffect } from 'react';
+
 // Import Router
 import { useParams } from 'react-router-dom';
 
 // Import Component
 import Layout from '../component/Layout/Layout';
 import H2 from '../component/Typo/H2/H2';
-import DiscographyAlbum from '../component/Discography/DiscographyAlbum';
+import DiscographyAlbum from '../component/Discography/DiscographyAlbumList';
 import DiscographyHeader from '../component/Discography/DiscographyHeader';
+import Grid from '../component/Grid/Grid';
+import CardMusic from '../component/Cards/CardMusic';
 
 interface Track {
   track: number;
@@ -73,7 +77,7 @@ const allDiscography: Array<Album> = [
       },
     ],
   },
-{
+  {
     img: 'https://source.unsplash.com/random/303x303',
     title: 'Super titre',
     type: 'Compilation',
@@ -108,47 +112,76 @@ const allDiscography: Array<Album> = [
 
 // == Component =>
 const Discography = () => {
-  enum TypeAlbum {
-    all = 'all',
-    single = ' single',
-    album = 'album',
-    compilation = 'compilation',
-  }
+  const [filteredAlbums, setFilteredAlbums] = useState<Array<Album>>([]);
+  const [pageLayout, setPageLayout] = useState<'list' | 'grid'>('list');
 
-  interface AlbumType {
-    albumType?: TypeAlbum | undefined;
-  }
-  const typeAlbum: AlbumType | undefined = useParams();
+  const { albumType } = useParams();
 
   const filterDiscography = (
-    type: TypeAlbum | undefined,
+    type: string | undefined,
     albums: Array<Album>
   ) => {
-    console.log(type, albums);
-    let listAlbums: Array<Album>;
-    if (type === TypeAlbum.all) {
-      listAlbums = albums;
+    if (type === 'all') {
+      setFilteredAlbums(albums);
     } else {
       const filteredAlbums = albums.filter(
         (album) => album.type.toLowerCase() === type?.toLocaleLowerCase()
       );
       filteredAlbums.length === 0
-        ? (listAlbums = albums)
-        : (listAlbums = filteredAlbums);
+        ? setFilteredAlbums(albums)
+        : setFilteredAlbums(filteredAlbums);
     }
-
-    return listAlbums;
   };
+
+  useState(() => {
+    const pageLayoutFromStorage = localStorage.getItem('pageLayout') as
+      | 'grid'
+      | 'list';
+    if (pageLayoutFromStorage) {
+      setPageLayout(pageLayoutFromStorage);
+    }
+  });
+
+  useEffect(() => {
+    filterDiscography(albumType, allDiscography);
+  }, [albumType]);
 
   return (
     <Layout>
-      <DiscographyHeader artist='Mickael Jackson'/>
-      {filterDiscography(typeAlbum.albumType, allDiscography).length > 0 ? (
-        filterDiscography(typeAlbum.albumType, allDiscography).map(
-          (album, i) => <DiscographyAlbum key={i} {...album} />
+      <DiscographyHeader
+        artist="Mickael Jackson"
+        pageLayout={pageLayout}
+        setPageLayout={setPageLayout}
+      />
+      {filteredAlbums.length > 0 ? (
+        pageLayout === 'list' ? (
+          filteredAlbums.map((album, i) => (
+            <DiscographyAlbum key={i} {...album} />
+          ))
+        ) : (
+          <div className="px-8">
+            <Grid>
+              {filteredAlbums.map((album, i) => (
+                <div className=" max-w-[280px] min-w-[160px]">
+                  <CardMusic
+                    key={i}
+                    title={album.title}
+                    img={album.img}
+                    content={album.year}
+                  />
+                </div>
+              ))}
+            </Grid>
+          </div>
         )
       ) : (
         <div>
+          <DiscographyHeader
+            artist="Mickael Jackson"
+            pageLayout={pageLayout}
+            setPageLayout={setPageLayout}
+          />
+
           <H2 label="Aucun album pour cette artist" />
         </div>
       )}

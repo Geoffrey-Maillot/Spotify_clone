@@ -10,7 +10,7 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 import RenderIf from '../UtilsComponents/RenderIf';
 
 // Import Hook
-import { useGetWindowWidth } from '../../hook/useGetWindowWidth';
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // Import React Icon
 import { HiOutlineChevronLeft } from 'react-icons/hi';
@@ -19,16 +19,22 @@ import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiSearchLine } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
 import { BiLinkExternal } from 'react-icons/bi';
-
+import ButtonHamberMenu from './ButtonHamburgerMenu';
 
 interface Props {
   panelSize: number;
+  responsiveLeftPanelIsActive: boolean;
+  togglePanelLeft: () => void;
 }
 //Todo: Background transparent quand scoll est en haut puis change de couleur quand on scoll avec une opacité en fonction de la distance du haut de la fenêtre
 //Todo: Disable les boutons de nav si il n'y a pas de nav (voir su spotify)
 //Todo: Supprimer les sugestions de l'input search
 
-const HeaderNav = ({panelSize} : Props) => {
+const HeaderNav = ({
+  panelSize,
+  responsiveLeftPanelIsActive,
+  togglePanelLeft,
+}: Props) => {
   const [search, setSearch] = useState('');
   const path = useLocation().pathname;
   const testPath = /\/collection/;
@@ -75,6 +81,11 @@ const HeaderNav = ({panelSize} : Props) => {
       ref={header}
       className="flex items-center content-start bg-dark-200 px-8 py-4 gap-4 sticky z-50 top-0 left-0 right-0"
     >
+      <RenderIf bool={responsiveLeftPanelIsActive}>
+        <ButtonHamberMenu
+          togglePanelLeft={togglePanelLeft}
+        />
+      </RenderIf>
       {/* //? Voir pour faire un composant des boutons si on les retrouves encore ailleurs*/}
       <div className="flex content-start items-start gap-4">
         <button className="w-8 h-8 bg-dark-400/70 flex justify-center items-center cursor-pointer  rounded-full">

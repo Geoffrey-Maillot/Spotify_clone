@@ -10,8 +10,9 @@ import H1 from '../component/Typo/H1/H1';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import H2 from '../component/Typo/H2/H2';
 import TableTracks from '../component/Tables/TableTracks';
-import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
+import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
 
+// == Component =>
 const Playlist = () => {
   const { id } = useParams();
 

@@ -6,7 +6,7 @@ import Layout from '../component/Layout/Layout';
 import H1 from '../component/Typo/H1/H1';
 import H2 from '../component/Typo/H2/H2';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
-import HeadBandPlay from '../component/HeadBandPlay/HeadBandPlay';
+import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
 import TabsView from '../component/TabView/TabView';
 
 // Import Icon
