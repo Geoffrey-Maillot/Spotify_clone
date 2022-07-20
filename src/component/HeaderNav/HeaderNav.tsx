@@ -46,10 +46,10 @@ const HeaderNav = ({
   const windowWidth = useGetWindowWidth();
 
   const openClosePoupNavLink = () => {
-    togglePopupLinkIsVisible(!popupLinkIsVisible);
+    togglePopupLinkIsVisible((popupLinkIsVisible) => !popupLinkIsVisible);
   };
   const openClosePoupAccount = () => {
-    togglePopupAccountIsVisible(!popupAccountIsVisible);
+    togglePopupAccountIsVisible((popupAccountIsVisible) => !popupAccountIsVisible);
   };
 
   const links: { [x: string]: string } = {
@@ -61,7 +61,7 @@ const HeaderNav = ({
 
   const searchOnChange = (e: React.ChangeEvent) => {
     const value: string = (e.target as HTMLInputElement).value;
-    setSearch(() => value);
+    setSearch(value);
   };
 
   const resetSearch = () => {

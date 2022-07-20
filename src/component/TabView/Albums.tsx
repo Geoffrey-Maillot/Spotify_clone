@@ -51,10 +51,11 @@ const albums = [
 
 interface Props {
   artistId: string | undefined;
+  path: string;
 }
 
-const Albums = ({ artistId }: Props) => (
-  <AlbumList albums={albums} link={`/artist/${artistId}/discography/album`} />
+const Albums = ({ artistId, path }: Props) => (
+  <AlbumList albums={albums} link={`/artist/${artistId}/discography/${path}`} />
 );
 
 export default Albums;

@@ -36,7 +36,7 @@ const DiscographyHeader = ({ artist, pageLayout, setPageLayout }: Props) => {
   };
 
   const openClosePopupButtonNav = () => {
-    togglePopupButtonsNavisOpen(!popupButtonsNavisOpen);
+    togglePopupButtonsNavisOpen((popupButtonsNavisOpen) => !popupButtonsNavisOpen);
   };
 
   const applyPageLayoutList = () => {

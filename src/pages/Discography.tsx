@@ -121,7 +121,7 @@ const Discography = () => {
     type: string | undefined,
     albums: Array<Album>
   ) => {
-    if (type === 'all') {
+    if (albumType === 'all') {
       setFilteredAlbums(albums);
     } else {
       const filteredAlbums = albums.filter(
@@ -133,18 +133,18 @@ const Discography = () => {
     }
   };
 
-  useState(() => {
+  useEffect(() => {
     const pageLayoutFromStorage = localStorage.getItem('pageLayout') as
       | 'grid'
       | 'list';
     if (pageLayoutFromStorage) {
       setPageLayout(pageLayoutFromStorage);
     }
-  });
+  }, []);
 
   useEffect(() => {
     filterDiscography(albumType, allDiscography);
-  }, [albumType]);
+  });
 
   return (
     <Layout>

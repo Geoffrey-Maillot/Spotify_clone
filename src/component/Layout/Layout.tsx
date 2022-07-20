@@ -43,7 +43,6 @@ const Layout = ({ children }: Props) => {
   useLayoutEffect(() => {
     const panelSizeFromStorage: string | null =
       localStorage.getItem('panelSize');
-    console.log(panelSizeFromStorage);
     if (panelSizeFromStorage) setPanelSize(+panelSizeFromStorage);
   }, []);
 

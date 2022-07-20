@@ -13,7 +13,14 @@ interface Props {
   artistId: string | undefined;
 }
 
-const TabsView = ({artistId}: Props) => {
+enum pathAlbumType {
+  all = 'all',
+  single = 'single',
+  album = 'album',
+  compilation = 'compilation',
+}
+
+const TabsView = ({ artistId }: Props) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const changeActiveIndex = (index: number) => {
@@ -51,10 +58,18 @@ const TabsView = ({artistId}: Props) => {
       className="mt-4"
       onTabChange={(e) => changeActiveIndex(e.index)}
     >
-      <TabPanel headerTemplate={headerTemplate}><Releases  artistId={artistId} /></TabPanel>
-      <TabPanel headerTemplate={headerTemplate}><Albums  artistId={artistId}/></TabPanel>
-      <TabPanel headerTemplate={headerTemplate}><Singles  artistId={artistId}/></TabPanel>
-      <TabPanel headerTemplate={headerTemplate}><Compiles artistId={artistId} /></TabPanel>
+      <TabPanel headerTemplate={headerTemplate}>
+        <Releases artistId={artistId} path={pathAlbumType.all} />
+      </TabPanel>
+      <TabPanel headerTemplate={headerTemplate}>
+        <Albums artistId={artistId} path={pathAlbumType.album} />
+      </TabPanel>
+      <TabPanel headerTemplate={headerTemplate}>
+        <Singles artistId={artistId} path={pathAlbumType.single} />
+      </TabPanel>
+      <TabPanel headerTemplate={headerTemplate}>
+        <Compiles artistId={artistId} path={pathAlbumType.compilation} />
+      </TabPanel>
     </TabView>
   );
 };

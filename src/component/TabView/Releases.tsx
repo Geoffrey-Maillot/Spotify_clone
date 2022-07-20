@@ -1,5 +1,5 @@
-// Import component 
-import AlbumList from "../AlbumList/AlbumList";
+// Import component
+import AlbumList from '../AlbumList/AlbumList';
 
 const albums = [
   {
@@ -51,13 +51,11 @@ const albums = [
 
 interface Props {
   artistId: string | undefined;
+  path: string;
 }
 
-const Releases = ({artistId}: Props) => (
-  <AlbumList
-        albums={albums}
-        link={`/artist/${artistId}/discography/all`}
-      />
+const Releases = ({ artistId, path }: Props) => (
+  <AlbumList albums={albums} link={`/artist/${artistId}/discography/${path}`} />
 );
 
 export default Releases;
