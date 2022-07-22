@@ -15,10 +15,13 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 import RenderIf from '../UtilsComponents/RenderIf';
 import CardMusic from '../Cards/CardMusic';
 
+// Interface
+import { Album } from '../../service/interface/Album';
+
 interface Props {
   title?: string;
   subTitle?: string;
-  albums: Array<{ img: string; title: string; content: string }>;
+  albums: Array<Album>;
   link: string;
 }
 // == Component =>
@@ -65,6 +68,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
             img={card.img}
             title={card.title}
             content={card.content}
+            type={card.type}
           />
         ))}
       </div>

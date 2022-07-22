@@ -131,7 +131,7 @@ const LikedTracks = () => {
         <span className="mb-4">
           <H2 label="PLAYLIST" />
         </span>
-        <H1 label="Titres Likés" />
+        <H1 label="Titres Likés" size="xl8" />
         <div className="mt-4 flex items-center justify-start gap-1">
           <div className="w-6 h-6 rounded-full object-cover object-center overflow-hidden">
             <img

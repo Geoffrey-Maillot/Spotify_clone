@@ -19,7 +19,7 @@ import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiSearchLine } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
 import { BiLinkExternal } from 'react-icons/bi';
-import ButtonHamberMenu from './ButtonHamburgerMenu';
+import ButtonMenuleft from './ButtonMenuLeft';
 
 interface Props {
   panelSize: number;
@@ -49,7 +49,9 @@ const HeaderNav = ({
     togglePopupLinkIsVisible((popupLinkIsVisible) => !popupLinkIsVisible);
   };
   const openClosePoupAccount = () => {
-    togglePopupAccountIsVisible((popupAccountIsVisible) => !popupAccountIsVisible);
+    togglePopupAccountIsVisible(
+      (popupAccountIsVisible) => !popupAccountIsVisible
+    );
   };
 
   const links: { [x: string]: string } = {
@@ -82,9 +84,7 @@ const HeaderNav = ({
       className="flex items-center content-start bg-dark-200 px-8 py-4 gap-4 sticky z-50 top-0 left-0 right-0"
     >
       <RenderIf bool={responsiveLeftPanelIsActive}>
-        <ButtonHamberMenu
-          togglePanelLeft={togglePanelLeft}
-        />
+        <ButtonMenuleft togglePanelLeft={togglePanelLeft} />
       </RenderIf>
       {/* //? Voir pour faire un composant des boutons si on les retrouves encore ailleurs*/}
       <div className="flex content-start items-start gap-4">
@@ -221,7 +221,10 @@ const HeaderNav = ({
                   <BiLinkExternal color="#ffffffe6" size="1.4rem" />
                 </span>
               </a>
-              <Link to="#" className="py-3 pr-2 pl-2 rounded hover:bg-white/10">
+              <Link
+                to="/user/idProfil"
+                className="py-3 pr-2 pl-2 rounded hover:bg-white/10"
+              >
                 {' '}
                 <Paragraph label="Profil" color="lightWhite" />
               </Link>

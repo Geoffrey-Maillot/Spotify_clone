@@ -17,6 +17,7 @@ import Episode from './pages/Episode';
 import Episodes from './pages/Collection/Episodes';
 import Artist from './pages/Artist';
 import Discography from './pages/Discography';
+import Profil from './pages/Profil';
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
@@ -50,10 +51,11 @@ const Router = () => {
         path="artist/:id/discography/:albumType"
         element={<Discography />}
       />
+      <Route path="user/:id" element={<Profil />} />
 
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );
-}
+};
 
 export default Router;

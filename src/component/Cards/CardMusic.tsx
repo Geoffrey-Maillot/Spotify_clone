@@ -14,7 +14,7 @@ interface Props {
   img?: string;
   title?: string;
   content?: string; //? Le contenu sera peu être sous forme d'objet quand les datas viendront de l'api
-  type?: 'artist' | 'show' | 'playlist' | 'episode';
+  type?: 'artist' | 'show' | 'playlist' | 'episode' | 'user';
   id?: string;
   date?: string;
   duration?: string;
@@ -35,7 +35,7 @@ const CardMusic = ({
       className="max-w-xs block rounded-md p-5 bg-white/5 hover:bg-white/20 text-left group transition ease-in-out duration-300  aspect-[0.72]"
     >
       <div className="w-full rounded-md aspect-square relative overflow-hidden">
-        <RenderIf bool={type !== 'episode'}>
+        <RenderIf bool={type === 'playlist'}>
           <span className="absolute right-3 bottom-0 opacity-0   group-hover:opacity-100 group-hover:-translate-y-3 transition ease-in-out duration-300">
             <ButtonPlay />
           </span>
