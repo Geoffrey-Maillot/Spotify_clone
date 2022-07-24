@@ -18,6 +18,7 @@ import Episodes from './pages/Collection/Episodes';
 import Artist from './pages/Artist';
 import Discography from './pages/Discography';
 import Profil from './pages/Profil';
+import Login from './pages/Login';
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
@@ -27,6 +28,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
       <Route path="search" element={<Search />} />
       <Route path="collection">
         <Route
