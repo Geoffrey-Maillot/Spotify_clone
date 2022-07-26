@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import auth from '../../service/mobx/auth';
 
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
@@ -77,6 +78,10 @@ const HeaderNav = ({
       setheaderWidth(header.current?.clientWidth);
     }
   }, [windowWidth, panelSize]);
+
+  const deconnexion = () => {
+    auth.deconnexion();
+  };
 
   return (
     <header
@@ -234,7 +239,10 @@ const HeaderNav = ({
                   <BiLinkExternal color="#ffffffe6" size="1.4rem" />
                 </span>
               </a>
-              <button className="py-3 pr-2 pl-2 rounded hover:bg-white/10 text-left">
+              <button
+                onClick={deconnexion}
+                className="py-3 pr-2 pl-2 rounded hover:bg-white/10 text-left"
+              >
                 {' '}
                 <Paragraph label="Déconnexion" color="lightWhite" />
               </button>

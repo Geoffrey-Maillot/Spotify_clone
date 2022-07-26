@@ -1,12 +1,10 @@
-import { useRef } from 'react';
 
-// Import Component =>
-import Input from '../component/Inputs/Input';
+
+// Components
+import Form from '../component/Form/Form';
 
 // == Component =>
 const Login = () => {
-  const loginRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className=" h-screen grid grid-rows-[auto_1fr]">
@@ -18,31 +16,7 @@ const Login = () => {
         </div>
       </header>
       <main className="flex justify-center items-center">
-        <form className=" w-full flex flex-col justify-start items-center gap-3">
-          <div>
-            <label className="block  font-circularBold text-lg mb-2">
-              Adresse email ou nom d'utilisateur
-            </label>
-            <Input
-              type="text"
-              placeholder=" Adresse email ou nom d'utilisateur"
-              forwardRef={loginRef}
-            />
-          </div>
-          <div>
-            <label className="block  font-circularBold text-lg mb-2">
-              Mot de passe
-            </label>
-            <Input
-              type="password"
-              placeholder=" Mot de passe"
-              forwardRef={passwordRef}
-            />
-          </div>
-          <button className="w-[18.75rem] sm:w-[28.125rem] h-[3.25rem] uppercase py-3 rounded-full bg-green-200 active:bg-green-300 hover:scale-105">
-            Se connecter
-          </button>
-        </form>
+        <Form />
       </main>
     </div>
   );

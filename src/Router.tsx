@@ -1,6 +1,10 @@
 // Import Router
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+// Import Mobx
+import { observer } from 'mobx-react';
+import auth from './service/mobx/auth';
+
 // Import Component
 import Home from './pages/Home';
 import Search from './pages/Search';
@@ -19,16 +23,35 @@ import Artist from './pages/Artist';
 import Discography from './pages/Discography';
 import Profil from './pages/Profil';
 import Login from './pages/Login';
+import ConnectedRoute from './component/UtilsComponents/ConnectedRoute';
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
 // Todo : Pour les headers, conditionner l'image du background ou la couleur et l'image de gauche si il y en une
 
-const Router = () => {
+const Router = observer(() => {
+  const isAuth = auth.getAuth;
+
+  console.log(isAuth);
+
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/"
+        element={
+          <ConnectedRoute isAuth={isAuth}>
+            <Home />
+          </ConnectedRoute>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <ConnectedRoute isAuth={!isAuth} redirectionPath="/">
+            <Login />
+          </ConnectedRoute>
+        }
+      />
       <Route path="search" element={<Search />} />
       <Route path="collection">
         <Route
@@ -58,6 +81,6 @@ const Router = () => {
       <Route path="*" element={<div>404</div>} />
     </Routes>
   );
-};
+});
 
 export default Router;
