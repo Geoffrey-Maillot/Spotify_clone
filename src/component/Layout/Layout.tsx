@@ -72,11 +72,11 @@ const Layout = ({ children }: Props) => {
   }, [resizeIsActive, panelSize]);
 
   return (
-    <div>
+    <>
       {responsiveLeftPanelIsActive && (
         <div
           ref={containerPanelLeft}
-          className="fixed left-0 inset-y-0 w-1/2 min-w-sm min-w-max-content z-50 bg-dark-400 -translate-x-full transition shadow-panel"
+          className="fixed left-0 inset-y-0 w-1/2 min-w-sm min-w-max-content h-[calc(100vh_-_5.625rem)] z-50 bg-dark-400 -translate-x-full transition shadow-panel"
         >
           <LeftMenu />
         </div>
@@ -89,7 +89,7 @@ const Layout = ({ children }: Props) => {
       >
         {menuLeftIsVisible && <LeftMenu />}
 
-        <main className="relative bg-dark-100  h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
+        <main className=" relative bg-dark-100  h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
           <div
             className="absolute h-full w-1 inset-y-0 left-0 cursor-col-resize bg-[#121212] "
             onMouseDown={(e) => onReziseStart(e)}
@@ -114,7 +114,7 @@ const Layout = ({ children }: Props) => {
         </main>
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

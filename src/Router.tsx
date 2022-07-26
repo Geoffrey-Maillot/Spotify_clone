@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Mobx
 import { observer } from 'mobx-react';
-import auth from './service/mobx/auth';
+import auth from './mobx/auth';
 
 // Import Component
 import Home from './pages/Home';
@@ -23,7 +23,7 @@ import Artist from './pages/Artist';
 import Discography from './pages/Discography';
 import Profil from './pages/Profil';
 import Login from './pages/Login';
-import ConnectedRoute from './component/UtilsComponents/ConnectedRoute';
+import ProtectedRoute from './component/UtilsComponents/ProtectedRoute';
 
 //Todo : Faire une 404
 // Todo : Faire un composant pour les headers
@@ -32,53 +32,46 @@ import ConnectedRoute from './component/UtilsComponents/ConnectedRoute';
 const Router = observer(() => {
   const isAuth = auth.getAuth;
 
-  console.log(isAuth);
-
   return (
     <Routes>
       <Route
-        path="/"
-        element={
-          <ConnectedRoute isAuth={isAuth}>
-            <Home />
-          </ConnectedRoute>
-        }
-      />
-      <Route
         path="/login"
         element={
-          <ConnectedRoute isAuth={!isAuth} redirectionPath="/">
+          <ProtectedRoute isAllowed={!isAuth} redirectionPath="/">
             <Login />
-          </ConnectedRoute>
+          </ProtectedRoute>
         }
       />
-      <Route path="search" element={<Search />} />
-      <Route path="collection">
+      <Route element={<ProtectedRoute isAllowed={isAuth} />}>
+        <Route path="/" element={<Home />} />
+        <Route path="search" element={<Search />} />
+        <Route path="collection">
+          <Route
+            index
+            element={<Navigate to="/collection/playlists" replace />}
+          />
+          <Route path="playlists" element={<Playlist />} />
+          <Route path="podcasts" element={<Podcasts />} />
+          <Route path="artists" element={<Artists />} />
+          <Route path="albums" element={<Albums />} />
+          <Route path="tracks" element={<LikedTraks />} />
+          <Route path="episodes" element={<Episodes />} />
+        </Route>
+        <Route path="playlist/:id" element={<TraksPlaylist />} />
+        <Route path="genrepage/:genre" element={<GenrePage />} />
+        <Route path="section/:id" element={<Section />} />
+        <Route path="genre/:id" element={<Section />} />
+        <Route path="show/:id" element={<Podcast />} />
+        <Route path="episode/:id" element={<Episode />} />
+        <Route path="artist/:id" element={<Artist />} />
         <Route
-          index
-          element={<Navigate to="/collection/playlists" replace />}
+          path="artist/:id/discography/:albumType"
+          element={<Discography />}
         />
-        <Route path="playlists" element={<Playlist />} />
-        <Route path="podcasts" element={<Podcasts />} />
-        <Route path="artists" element={<Artists />} />
-        <Route path="albums" element={<Albums />} />
-        <Route path="tracks" element={<LikedTraks />} />
-        <Route path="episodes" element={<Episodes />} />
+        <Route path="user/:id" element={<Profil />} />
       </Route>
-      <Route path="playlist/:id" element={<TraksPlaylist />} />
-      <Route path="genrepage/:genre" element={<GenrePage />} />
-      <Route path="section/:id" element={<Section />} />
-      <Route path="genre/:id" element={<Section />} />
-      <Route path="show/:id" element={<Podcast />} />
-      <Route path="episode/:id" element={<Episode />} />
-      <Route path="artist/:id" element={<Artist />} />
-      <Route
-        path="artist/:id/discography/:albumType"
-        element={<Discography />}
-      />
-      <Route path="user/:id" element={<Profil />} />
 
-      <Route path="*" element={<div>404</div>} />
+      <Route path="*" element={<div>Error Page</div>} />
     </Routes>
   );
 });

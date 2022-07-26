@@ -1,11 +1,8 @@
-
-
 // Components
 import Form from '../component/Form/Form';
 
 // == Component =>
 const Login = () => {
-
   return (
     <div className=" h-screen grid grid-rows-[auto_1fr]">
       <header className="flex justify-center items-center py-8 border-t-0 border-x-0 border border-[#d9dadc]">
@@ -15,7 +12,9 @@ const Login = () => {
           </svg>
         </div>
       </header>
-      <main className="flex justify-center items-center">
+      <main className="flex flex-col justify-center items-center gap-10">
+        <p className=' font-circularBook '>Application en cours de developpement, remplir les champs avec n'importe quel valeur et Connectez vous</p>
+        ⬇
         <Form />
       </main>
     </div>

@@ -1,20 +1,20 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 interface Props {
-  children: JSX.Element;
-  isAuth: boolean;
+  children?: JSX.Element;
+  isAllowed: boolean;
   redirectionPath?: string;
 }
 
 const ConnectedRoute = ({
   children,
-  isAuth,
+  isAllowed,
   redirectionPath = '/login',
 }: Props) => {
-  if (!isAuth) {
+  if (!isAllowed) {
     return <Navigate to={redirectionPath} />;
   }
 
-  return children;
+  return children ? children : <Outlet />;
 };
 export default ConnectedRoute;

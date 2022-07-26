@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import auth from '../../service/mobx/auth';
+import auth from '../../mobx/auth';
 
 // hook form
 import { useForm, FormProvider } from 'react-hook-form';

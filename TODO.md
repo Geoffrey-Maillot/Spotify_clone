@@ -1,13 +1,7 @@
 ## Next✅
 
-- Changer le nom isAuth par isAllowed
-- Grouper les routes qui neccessitent la même vérification
-- Sortir le dossier mobx de services et l'appeller Store
-- Protéger toutes les routes
-- Mettre un message sur la page de Login
 - Finir l'intégration des pages responsive
 - Résoudre les erreurs dans la console
-- Installer
 - Faire tous les overlay (popup) avec PrimeReact
 - Remplacer la Lib mobx-react par mobx-react-lite
 

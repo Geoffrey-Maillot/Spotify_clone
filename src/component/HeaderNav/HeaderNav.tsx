@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import auth from '../../service/mobx/auth';
+import auth from '../../mobx/auth';
 
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
