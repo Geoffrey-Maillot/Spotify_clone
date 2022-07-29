@@ -7,6 +7,7 @@ import App from './App';
 
 // Styles
 import './styles/styles.scss';
+import 'primereact/resources/primereact.min.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

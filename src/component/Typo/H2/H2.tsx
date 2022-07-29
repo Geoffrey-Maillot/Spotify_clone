@@ -32,7 +32,7 @@ const H2 = ({
   };
   return (
     <h2
-      className={`font-circularBold tracking-tighter truncate max-w-[21.5625rem]  ${
+      className={`font-circularBold tracking-tighter  max-w-[21.5625rem]  ${
         colors[color]
       } ${fontSize[size]}  ${truncate && 'line-clamp'}`}
     >

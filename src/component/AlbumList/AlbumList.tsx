@@ -41,7 +41,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
 
   return (
     <div className="mb-4" ref={albumList}>
-      <div className="flex items-center justify-start pb-4 pt-1">
+      <div className="flex items-center flex-wrap gap-2 justify-start pb-4 pt-1">
         <div className="grow">
           <RenderIf bool={!!title}>
             <H2 label={title} size="xl2" />
@@ -53,7 +53,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
         {/* "Voir tous" ne dois apparaitre que si le nombre d'element à afficher est supérieur au nombre affiché */}
         <Link
           to={`${link}`}
-          className="ml-4 hover:underline text-gray-200 text-sm font-circularBold uppercase tracking-wide"
+          className="ml-4 hover:underline text-gray-200  text-xs sm:text-sm ml-auto  font-circularBold uppercase tracking-wide"
         >
           Voir Tous
         </Link>

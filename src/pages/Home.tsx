@@ -83,9 +83,13 @@ const albumNews = [
 
 const Home = () => (
   <Layout>
-    <div className="px-8 pt-6 grid gap-6 ">
+    <div className=" px-4 sm:px-8 pt-6 grid gap-6 ">
       <AlbumFirstSuggestion listAlbum={listAlbumFirstSuggestion} />
-      <AlbumList title="Réécoutez vos anciens favoris" albums={albumNews} link={'section/idgenre'}/>
+      <AlbumList
+        title="Réécoutez vos anciens favoris"
+        albums={albumNews}
+        link={'section/idgenre'}
+      />
       <AlbumList
         title="Nouveautés tendance"
         subTitle="Des playlists rassemblant toutes les dernières nouveautés"
@@ -98,7 +102,11 @@ const Home = () => (
         albums={albumNews}
         link={'/section/fef84'}
       />
-      <AlbumList title="Ecoutés récemment" albums={albumNews} link='genre/dd4441dd7'/>
+      <AlbumList
+        title="Ecoutés récemment"
+        albums={albumNews}
+        link="genre/dd4441dd7"
+      />
       <AlbumList
         title="Populaire chez les auditeurs de Artisan Développeur"
         albums={albumNews}

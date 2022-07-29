@@ -1,5 +1,8 @@
 ## Next✅
 
+- Gérer l'état de la modale Search avec Mobx
+- Changer le nom de la modal Search par Search Input
+- utiliser react-hook-from pour l'input
 - Finir l'intégration des pages responsive
 - Résoudre les erreurs dans la console
 - Faire tous les overlay (popup) avec PrimeReact

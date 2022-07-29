@@ -9,11 +9,7 @@ export default {
 } as ComponentMeta<typeof HeaderNav>;
 
 const Template: ComponentStory<typeof HeaderNav> = () => (
-  <HeaderNav
-    panelSize={320}
-    togglePanelLeft={() => {}}
-    responsiveLeftPanelIsActive={false}
-  />
+  <HeaderNav panelSize={320} togglePanelLeft={() => {}} />
 );
 
 export const searchHeader = Template;

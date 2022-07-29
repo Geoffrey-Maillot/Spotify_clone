@@ -13,7 +13,10 @@ const Login = () => {
         </div>
       </header>
       <main className="flex flex-col justify-center items-center gap-10">
-        <p className=' font-circularBook '>Application en cours de developpement, remplir les champs avec n'importe quel valeur et Connectez vous</p>
+        <p className=" font-circularBook ">
+          Application en cours de developpement, remplir les champs avec
+          n'importe quel valeur et Connectez vous
+        </p>
         ⬇
         <Form />
       </main>

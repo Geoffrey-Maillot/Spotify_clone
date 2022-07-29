@@ -24,7 +24,7 @@ const LottieButton = ({ togglePanelLeft }: Props) => {
   const removeDisableClick = () => {
     setTimeout(() => {
       setDisable(false);
-    }, 300);
+    }, 500);
   };
 
   const onAnimationComplete = () => {
@@ -45,7 +45,7 @@ const LottieButton = ({ togglePanelLeft }: Props) => {
   return (
     <div
       onClick={playAnimation}
-      className="cursor-pointer"
+      className="cursor-pointer lg:hidden"
       style={pointerEvent}
     >
       <Player

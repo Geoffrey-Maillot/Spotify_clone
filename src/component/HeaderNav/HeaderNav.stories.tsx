@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof HeaderNav> = () => (
   <HeaderNav
     panelSize={320}
     togglePanelLeft={() => {}}
-    responsiveLeftPanelIsActive={false}
+
   />
 );
 

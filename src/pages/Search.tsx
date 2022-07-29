@@ -1,6 +1,5 @@
 // Import component
 import Layout from '../component/Layout/Layout';
-import HeaderNav from '../component/HeaderNav/HeaderNav';
 import H2 from '../component/Typo/H2/H2';
 import CardGender from '../component/Cards/CardGender';
 import Carroussel from '../component/Carroussel/Carroussel';
@@ -12,28 +11,24 @@ const dataPreferGender = [
     img: 'https://source.unsplash.com/random/201x201',
     alt: 'Alt Image',
     color: '#7695c9',
-    size: 'large',
   },
   {
     title: 'Variété française',
     img: 'https://source.unsplash.com/random/201x201',
     alt: 'Alt Image',
     color: '#7695c9',
-    size: 'large',
   },
   {
     title: 'Variété française',
     img: 'https://source.unsplash.com/random/201x201',
     alt: 'Alt Image',
     color: '#7695c9',
-    size: 'large',
   },
   {
     title: 'Variété française',
     img: 'https://source.unsplash.com/random/201x201',
     alt: 'Alt Image',
     color: '#7695c9',
-    size: 'large',
   },
 ];
 
@@ -43,112 +38,96 @@ const dataGender = [
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
   {
     title: 'Podcasts',
     img: 'https://source.unsplash.com/random/202x202',
     alt: 'Alt Image',
     color: '#7695e5',
-    size: 'small',
   },
 ];
 
@@ -164,7 +143,7 @@ const Search = () => (
         <H2 size="xl2"> Parcourir tout </H2>
         <Grid>
           {dataGender.map((item, i) => (
-            <CardGender key={i} {...item} />
+            <CardGender key={i} {...item} size="small"/>
           ))}
         </Grid>
       </section>
