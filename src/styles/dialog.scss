@@ -1,0 +1,8 @@
+.p-overlaypanel::before,
+.p-overlaypanel::after {
+  display: none;
+}
+
+.p-dialog-visible {
+  z-index: 40 !important;
+}

@@ -69,7 +69,7 @@ const TableTracks = ({ tracksList }: Props) => {
         <div className="w-10 h-10 object-cover object-center">
           <img src={rowData?.img} alt={rowData?.title} />
         </div>
-        <div className="min-w-[200px] overflow-hidden title">
+        <div className=" overflow-hidden title">
           <Paragraph size="lg" color="white" label={rowData?.title} />
         </div>
       </div>

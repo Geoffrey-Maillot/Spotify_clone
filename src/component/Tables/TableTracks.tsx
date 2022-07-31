@@ -74,7 +74,7 @@ const TableTracks = ({ tracksList }: Props) => {
         <div className="w-10 h-10 object-cover object-center">
           <img src={rowData?.img} alt={rowData?.title} />
         </div>
-        <div className="min-w-[200px] overflow-hidden title">
+        <div className="overflow-hidden title">
           <Paragraph size="lg" color="white" label={rowData?.title} />
           <Paragraph size="sm" color="lightGray" label={rowData?.artist} />
         </div>
@@ -140,6 +140,7 @@ const TableTracks = ({ tracksList }: Props) => {
             width: '10%',
             maxWidth: '100px',
             paddingRight: '16px',
+            textAlign: 'end',
           }}
           field="duration"
           bodyStyle={{
@@ -147,9 +148,9 @@ const TableTracks = ({ tracksList }: Props) => {
             paddingRight: '16px',
           }}
           header={
-            <span className="flex justify-end">
+            <div className="text-end">
               <AiOutlineClockCircle size="1.2rem" />
-            </span>
+            </div>
           }
         />
       </DataTable>

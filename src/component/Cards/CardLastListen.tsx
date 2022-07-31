@@ -27,7 +27,7 @@ const CardLastListen = ({
 
   const setButtonIsVisible = () => {
     if (cardLink.current) {
-      cardLink?.current?.clientWidth >= 280
+      cardLink?.current?.clientWidth >= 295
         ? setIsVisible(true)
         : setIsVisible(false);
     }
@@ -40,9 +40,6 @@ const CardLastListen = ({
     return window.removeEventListener('resize', setButtonIsVisible);
   }, []);
 
-  console.log(isVisible);
-  console.log(cardLink.current?.clientWidth);
-
   return (
     <Link
       ref={cardLink}
@@ -54,9 +51,8 @@ const CardLastListen = ({
       </div>
       <H2 label={title} size="lg" color="white" truncate />
       <span
-        className={`ml-auto transition-all  ${
-          !isVisible && 'hidden'
-        } invisible ${isVisible && 'block group-hover:visible'}`}
+        className={`ml-auto transition-all invisible 
+       ${isVisible ? 'block group-hover:visible' : 'hidden'}`}
       >
         <ButtonPlay size="small" />
       </span>

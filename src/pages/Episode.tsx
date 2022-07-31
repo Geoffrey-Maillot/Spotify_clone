@@ -65,7 +65,7 @@ const Episode = () => {
   return (
     <Layout>
       <header
-        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
+        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6"
         style={{
           background:
             'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
@@ -121,11 +121,11 @@ const Episode = () => {
           <H2 label="Voir tous les épisodes" />{' '}
         </Link>
       </section>
-      <section className="pl-8 mt-8">
+      <section className="px-8 mt-8 mb-10">
         <H2 size="xl2" label="Vous devriez aussi aimez" />
-        <div className="mt-4 flex items-center justify-start flex-wrap gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,_minmax(12.5rem,_1fr))] gap-4 mt-4 ">
           {related.map((episode, i) => (
-            <div key={i} className="w-[10.875rem] 3xl:w-[14.5rem]">
+            <div key={i} className="">
               <CardMusic type="episode" {...episode} />
             </div>
           ))}

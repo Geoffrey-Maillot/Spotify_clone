@@ -16,7 +16,6 @@ import Paragraph from '../../component/Typo/Paragraph/Paragraph';
 
 // Import Icon
 import { GoPrimitiveDot } from 'react-icons/go';
-import { GrPlayFill } from 'react-icons/gr';
 import { MdOutlineIosShare } from 'react-icons/md';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
@@ -52,9 +51,9 @@ const TableEpisodes = ({ episodesList }: Props) => {
     return (
       <Link
         to={`/episode/${rowData.id}`}
-        className="link p-4 rounded-lg flex items-start justify-start flex-col sm:flex-row gap-8 group"
+        className="link p-4 rounded-lg flex items-start justify-start flex-col sm:flex-row gap-4 sm:gap-8 group"
       >
-        <div className="w-[7.375rem] h-[7.375rem] flex-none">
+        <div className="sm:w-[7.375rem] sm:h-[7.375rem] w-[5.125rem] h-[5.125rem] flex-none">
           <img
             className="object-cover object-center rounded-lg"
             src={rowData.img}

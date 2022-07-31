@@ -1,4 +1,8 @@
-import { memo } from 'react';
+import { useLocation } from 'react-router-dom';
+
+// State
+import { observer } from 'mobx-react-lite';
+import popup from '../../mobx/popup';
 
 // Import Prime React
 import { Dialog } from 'primereact/dialog';
@@ -7,23 +11,25 @@ import Search from '../Search/Search';
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
-interface Props {
-  visible: boolean;
-  onHide: () => void;
-}
 // == Component =>
-const SearchDialog = memo(({ visible = false, onHide }: Props) => {
+const SearchDialog = observer(() => {
   const windowWidth = useGetWindowWidth();
+  const path = useLocation().pathname;
 
-  if (windowWidth > 640) {
+  if (path !== '/search') {
+    return null;
+  }
+
+  if (windowWidth > 640 && popup.searchInputIsOpen) {
+    popup.toggleSearchInput();
     return null;
   }
 
   return (
     <Dialog
       className="top-20 w-full text-center pr-4"
-      onHide={onHide}
-      visible={visible}
+      onHide={popup.toggleSearchInput}
+      visible={popup.searchInputIsOpen}
       position="top"
       modal={false}
       closeOnEscape

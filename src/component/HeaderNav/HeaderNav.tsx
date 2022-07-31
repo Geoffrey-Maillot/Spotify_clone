@@ -3,9 +3,11 @@ import {
   useRef,
   useEffect,
   lazy,
-  useCallback,
   Suspense,
 } from 'react';
+
+// State
+import popup from '../../mobx/popup';
 import auth from '../../mobx/auth';
 
 // Import Router
@@ -42,15 +44,19 @@ interface Props {
 //Todo: Supprimer les sugestions de l'input search
 
 const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
+  const navLinkNames: { [x: string]: string } = {
+    playlists: 'Playlists',
+    podcasts: 'Podcasts',
+    artists: 'Artistes',
+    albums: 'Albums',
+  };
   const path = useLocation().pathname;
-  const testPath = /\/collection/;
-  const link: string = path.split('/')[2];
-  const isPathCollection: boolean = testPath.test(path);
+  const navLinkName: string = path.split('/')[2];
+  const navLinksIsActive = !!navLinkNames[navLinkName]
   const [headerWidth, setheaderWidth] = useState<number>(0);
   const [popupLinkIsVisible, togglePopupLinkIsVisible] = useState(false);
   const [popupAccountIsVisible, togglePopupAccountIsVisible] = useState(false);
   const windowWidth = useGetWindowWidth();
-  const [searchDialogIsVisible, toggleSearchDialogIsVisible] = useState(false);
 
   const openClosePoupNavLink = () => {
     togglePopupLinkIsVisible((popupLinkIsVisible) => !popupLinkIsVisible);
@@ -61,22 +67,13 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
     );
   };
 
-  const links: { [x: string]: string } = {
-    playlists: 'Playlists',
-    podcasts: 'Podcasts',
-    artists: 'Artistes',
-    albums: 'Albums',
-  };
+
 
   const header = useRef<HTMLHeadElement | null>(null);
 
   useEffect(() => {
     if (header.current) {
       setheaderWidth(header.current?.clientWidth);
-    }
-
-    if (windowWidth > 640) {
-      closeSearchDialog();
     }
   }, [windowWidth, panelSize]);
 
@@ -85,22 +82,13 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
   };
 
   const toggleSearchDialog = () => {
-    toggleSearchDialogIsVisible(
-      (searchDialogIsVisible) => !searchDialogIsVisible
-    );
+    popup.toggleSearchInput();
   };
-
-  const closeSearchDialog = useCallback(() => {
-    toggleSearchDialogIsVisible(false);
-  }, []);
 
   return (
     <>
       <Suspense fallback={<div>Chargement...</div>}>
-        <SearchDialog
-          visible={searchDialogIsVisible}
-          onHide={closeSearchDialog}
-        />
+        <SearchDialog />
       </Suspense>
       <header
         ref={header}
@@ -121,11 +109,13 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
             </span>
           </button>
         </div>
-        <RenderIf bool={isPathCollection}>
+        <RenderIf bool={navLinksIsActive}>
           <ul className="flex items-center content-center gap-2">
-            <li>
-              <NavLink to="/collection/playlists" label="Playlists" />
-            </li>
+            <RenderIf bool={headerWidth > 440}>
+              <li>
+                <NavLink to="/collection/playlists" label="Playlists" />
+              </li>
+            </RenderIf>
             <RenderIf bool={headerWidth > 640}>
               <li>
                 <NavLink to="/collection/podcasts" label="Podcasts" />
@@ -148,11 +138,21 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
                   className="flex justify-center items-center gap-2 bg-white/10 px-4 py-2 rounded"
                 >
                   {' '}
-                  <H2 label={links[link]} size="sm" color="white" />
+                  <H2 label={navLinkNames[navLinkName]} size="sm" color="white" />
                   <RiArrowDownSFill color="white" size="1.4rem" />
                 </button>
                 <RenderIf bool={popupLinkIsVisible}>
                   <div className="w-40 p-1 rounded absolute left-0 top-[calc(100%_+_0.5rem)] flex flex-col justify-start items-start bg-dark-250">
+                    <RenderIf bool={headerWidth < 440}>
+                      <li className="w-full">
+                        <NavLink
+                          to="/collection/playlists"
+                          color="blue"
+                          label="Playlists"
+                          type="Secondary"
+                        />
+                      </li>
+                    </RenderIf>
                     <RenderIf bool={headerWidth < 640}>
                       <li className="w-full">
                         <NavLink
@@ -211,7 +211,7 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
               </a>
             )}
           </RenderIf>
-          <div className="relative">
+          <div className="relative flex-none">
             <button
               className="flex items-center justify-center gap-2 p-1 rounded-full bg-dark-400 hover:bg-dark-50"
               onClick={openClosePoupAccount}
@@ -231,7 +231,7 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
               </span>
             </button>
             <RenderIf bool={popupAccountIsVisible}>
-              <div className=" z-50 absolute w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col right-0 top-[calc(100%_+_0.5rem)]">
+              <div className=" z-[2000] absolute w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col right-0 top-[calc(100%_+_0.5rem)]">
                 <a href="/">
                   <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
                     <Paragraph label="Compte" color="lightWhite" />

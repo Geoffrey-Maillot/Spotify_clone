@@ -1,3 +1,4 @@
+// State
 import { observer } from 'mobx-react';
 import auth from '../../mobx/auth';
 
@@ -15,12 +16,13 @@ import Input from './Input';
 interface Inputs {
   pseudo: string;
   password: string;
-}
+};
 
 const schema = yup.object({
   pseudo: yup.string().required('Remplir le champs'),
   password: yup.string().required('Remplir le champs'),
 });
+
 const Form = observer(() => {
   const methods = useForm<Inputs>({
     resolver: yupResolver(schema),
