@@ -2,8 +2,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Mobx
-import { observer } from 'mobx-react';
-import auth from './mobx/auth';
+import { observer } from 'mobx-react-lite';
+import auth from './state/auth';
 
 // Import Component
 import Home from './pages/Home';

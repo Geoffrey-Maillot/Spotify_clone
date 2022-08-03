@@ -8,7 +8,7 @@ import LeftMenu from '../LeftMenu/LeftMenu';
 import Footer from '../PlayBar/PlayBar';
 
 // Import Hook
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
   children: any;
@@ -71,7 +71,7 @@ const Layout = observer(({ children }: Props) => {
 
       <main className="relative bg-dark-100  h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
         <div
-          className="absolute h-full w-1 inset-y-0 left-0 cursor-col-resize bg-[#121212] "
+          className="absolute z-50 h-full w-1 inset-y-0 left-0 cursor-col-resize bg-[#121212] "
           onMouseDown={(e) => onReziseStart(e)}
         >
           {' '}
@@ -82,7 +82,7 @@ const Layout = observer(({ children }: Props) => {
             max={384}
             step={10}
             value={panelSize}
-            className="absolute z-0opacity-0"
+            className="absolute z-0 opacity-0"
           />{' '}
         </div>
         <HeaderNav togglePanelLeft={togglePanelLeft} panelSize={panelSize} />

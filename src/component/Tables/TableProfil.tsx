@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Import PrimeReact
-import { DataTable } from 'primereact/datatable';
+import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
 // Import Icon
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
+
+// Import Hook
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // TODO : Remplacer any par les infos provenant de l'api
 
@@ -27,7 +30,17 @@ interface Props {
 
 // == Component =>
 const TableProfil = ({ tracksList }: Props) => {
+  const BREAKPOINT = 640;
+  const isMobile = useGetWindowWidth() <= BREAKPOINT;
   const [selectedRow, setSelectedRow] = useState<Track | null>(null);
+
+  const [responsiveTableStyle, setResponsiveTableStyle] =
+    useState<DataTableResponsiveLayoutType>('scroll');
+
+  useEffect(() => {
+    const responsiveStyle = isMobile ? 'stack' : 'scroll';
+    setResponsiveTableStyle(responsiveStyle);
+  }, [isMobile]);
 
   const onSelectRow = (e: any) => {
     setSelectedRow(e.value);
@@ -54,13 +67,29 @@ const TableProfil = ({ tracksList }: Props) => {
 
   const titleContent = (rowData: any) => {
     return (
-      <div className="flex justify-start flex-row items-center text-left gap-3">
-        <div className="w-10 h-10 object-cover object-center">
+      <div
+        className={` flex justify-start ${
+          isMobile ? 'flex-row-reverse' : 'flex-row'
+        } items-center text-left gap-3`}
+      >
+        <div className="w-10 h-10 object-cover object-center flex-none">
           <img src={rowData?.img} alt={rowData?.title} />
         </div>
         <div className="overflow-hidden title">
-          <Paragraph size="lg" color="white" label={rowData?.title} />
-          <Paragraph size="lg" color="lightGray" label={rowData?.artist} />
+          <Paragraph
+            size="lg"
+            color="white"
+            label={rowData?.title}
+            clamp
+            nbrLineClamp={2}
+          />
+          <Paragraph
+            size="lg"
+            color="lightGray"
+            label={rowData?.artist}
+            clamp
+            nbrLineClamp={1}
+          />
         </div>
       </div>
     );
@@ -72,37 +101,43 @@ const TableProfil = ({ tracksList }: Props) => {
         value={tracksList}
         dataKey="track"
         selectionMode="single"
-        responsiveLayout="scroll"
-        className=" text-gray-200 text-left "
+        responsiveLayout={responsiveTableStyle}
+        className=" text-gray-200 text-left, table-profil "
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
         rows={5}
       >
-        <Column
-          bodyStyle={{ textAlign: 'center', fontSize: '1rem', width: '40px' }}
-          field="track"
-        />
+        {!isMobile && (
+          <Column
+            bodyStyle={{
+              textAlign: 'center',
+              fontSize: '1rem',
+              padding: '8px',
+            }}
+            field="track"
+          />
+        )}
+
         <Column
           field="title"
-          bodyStyle={{ width: '', padding: '8px 0' }}
+          bodyStyle={{ padding: '8px' }}
           body={titleContent}
         />
 
-        <Column field="album" bodyStyle={{ width: '' }} />
+        <Column field="album" bodyStyle={{ padding: '8px' }} />
 
         <Column
           field=""
           header=""
-          bodyStyle={{ width: '60px', textAlign: 'end' }}
+          bodyStyle={{ textAlign: 'end', padding: '8px' }}
           body={buttonLike}
         />
         <Column
           field="duration"
           bodyStyle={{
             textAlign: 'end',
-            paddingRight: '30px',
-            width: '100px',
-            maxWidth: '100px',
+            paddingRight: '16px',
+            paddingLeft: '8px',
           }}
         />
       </DataTable>

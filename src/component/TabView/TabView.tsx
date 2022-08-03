@@ -9,6 +9,10 @@ import Compiles from './Compiles';
 import Singles from './Singles';
 import Releases from './Releases';
 
+// Import Hook
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
+import TitleHeader from './TitleHeader';
+
 interface Props {
   artistId: string | undefined;
 }
@@ -21,7 +25,9 @@ enum pathAlbumType {
 }
 
 const TabsView = ({ artistId }: Props) => {
+  const isMobile = useGetWindowWidth() <= 640;
   const [selectedTab, setSelectedTab] = useState(0);
+  const [titleHeaderListIsOpen, toggleTitleHeaderListIsOpen] = useState(false);
 
   const changeActiveIndex = (index: number) => {
     setSelectedTab(index);
@@ -34,43 +40,87 @@ const TabsView = ({ artistId }: Props) => {
     'Compiles',
   ];
 
-  const headerTemplate = (options: any) => {
+  const toggleHeaderList = () =>
+    toggleTitleHeaderListIsOpen(
+      (titleHeaderListIsOpen) => !titleHeaderListIsOpen
+    );
+
+  const changeActivePanel = (index: number) => {
+    setSelectedTab(index);
+    toggleTitleHeaderListIsOpen(false);
+  };
+
+  const headerDesktop = (options: any) => {
     const isSelected = selectedTab === options.index;
 
     return (
-      <div
-        onClick={options.onClick}
-        className={`${
-          isSelected
-            ? 'bg-white text-dark-400'
-            : 'bg-[#232323] hover:bg-[#2a2a2a] active:bg-[#1b1b1b] text-white'
-        } px-3 py-2 rounded-full text-sm font-circularBook w-max`}
-      >
-        {titlesHeader[options.index]}
+      <div onClick={options.onClick}>
+        <TitleHeader
+          title={titlesHeader[options.index]}
+          isActive={isSelected}
+        />
       </div>
+    );
+  };
+
+  const headerMobile = () => {
+    return (
+      <div className="relative ">
+        <div onClick={toggleHeaderList}>
+          <TitleHeader
+            title={titlesHeader[selectedTab]}
+            isActive
+            isMenu
+            isOpen={titleHeaderListIsOpen}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const ButtonListHeader = () => {
+    return (
+      <ul className="flex flex-col gap-3 absolute top-16 left-0 z-10 overflow-hidden animate-slideInTop ">
+        {titlesHeader.map((title, i) => {
+          if (i === selectedTab) return null;
+
+          return (
+            <li key={i} onClick={() => changeActivePanel(i)}>
+              <TitleHeader title={title} />
+            </li>
+          );
+        })}
+      </ul>
     );
   };
 
   //Todo: Conditionner l'affichage des panels quand l'Api sera en place
   return (
-    <TabView
-      activeIndex={selectedTab}
-      className="mt-4"
-      onTabChange={(e) => changeActiveIndex(e.index)}
-    >
-      <TabPanel headerTemplate={headerTemplate}>
-        <Releases artistId={artistId} path={pathAlbumType.all} />
-      </TabPanel>
-      <TabPanel headerTemplate={headerTemplate}>
-        <Albums artistId={artistId} path={pathAlbumType.album} />
-      </TabPanel>
-      <TabPanel headerTemplate={headerTemplate}>
-        <Singles artistId={artistId} path={pathAlbumType.single} />
-      </TabPanel>
-      <TabPanel headerTemplate={headerTemplate}>
-        <Compiles artistId={artistId} path={pathAlbumType.compilation} />
-      </TabPanel>
-    </TabView>
+    <div className="relative overflow-hidden">
+      {/* Title Header List */}
+      {titleHeaderListIsOpen && <ButtonListHeader />}
+
+      {/* Tab View*/}
+      <TabView
+        activeIndex={selectedTab}
+        className="mt-4 overflow-auto"
+        onTabChange={(e) => changeActiveIndex(e.index)}
+        scrollable
+      >
+        <TabPanel headerTemplate={isMobile ? headerMobile : headerDesktop}>
+          <Releases artistId={artistId} path={pathAlbumType.all} />
+        </TabPanel>
+        <TabPanel headerTemplate={isMobile ? null : headerDesktop}>
+          <Albums artistId={artistId} path={pathAlbumType.album} />
+        </TabPanel>
+        <TabPanel headerTemplate={isMobile ? null : headerDesktop}>
+          <Singles artistId={artistId} path={pathAlbumType.single} />
+        </TabPanel>
+        <TabPanel headerTemplate={isMobile ? null : headerDesktop}>
+          <Compiles artistId={artistId} path={pathAlbumType.compilation} />
+        </TabPanel>
+      </TabView>
+    </div>
   );
 };
 

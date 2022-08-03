@@ -20,9 +20,9 @@ const Playlist = () => {
     {
       track: 1,
       img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre',
+      title: 'Titre un peu beaucoup long pour tester les trois ti point',
       artist: 'Artiste',
-      album: 'Album',
+      album: 'Album super long aussi',
       added: 10,
       duration: '3:21',
       liked: true,

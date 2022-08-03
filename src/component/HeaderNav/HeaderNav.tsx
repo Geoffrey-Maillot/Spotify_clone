@@ -1,14 +1,8 @@
-import {
-  useState,
-  useRef,
-  useEffect,
-  lazy,
-  Suspense,
-} from 'react';
+import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 
 // State
-import popup from '../../mobx/popup';
-import auth from '../../mobx/auth';
+import popup from '../../state/popup';
+import auth from '../../state/auth';
 
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
@@ -19,7 +13,7 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 import RenderIf from '../UtilsComponents/RenderIf';
 import ButtonMenuleft from './ButtonMenuLeft';
 import NavLink from './NavLink';
-import Search from '../Search/Search';
+import Search from '../SearchInput/SearchInput';
 
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
@@ -31,6 +25,9 @@ import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiSearchLine } from 'react-icons/ri';
 import { BsSpotify } from 'react-icons/bs';
 import { BiLinkExternal } from 'react-icons/bi';
+
+// Import Component PrimeReact
+import { OverlayPanel } from 'primereact/overlaypanel';
 
 // Lazy Components
 const SearchDialog = lazy(() => import('../Dialogs/SearchDialog'));
@@ -52,23 +49,41 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
   };
   const path = useLocation().pathname;
   const navLinkName: string = path.split('/')[2];
-  const navLinksIsActive = !!navLinkNames[navLinkName]
+  const navLinksIsActive = !!navLinkNames[navLinkName];
   const [headerWidth, setheaderWidth] = useState<number>(0);
-  const [popupLinkIsVisible, togglePopupLinkIsVisible] = useState(false);
-  const [popupAccountIsVisible, togglePopupAccountIsVisible] = useState(false);
   const windowWidth = useGetWindowWidth();
 
-  const openClosePoupNavLink = () => {
-    togglePopupLinkIsVisible((popupLinkIsVisible) => !popupLinkIsVisible);
+  const showPopupAccount = (e: React.MouseEvent) => {
+    if (chevronIconAccount.current) {
+      const transform = chevronIconAccount.current.style.transform;
+
+      transform === ''
+        ? (chevronIconAccount.current.style.transform = 'rotate(180deg)')
+        : (chevronIconAccount.current.style.transform = '');
+    }
+
+    if (popupAccount.current) {
+      popupAccount.current.toggle(e);
+    }
   };
-  const openClosePoupAccount = () => {
-    togglePopupAccountIsVisible(
-      (popupAccountIsVisible) => !popupAccountIsVisible
-    );
+
+  const showPopupNavLink = (e: React.MouseEvent) => {
+    if (chevronIconNavLink.current) {
+      const transform = chevronIconNavLink.current.style.transform;
+
+      transform === ''
+        ? (chevronIconNavLink.current.style.transform = 'rotate(180deg)')
+        : (chevronIconNavLink.current.style.transform = '');
+    }
+
+    if (popupNavLink.current) {
+      popupNavLink.current.toggle(e);
+    }
   };
-
-
-
+  const chevronIconAccount = useRef<HTMLSpanElement>(null);
+  const chevronIconNavLink = useRef<HTMLSpanElement>(null);
+  const popupAccount = useRef<OverlayPanel>(null);
+  const popupNavLink = useRef<OverlayPanel>(null);
   const header = useRef<HTMLHeadElement | null>(null);
 
   useEffect(() => {
@@ -92,7 +107,7 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
       </Suspense>
       <header
         ref={header}
-        className="flex items-center content-start bg-dark-200 px-8 h-[4.25rem] py-4 gap-4 sticky z-50 top-0 left-0 right-0"
+        className="flex items-center content-start bg-dark-200 pl-8 pr-12 h-[4.25rem] py-4 gap-4 sticky z-50 top-0 left-0 right-0"
       >
         <ButtonMenuleft togglePanelLeft={togglePanelLeft} />
 
@@ -134,15 +149,21 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
             <RenderIf bool={headerWidth < 850}>
               <div className="relative ">
                 <button
-                  onClick={openClosePoupNavLink}
+                  onClick={showPopupNavLink}
                   className="flex justify-center items-center gap-2 bg-white/10 px-4 py-2 rounded"
                 >
                   {' '}
-                  <H2 label={navLinkNames[navLinkName]} size="sm" color="white" />
-                  <RiArrowDownSFill color="white" size="1.4rem" />
+                  <H2
+                    label={navLinkNames[navLinkName]}
+                    size="sm"
+                    color="white"
+                  />
+                  <span ref={chevronIconAccount}>
+                    <RiArrowDownSFill color="white" size="1.4rem" />
+                  </span>
                 </button>
-                <RenderIf bool={popupLinkIsVisible}>
-                  <div className="w-40 p-1 rounded absolute left-0 top-[calc(100%_+_0.5rem)] flex flex-col justify-start items-start bg-dark-250">
+                <OverlayPanel ref={popupNavLink} className="absolute">
+                  <ul className="w-40 p-1 rounded flex flex-col justify-start items-start bg-dark-250">
                     <RenderIf bool={headerWidth < 440}>
                       <li className="w-full">
                         <NavLink
@@ -181,8 +202,8 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
                         />
                       </li>
                     </RenderIf>
-                  </div>
-                </RenderIf>
+                  </ul>
+                </OverlayPanel>
               </div>
             </RenderIf>
           </ul>
@@ -214,7 +235,7 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
           <div className="relative flex-none">
             <button
               className="flex items-center justify-center gap-2 p-1 rounded-full bg-dark-400 hover:bg-dark-50"
-              onClick={openClosePoupAccount}
+              onClick={showPopupAccount}
             >
               <div className="w-7 h-7 ">
                 <img
@@ -225,13 +246,13 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
               </div>
               <span className=" justify-start items-center g-2 hidden lg:flex">
                 <H2 label="Geoffrey Maillot" size="sm" color="white" />
-                <span className={`${popupAccountIsVisible && 'rotate-180 '}`}>
+                <span ref={chevronIconAccount}>
                   <RiArrowDownSFill color="white" size="1.4rem" />
                 </span>
               </span>
             </button>
-            <RenderIf bool={popupAccountIsVisible}>
-              <div className=" z-[2000] absolute w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col right-0 top-[calc(100%_+_0.5rem)]">
+            <OverlayPanel ref={popupAccount} className="absolute, ">
+              <div className="  w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col  ">
                 <a href="/">
                   <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
                     <Paragraph label="Compte" color="lightWhite" />
@@ -259,7 +280,7 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
                   <Paragraph label="Déconnexion" color="lightWhite" />
                 </button>
               </div>
-            </RenderIf>
+            </OverlayPanel>
           </div>
         </div>
       </header>

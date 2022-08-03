@@ -3,13 +3,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// Import Component
-import RenderIf from '../UtilsComponents/RenderIf';
-
 // Import Icons
 import { RiSearchLine } from 'react-icons/ri';
-import { GrClose } from 'react-icons/gr';
-import { searchHeader } from '../HeaderNav/HeaderNavSearch.stories';
 
 type Input = {
   searchValue: string;
@@ -20,7 +15,7 @@ const schema = yup.object({
 });
 
 // Import == Component =>
-const Search = () => {
+const SearchInput = () => {
   const {
     register,
     handleSubmit,
@@ -40,7 +35,10 @@ const Search = () => {
   console.log(errors);
 
   return (
-    <form className="w-full flex justify-center" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="w-full flex justify-center"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="max-w-[364px]  w-full h-10 bg-white flex justify-center items-center gap-4 px-4 rounded-full  ">
         <RiSearchLine size="1.5rem" color="#000" />
         <input
@@ -59,4 +57,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchInput;

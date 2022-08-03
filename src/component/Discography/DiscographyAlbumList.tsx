@@ -39,11 +39,11 @@ const DiscographyAlbumList = ({
 
   return (
     <article className="pb-6 bg-gradient-to-b from-dark-50 to-dark-100 pt-[3.5rem]">
-      <div className="p-8 flex justify-start items-start gap-6 h-[12.5rem] ">
+      <div className="p-8 flex justify-start items-start flex-col sm:flex-row gap-6 ">
         <div className="w-[8.5rem] h-[8.5rem] ">
           <img className="object-cover object-center" src={img} alt={title} />
         </div>
-        <div className="flex flex-col justify-between items-start h-full ">
+        <div className="flex flex-col justify-between items-start h-full gap-2 ">
           <div>
             <H2 label={title} size="xl3" />
             <div className="flex items-center justify-start gap-1 mt-2">

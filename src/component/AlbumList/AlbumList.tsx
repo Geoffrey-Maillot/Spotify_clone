@@ -40,7 +40,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
   }, [windowWidth]);
 
   return (
-    <div className="mb-4" ref={albumList}>
+    <div className="my-4" ref={albumList}>
       <div className="flex items-center flex-wrap gap-2 justify-start pb-4 pt-1">
         <div className="grow">
           <RenderIf bool={!!title}>

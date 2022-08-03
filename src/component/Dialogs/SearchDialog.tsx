@@ -2,11 +2,11 @@ import { useLocation } from 'react-router-dom';
 
 // State
 import { observer } from 'mobx-react-lite';
-import popup from '../../mobx/popup';
+import popup from '../../state/popup';
 
 // Import Prime React
 import { Dialog } from 'primereact/dialog';
-import Search from '../Search/Search';
+import Search from '../SearchInput/SearchInput';
 
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';

@@ -1,3 +1,5 @@
+@use './mixin.scss';
+
 // PrimeReact Table
 .p-datatable {
   font-family: 'Circular-Book', 'sans-serif';
@@ -39,14 +41,28 @@
 }
 
 .p-datatable tbody tr:hover .title p,
+.p-datatable tbody tr:hover .title,
 .p-datatable tbody tr:hover td.album,
 .p-selectable-row.p-highlight .title p,
+.p-selectable-row.p-highlight .title,
 .p-selectable-row.p-highlight td.album {
   color: white;
 }
 
+.p-datatable th:first-child .p-column-header-content {
+  justify-content: center;
+}
+.p-datatable th:last-child .p-column-header-content {
+  justify-content: end;
+}
+
+.p-datatable tbody .p-column-title {
+  margin-right: 20px;
+}
+
 //Table tracks
-.p-datatable.table-tracks thead tr[role='row'] {
+.p-datatable.table-tracks thead tr[role='row'],
+.p-datatable.table-discography thead tr[role='row'] {
   border-bottom: 1px solid #ffffff1a;
   text-transform: uppercase;
 }
@@ -59,12 +75,19 @@
 // Media Querries
 @media screen and (max-width: 780px) {
   .p-datatable.table-tracks tbody tr {
-    display: block;
-    border-bottom: 1px solid #ffffff1a;
-    padding: 10px;
+    @include mixin.rowTableMobile;
   }
 
   .p-datatable .buttonLike {
     opacity: 1;
+  }
+}
+
+// Media Querries
+@media screen and (max-width: 640px) {
+  .p-datatable.table-artist tbody tr,
+  .p-datatable.table-discography tbody tr,
+  .p-datatable.table-profil tbody tr {
+    @include mixin.rowTableMobile;
   }
 }

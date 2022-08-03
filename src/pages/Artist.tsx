@@ -67,7 +67,7 @@ const Artist = () => {
       track: 1,
 
       img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre',
+      title: 'Titre qui peu être long, voir très long voire encore plus long',
       like: 145450,
       duration: '3:21',
       liked: true,
@@ -188,16 +188,19 @@ const Artist = () => {
           </div>
           <TableArtist tracksList={tracksList} />
         </div>
-        <div className="w-80 flex-none">
+        <div className="max-w-80 flex-none">
           <H2 size="xl2" color="white" label="Sélection de l'artiste" />
           <div className="flex justify-start items-start gap-3 mt-4">
-            <div className="w-[4.75rem] h-[4.75rem]">
+            <div className="w-[4.75rem] h-[4.75rem] hidden sm:block">
               <img
                 src="https://i.scdn.co/image/ab67706c0000da84d6dc7779ffa596a3d73b4e35"
                 alt="Mj"
               />
             </div>
-            <div className="flex items-start justify-start flex-col gap-1">
+            <Link
+              to="/playlist/dzd4844z"
+              className="flex items-start justify-start flex-col gap-1 bg-white/5 sm:bg-white/0 rounded-md p-3 cursor-auto "
+            >
               <div className="bg-white rounded-full w-full p-0.5 flex items-center justify-start">
                 <div className="w-6 h-6 mr-2 rounded-full overflow-hidden">
                   <img
@@ -208,14 +211,11 @@ const Artist = () => {
                 </div>
                 <Paragraph label="The best of MJ" color="dark" />
               </div>
-              <Link
-                className="text-white font-circularBold text-lg hover:underline"
-                to="/playlist/f49d66f"
-              >
+              <H2 className="hover:underline cursor-default" size="lg">
                 Michael Jackson: Greatest Hits
-              </Link>
+              </H2>
               <Paragraph label="Playlist" />
-            </div>
+            </Link>
           </div>
         </div>
       </section>

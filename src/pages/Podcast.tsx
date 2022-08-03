@@ -74,7 +74,7 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
             <H2 size="xl2" label="Plus d'infos" />
           </span>
           <PanelHideContent>
-            <Paragraph size="lg" truncate={false}>
+            <Paragraph size="lg">
               Nota Bene, c'est une autre façon de découvrir l'Histoire de France
               et du monde ! L'Histoire est sociale, économique, scientifique,
               politique, elle touche à tous les domaines. A travers des

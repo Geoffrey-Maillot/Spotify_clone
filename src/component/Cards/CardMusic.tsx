@@ -32,7 +32,7 @@ const CardMusic = ({
   return (
     <Link
       to={`/${type}/${id}`}
-      className="max-w-xs block rounded-md p-5 bg-white/5 hover:bg-white/20 text-left group transition ease-in-out duration-300  aspect-[0.72]"
+      className="max-w-xs block rounded-md p-5 bg-white/5 hover:bg-white/20 text-left group transition ease-in-out duration-300  aspect-[0.72] "
     >
       <div className="w-full rounded-md aspect-square relative overflow-hidden">
         <RenderIf bool={type === 'playlist'}>
@@ -57,7 +57,7 @@ const CardMusic = ({
             <Paragraph label={duration} />
           </div>
         ) : (
-          <Paragraph label={content} />
+          <Paragraph label={content} clamp />
         )}
       </span>
     </Link>

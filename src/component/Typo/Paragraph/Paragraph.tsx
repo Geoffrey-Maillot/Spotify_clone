@@ -1,8 +1,10 @@
 interface Props {
   children?: string;
+  className?: string;
   label?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
-  truncate?: boolean;
+  clamp?: boolean;
+  nbrLineClamp?: number;
   color?:
     | 'white'
     | 'gray'
@@ -14,14 +16,15 @@ interface Props {
     | 'dark';
 }
 
-//Todo: Utiliser le truncate de tailwind pour mettre les 3 petits points quand un texte dépasse.  Voir sur Spotify, seul la 2nd ligne dépasse...
 // == Component =>
 const Paragraph = ({
   children,
+  className: additionalClass,
   label,
   size = 'sm',
   color = 'lightGray',
-  truncate,
+  clamp,
+  nbrLineClamp = 2,
 }: Props) => {
   const fontSize: { [x: string]: string } = {
     xs: 'text-xs',
@@ -44,9 +47,10 @@ const Paragraph = ({
   };
   return (
     <p
-      className={`font-circularBook ${truncate && 'line-clamp'} ${
-        colors[color]
-      } ${fontSize[size]}`}
+      className={` ${additionalClass} font-circularBook ${
+        clamp && 'line-clamp'
+      } ${colors[color]} ${fontSize[size]}`}
+      style={{ WebkitLineClamp: nbrLineClamp }}
     >
       {label ? label : children}
     </p>

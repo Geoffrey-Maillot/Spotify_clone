@@ -1,13 +1,16 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 
 // Import PrimeReact
-import { DataTable } from 'primereact/datatable';
+import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
 // Import Icon
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
+
+// Import Hook
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // TODO : Remplacer any par les infos provenant de l'api
 
@@ -25,6 +28,8 @@ interface Props {
 }
 
 const TableTracks = ({ tracksList }: Props) => {
+  const BREAKPOINT = '600px';
+  const isMobile = useGetWindowWidth() <= parseInt(BREAKPOINT, 10);
   const [selectedRow, setSelectedRow] = useState<Track | null>(null);
 
   const trackList5 = tracksList.slice(0, 5);
@@ -43,6 +48,14 @@ const TableTracks = ({ tracksList }: Props) => {
   const onSelectRow = (e: any) => {
     setSelectedRow(e.value);
   };
+
+  const [responsiveTableStyle, setResponsiveTableStyle] =
+    useState<DataTableResponsiveLayoutType>('scroll');
+
+  useEffect(() => {
+    const responsiveStyle = isMobile ? 'stack' : 'scroll';
+    setResponsiveTableStyle(responsiveStyle);
+  }, [isMobile]);
 
   const buttonLike = (rowData: any) => {
     return (
@@ -65,12 +78,22 @@ const TableTracks = ({ tracksList }: Props) => {
 
   const titleContent = (rowData: any) => {
     return (
-      <div className="flex justify-start flex-row items-center text-left gap-3">
-        <div className="w-10 h-10 object-cover object-center">
+      <div
+        className={`flex justify-start items-center text-left gap-3 ${
+          isMobile && 'flex-row-reverse '
+        }`}
+      >
+        <div className="w-10 h-10 object-cover object-center flex-none">
           <img src={rowData?.img} alt={rowData?.title} />
         </div>
-        <div className=" overflow-hidden title">
-          <Paragraph size="lg" color="white" label={rowData?.title} />
+        <div className=" overflow-hidden title pr-3">
+          <Paragraph
+            size="lg"
+            color="white"
+            label={rowData?.title}
+            clamp
+            nbrLineClamp={1}
+          />
         </div>
       </div>
     );
@@ -82,16 +105,20 @@ const TableTracks = ({ tracksList }: Props) => {
         value={tableIsVisible ? trackList10 : trackList5}
         dataKey="track"
         selectionMode="single"
-        responsiveLayout="scroll"
-        className=" text-gray-200 text-left "
+        responsiveLayout={responsiveTableStyle}
+        breakpoint={BREAKPOINT}
+        className=" text-gray-200 text-left table-artist"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
         rows={5}
       >
-        <Column
-          bodyStyle={{ textAlign: 'center', fontSize: '1rem', width: '40px' }}
-          field="track"
-        />
+        {!isMobile && (
+          <Column
+            bodyStyle={{ textAlign: 'center', fontSize: '1rem', width: '40px' }}
+            field="track"
+          />
+        )}
+
         <Column
           field="title"
           bodyStyle={{ width: '', padding: '8px 0' }}
@@ -108,12 +135,7 @@ const TableTracks = ({ tracksList }: Props) => {
         />
         <Column
           field="duration"
-          bodyStyle={{
-            textAlign: 'end',
-            paddingRight: '30px',
-            width: '100px',
-            maxWidth: '100px',
-          }}
+          bodyStyle={{ paddingLeft: '40px', textAlign: 'end' }}
         />
       </DataTable>
       {tableIsVisible ? (

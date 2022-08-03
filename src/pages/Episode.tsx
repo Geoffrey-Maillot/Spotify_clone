@@ -96,7 +96,7 @@ const Episode = () => {
       <section className="max-w-[42rem] pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
         <H2 size="xl2" label="Description de l'épisode" />
         <PanelHideContent>
-          <Paragraph size="lg" truncate={false}>
+          <Paragraph size="lg">
             Des lycéens. Des mechas, des kaijus, des boucles temporelles des
             clones des androïdes des nanomachines des complots des doubles
             personnalités des souvenirs artificiels... Difficile de trouver un
@@ -123,7 +123,7 @@ const Episode = () => {
       </section>
       <section className="px-8 mt-8 mb-10">
         <H2 size="xl2" label="Vous devriez aussi aimez" />
-        <div className="grid grid-cols-[repeat(auto-fit,_minmax(12.5rem,_1fr))] gap-4 mt-4 ">
+        <div className="grid grid-cols-[repeat(auto-fit,_minmax(12.5rem,_15.375rem))] gap-4 mt-4  justify-center sm:justify-start">
           {related.map((episode, i) => (
             <div key={i} className="">
               <CardMusic type="episode" {...episode} />

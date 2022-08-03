@@ -69,12 +69,14 @@ const MenuLink = ({
           label={label}
           size="sm"
           color={isActive || isHover ? 'white' : 'lightGray'}
+          clamp
         />
       ) : (
         <H2
           label={label}
           size="sm"
           color={isActive || isHover ? 'white' : 'lightGray'}
+          clamp
         >
           {children}
         </H2>

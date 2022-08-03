@@ -15,7 +15,7 @@ const LeftMenu = ({ forwardRef }: Props) => {
   return (
     <div
       ref={forwardRef}
-      className="transition fixed -left-[100%] z-50 lg:static overflow-hidden h-[-webkit-fill-available] w-1/3 top-[4.25rem] max-h-[calc(100vh_-_9.875rem)]  min-w-[15.625rem] lg:w-full p-0  pt-6 bg-dark-400  lg:max-h-[calc(100vh_-_5.625rem)]  grid justify-items-start "
+      className="transition fixed -left-[100%] z-50 lg:static overflow-hidden h-[-webkit-fill-available] w-1/3 top-[4.25rem] max-h-[calc(100vh_-_9.875rem)]  min-w-[15.625rem] lg:min-w-full lg:w-full p-0  pt-6 bg-dark-400  lg:max-h-[calc(100vh_-_5.625rem)] grid justify-items-start "
     >
       <div className="w-[8.1875rem] h-10 mb-4 ml-6 ">
         <img src={logo} alt="Logo Spotify" />

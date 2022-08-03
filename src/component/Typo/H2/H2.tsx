@@ -1,17 +1,22 @@
 interface Props {
   children?: any;
+  className?: string;
   label?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3' | 'xl5';
   color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray' | 'blue';
   truncate?: boolean;
+  clamp?: boolean;
+  nbrLineClamp?: number;
 }
 // == Component =>
 const H2 = ({
   children,
+  className: additionalClass,
   label,
   size = 'sm',
   color = 'white',
-  truncate,
+  clamp,
+  nbrLineClamp = 1,
 }: Props) => {
   const fontSize: { [x: string]: string } = {
     xs: 'text-xs',
@@ -32,9 +37,10 @@ const H2 = ({
   };
   return (
     <h2
-      className={`font-circularBold tracking-tighter  max-w-[21.5625rem]  ${
+      className={` ${additionalClass} font-circularBold tracking-tighter  max-w-[21.5625rem]  ${
         colors[color]
-      } ${fontSize[size]}  ${truncate && 'line-clamp'}`}
+      } ${fontSize[size]}  ${clamp && 'line-clamp'}`}
+      style={{ WebkitLineClamp: nbrLineClamp }}
     >
       {label ? label : children}
     </h2>

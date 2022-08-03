@@ -144,7 +144,7 @@ const Discography = () => {
 
   useEffect(() => {
     filterDiscography(albumType, allDiscography);
-  });
+  }, [albumType, allDiscography]);
 
   return (
     <Layout>
@@ -162,26 +162,18 @@ const Discography = () => {
           <div className="px-8">
             <Grid>
               {filteredAlbums.map((album, i) => (
-                <div className=" max-w-[280px] min-w-[160px]">
-                  <CardMusic
-                    key={i}
-                    title={album.title}
-                    img={album.img}
-                    content={album.year}
-                  />
-                </div>
+                <CardMusic
+                  key={i}
+                  title={album.title}
+                  img={album.img}
+                  content={album.year}
+                />
               ))}
             </Grid>
           </div>
         )
       ) : (
         <div>
-          <DiscographyHeader
-            artist="Mickael Jackson"
-            pageLayout={pageLayout}
-            setPageLayout={setPageLayout}
-          />
-
           <H2 label="Aucun album pour cette artist" />
         </div>
       )}

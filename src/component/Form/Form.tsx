@@ -1,6 +1,6 @@
 // State
-import { observer } from 'mobx-react';
-import auth from '../../mobx/auth';
+import { observer } from 'mobx-react-lite';
+import auth from '../../state/auth';
 
 // hook form
 import { useForm, FormProvider } from 'react-hook-form';
@@ -16,7 +16,7 @@ import Input from './Input';
 interface Inputs {
   pseudo: string;
   password: string;
-};
+}
 
 const schema = yup.object({
   pseudo: yup.string().required('Remplir le champs'),
@@ -43,35 +43,37 @@ const Form = observer(() => {
       {auth.isAuth && <Navigate to="/" replace />}
       <FormProvider {...methods}>
         <form
-          className=" w-full flex flex-col justify-start items-center gap-3"
+          className=" w-full flex  justify-center items-center px-8"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
-            <label className="block  font-circularBold text-lg mb-2">
-              Adresse email ou nom d'utilisateur
-            </label>
-            <Input
-              type="text"
-              placeholder=" Adresse email ou nom d'utilisateur"
-              name="pseudo"
-            />
+          <div className="flex flex-col justify-start items-start gap-4">
+            <div className="w-full ">
+              <label className="block  font-circularBold text-lg mb-2">
+                Adresse email ou nom d'utilisateur
+              </label>
+              <Input
+                type="text"
+                placeholder=" Adresse email ou nom d'utilisateur"
+                name="pseudo"
+              />
+            </div>
+            <div className="w-full ">
+              <label className="block  font-circularBold text-lg mb-2">
+                Mot de passe
+              </label>
+              <Input
+                type="password"
+                placeholder=" Mot de passe"
+                name="password"
+              />
+            </div>
+            <button
+              disabled={isSubmitting}
+              className="w-[18.75rem] sm:w-[28.125rem] h-[3.25rem] uppercase py-3 rounded-full bg-green-200 active:bg-green-300 hover:scale-105"
+            >
+              Se connecter
+            </button>
           </div>
-          <div>
-            <label className="block  font-circularBold text-lg mb-2">
-              Mot de passe
-            </label>
-            <Input
-              type="password"
-              placeholder=" Mot de passe"
-              name="password"
-            />
-          </div>
-          <button
-            disabled={isSubmitting}
-            className="w-[18.75rem] sm:w-[28.125rem] h-[3.25rem] uppercase py-3 rounded-full bg-green-200 active:bg-green-300 hover:scale-105"
-          >
-            Se connecter
-          </button>
         </form>
       </FormProvider>
     </>

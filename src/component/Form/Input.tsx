@@ -19,7 +19,7 @@ const Input = ({ type, placeholder, name }: Props) => {
     <>
       <input
         autoComplete="true"
-        className={`pl-3 border  w-[18.75rem] sm:w-[28.125rem] border-dark-400 h-[3.25rem] rounded ${
+        className={`pl-3 border max-w-[28.125rem] w-full border-dark-400 h-[3.25rem] rounded ${
           error && 'border-2 border-[#e91429]'
         }`}
         type={type}

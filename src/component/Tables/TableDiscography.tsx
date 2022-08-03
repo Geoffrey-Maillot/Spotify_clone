@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Import PrimeReact
-import { DataTable } from 'primereact/datatable';
+import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
 // Import Icon
 import { AiOutlineClockCircle, AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
+
+// Import Hook
+import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // TODO : Remplacer any par les infos provenant de l'api
 
@@ -24,6 +27,11 @@ interface Props {
 }
 
 const TableDiscography = ({ tracksList }: Props) => {
+  const BREAKPOINT = 640;
+  const [responsiveTableStyle, setResponsiveTableStyle] =
+    useState<DataTableResponsiveLayoutType>('scroll');
+
+  const isMobile = useGetWindowWidth() <= BREAKPOINT;
   const [selectedRow, setSelectedRow] = useState<Track | null>(null);
 
   const onSelectRow = (e: any) => {
@@ -51,12 +59,29 @@ const TableDiscography = ({ tracksList }: Props) => {
 
   const titleContent = (rowData: any) => {
     return (
-      <div className="title">
-        <Paragraph size="lg" color="white" label={rowData?.title} />
-        <Paragraph size="sm" color="lightGray" label={rowData?.artist} />
+      <div className={`title ${isMobile && 'text-right'}`}>
+        <Paragraph
+          size="lg"
+          color="white"
+          label={rowData?.title}
+          clamp
+          nbrLineClamp={1}
+        />
+        <Paragraph
+          size="sm"
+          color="lightGray"
+          label={rowData?.artist}
+          clamp
+          nbrLineClamp={1}
+        />
       </div>
     );
   };
+
+  useEffect(() => {
+    const responsiveStyle = isMobile ? 'stack' : 'scroll';
+    setResponsiveTableStyle(responsiveStyle);
+  }, [isMobile]);
 
   return (
     <div className="px-5">
@@ -64,21 +89,28 @@ const TableDiscography = ({ tracksList }: Props) => {
         value={tracksList}
         dataKey="track"
         selectionMode="single"
-        responsiveLayout="scroll"
-        className=" text-gray-200 text-left table-tracks"
+        responsiveLayout={responsiveTableStyle}
+        className=" text-gray-200 text-left table-discography"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
         rows={5}
       >
-        <Column
-          bodyStyle={{ textAlign: 'center', width: '40px',fontSize: '1rem' }}
-          field="track"
-          header="#"
-          headerStyle={{ width: '40px', textAlign: 'center', fontSize: '1rem' }}
-        />
+        {!isMobile && (
+          <Column
+            bodyStyle={{
+              textAlign: 'center',
+              fontSize: '1rem',
+              padding: '8px',
+            }}
+            field="track"
+            header="#"
+            headerStyle={{ textAlign: 'center', fontSize: '1rem' }}
+          />
+        )}
+
         <Column
           field="title"
-          bodyStyle={{ width: '', padding: '8px 0' }}
+          bodyStyle={{ padding: '8px' }}
           body={titleContent}
           header="Title"
         />
@@ -86,7 +118,7 @@ const TableDiscography = ({ tracksList }: Props) => {
         <Column
           field=""
           header=""
-          bodyStyle={{ width: '60px', textAlign: 'end' }}
+          bodyStyle={{ textAlign: 'end', padding: '8px' }}
           body={buttonLike}
         />
         <Column
@@ -98,6 +130,7 @@ const TableDiscography = ({ tracksList }: Props) => {
           bodyStyle={{
             textAlign: 'end',
             paddingRight: '16px',
+            paddingLeft: '8px',
           }}
           header={
             <span className="flex justify-end">

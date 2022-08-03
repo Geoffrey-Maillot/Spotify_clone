@@ -51,7 +51,7 @@ const TableEpisodes = ({ episodesList }: Props) => {
     return (
       <Link
         to={`/episode/${rowData.id}`}
-        className="link p-4 rounded-lg flex items-start justify-start flex-col sm:flex-row gap-4 sm:gap-8 group"
+        className="link p-4 flex items-start justify-start flex-col sm:flex-row gap-4 sm:gap-8 group"
       >
         <div className="sm:w-[7.375rem] sm:h-[7.375rem] w-[5.125rem] h-[5.125rem] flex-none">
           <img
@@ -62,7 +62,7 @@ const TableEpisodes = ({ episodesList }: Props) => {
         </div>
         <div className="flex flex-col gap-4 justify-start items-start">
           <H2 label={rowData.title} size="lg" />
-          <Paragraph truncate label={rowData.content} />
+          <Paragraph clamp label={rowData.content} />
           <div className="flex items-center justify-between w-full flex-wrap gap-4">
             <div className="flex items-center justify-start gap-6 ">
               <ButtonPlayLight />

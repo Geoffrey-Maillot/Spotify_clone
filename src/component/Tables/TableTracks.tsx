@@ -71,12 +71,24 @@ const TableTracks = ({ tracksList }: Props) => {
   const titleContent = (rowData: any) => {
     return (
       <div className="flex justify-start flex-row-reverse md:flex-row items-center text-right md:text-left gap-3">
-        <div className="w-10 h-10 object-cover object-center">
+        <div className="w-10 h-10 object-cover object-center flex-none">
           <img src={rowData?.img} alt={rowData?.title} />
         </div>
-        <div className="overflow-hidden title">
-          <Paragraph size="lg" color="white" label={rowData?.title} />
-          <Paragraph size="sm" color="lightGray" label={rowData?.artist} />
+        <div className="title">
+          <Paragraph
+            size="lg"
+            color="white"
+            label={rowData?.title}
+            clamp
+            nbrLineClamp={1}
+          />
+          <Paragraph
+            size="sm"
+            color="lightGray"
+            label={rowData?.artist}
+            clamp
+            nbrLineClamp={1}
+          />
         </div>
       </div>
     );
@@ -89,41 +101,52 @@ const TableTracks = ({ tracksList }: Props) => {
         dataKey="track"
         selectionMode="single"
         responsiveLayout={responsiveTableStyle}
-        breakpoint="780px"
         className=" text-gray-200 text-left table-tracks"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
       >
         <Column
           headerStyle={{
-            width: '5%',
-            minWidth: '60px',
             textAlign: 'center',
-            padding: '8px 0',
+            padding: '8px 10px',
             marginBottom: '32px',
             fontSize: '1rem',
           }}
-          bodyStyle={{ textAlign: 'center', fontSize: '1rem' }}
+          bodyStyle={{
+            textAlign: 'center',
+            fontSize: '1rem',
+            width: '60px',
+            flex: 'none',
+            paddingInline: '8px',
+          }}
           field="track"
           header="#"
         />
         <Column
           field="title"
-          bodyStyle={{ width: '30%', padding: '8px 0' }}
+          bodyStyle={{ padding: '8px' }}
           header="Titre"
           body={titleContent}
         />
 
         <Column
           field="album"
-          bodyStyle={{ width: '20%', minWidth: '100px' }}
+          bodyStyle={{ flex: 'none', paddingInline: '8px' }}
           header="Album"
           className="album"
+          body={(rowData: any) => (
+            <Paragraph
+              label={rowData.album}
+              clamp
+              nbrLineClamp={2}
+              className="title"
+            />
+          )}
         />
 
         <Column
           field="added"
-          bodyStyle={{ width: '20%' }}
+          bodyStyle={{ flex: 'none', paddingInline: '8px', minWidth: '100px' }}
           header="Ajoutée le"
           body={addedContent}
           className="hidden lg:table-cell"
@@ -132,13 +155,11 @@ const TableTracks = ({ tracksList }: Props) => {
         <Column
           field=""
           header=""
-          bodyStyle={{ width: '60px', textAlign: 'end' }}
+          bodyStyle={{ flex: 'none', paddingInline: '8px' }}
           body={buttonLike}
         />
         <Column
           headerStyle={{
-            width: '10%',
-            maxWidth: '100px',
             paddingRight: '16px',
             textAlign: 'end',
           }}
@@ -146,6 +167,8 @@ const TableTracks = ({ tracksList }: Props) => {
           bodyStyle={{
             textAlign: 'end',
             paddingRight: '16px',
+            paddingLeft: '8px',
+            flex: 'none',
           }}
           header={
             <div className="text-end">
