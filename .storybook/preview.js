@@ -1,6 +1,6 @@
 
-// Import Tailwind styles
-import '../src/styles/index.css'
+// Import styles
+import '../src/styles/styles.scss'
 import { themes } from '@storybook/theming';
 
 
