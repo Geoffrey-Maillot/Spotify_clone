@@ -15,3 +15,8 @@ const Template: ComponentStory<typeof CardLastListen> = (args) => (
 );
 
 export const cardLastListen = Template.bind({});
+cardLastListen.args = {
+  img: 'https://source.unsplash.com/random/101x101',
+  title: 'Dernières playlist écoutée',
+  id: 'id12345',
+};

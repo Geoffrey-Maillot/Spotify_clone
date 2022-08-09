@@ -16,7 +16,7 @@ export const collectionHeader = Template;
 collectionHeader.story = {
   parameters: {
     reactRouter: {
-      routePath: '/collection',
+      routePath: '/collection/playlists',
     },
   },
 };

@@ -2,11 +2,20 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import AlbumFirstSuggestion from './AlbumFirstSuggestion';
 
+import * as cardLastListenStories from '../Cards/CardLastListen.stories';
+
 export default {
   title: 'Lists/Album First Suggestion',
   component: AlbumFirstSuggestion,
   decorators: [withRouter],
 } as ComponentMeta<typeof AlbumFirstSuggestion>;
+
+interface Album {
+  img: string;
+  title: string;
+  id: string;
+}
+type ListAlbum = Array<Album>;
 
 const Template: ComponentStory<typeof AlbumFirstSuggestion> = (args) => (
   <AlbumFirstSuggestion {...args} />
@@ -14,32 +23,24 @@ const Template: ComponentStory<typeof AlbumFirstSuggestion> = (args) => (
 
 const listAlbumFirstSuggestion = [
   {
-    title: 'Summer Hit 2022',
-    img: 'https://source.unsplash.com/random/101x101',
+    ...cardLastListenStories.cardLastListen.args,
   },
   {
-    title: 'Afro Nation 2022',
-    img: 'https://source.unsplash.com/random/102x102',
+    ...cardLastListenStories.cardLastListen.args,
   },
   {
-    title: 'Zouk',
-    img: 'https://source.unsplash.com/random/103x103',
-  },
-
-  {
-    title: 'System of a Down',
-    img: 'https://source.unsplash.com/random/104x104',
-  },
-
-  {
-    title: 'This is Naza',
-    img: 'https://source.unsplash.com/random/105x105',
+    ...cardLastListenStories.cardLastListen.args,
   },
   {
-    title: 'This is Admiral T',
-    img: 'https://source.unsplash.com/random/106x106',
+    ...cardLastListenStories.cardLastListen.args,
   },
-];
+  {
+    ...cardLastListenStories.cardLastListen.args,
+  },
+  {
+    ...cardLastListenStories.cardLastListen.args,
+  },
+] as ListAlbum;
 
 export const ListAlbumSuggestion = Template.bind({});
 ListAlbumSuggestion.args = { listAlbum: listAlbumFirstSuggestion };

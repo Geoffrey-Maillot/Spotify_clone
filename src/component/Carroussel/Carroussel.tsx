@@ -10,9 +10,15 @@ import CardGender from '../Cards/CardGender';
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
-// TODO: Remplacer any par le composant CardGender
+interface cardGender {
+  title: string;
+  img: string;
+  alt: string;
+  color: string;
+}
+
 interface Props {
-  cards: Array<any>;
+  cards: Array<cardGender>;
 }
 
 const Carroussel = ({ cards }: Props) => {
@@ -21,7 +27,7 @@ const Carroussel = ({ cards }: Props) => {
 
   return (
     <Swiper
-      className="w-full  my-4"
+      className="w-full h-full  my-4"
       grid={{
         rows: 1,
       }}
@@ -30,16 +36,22 @@ const Carroussel = ({ cards }: Props) => {
       navigation={true}
       modules={[Navigation]}
     >
-      {cards.map((card, i) => (
-        <SwiperSlide
-          key={i}
-          className={`${
-            mobile ? 'w-[13.625rem]' : 'w-[27.5rem]'
-          } h-[13.75rem] `}
-        >
-          <CardGender {...card} size={mobile ? 'small' : 'large'} />
-        </SwiperSlide>
-      ))}
+      {cards && cards.length > 1 ? (
+        cards.map((card, i) => (
+          <SwiperSlide
+            key={i}
+            className={`${
+              mobile ? 'w-[13.625rem]' : 'w-[27.5rem]'
+            } h-[13.75rem] `}
+          >
+            <CardGender {...card} size={mobile ? 'small' : 'large'} />
+          </SwiperSlide>
+        ))
+      ) : (
+        <div className="w-full h-full fontCircularBold text-white">
+          Erreur de chargement...
+        </div>
+      )}
     </Swiper>
   );
 };

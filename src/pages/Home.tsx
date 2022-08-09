@@ -8,28 +8,34 @@ const listAlbumFirstSuggestion = [
   {
     title: 'Summer Hit 2022',
     img: 'https://source.unsplash.com/random/101x101',
+    id: '14df7s66e'
   },
   {
     title: 'Afro Nation 2022',
     img: 'https://source.unsplash.com/random/102x102',
+    id: '14df7s66e'
   },
   {
     title: 'Zouk',
     img: 'https://source.unsplash.com/random/103x103',
+    id: '14df7s66e'
   },
 
   {
     title: 'System of a Down',
     img: 'https://source.unsplash.com/random/104x104',
+    id: '14df7s66e'
   },
 
   {
     title: 'This is Naza',
     img: 'https://source.unsplash.com/random/105x105',
+    id: '14df7s66e'
   },
   {
     title: 'This is Admiral T',
     img: 'https://source.unsplash.com/random/106x106',
+    id: '14df7s66e'
   },
 ];
 

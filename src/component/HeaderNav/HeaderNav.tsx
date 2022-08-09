@@ -103,7 +103,7 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
   return (
     <>
       <Suspense fallback={<div>Chargement...</div>}>
-        <SearchDialog />
+        <SearchDialog isOpen={popup.searchInputIsOpen} onHide={popup.toggleSearchInput} />
       </Suspense>
       <header
         ref={header}

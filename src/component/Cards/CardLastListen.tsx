@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom';
 import H2 from '../Typo/H2/H2';
 import ButtonPlay from '../Button/ButtonPlay/ButtonPlay';
 
-// Import Hook
-import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
-
 interface Props {
   img?: string;
   title?: string;

@@ -15,7 +15,7 @@ interface Props {
   colSpan?: number;
 }
 
-const CardFirst = ({ type = 'playlist', listTitle, colSpan = 2 }: Props) => {
+const CardFirst = ({ type = 'playlist', listTitle }: Props) => {
   const total: number = 418;
   const types: { [x: string]: { [x: string]: string } } = {
     playlist: {
@@ -33,7 +33,7 @@ const CardFirst = ({ type = 'playlist', listTitle, colSpan = 2 }: Props) => {
   return (
     <Link
       to={`/collection/${type === 'playlist' ? 'tracks' : 'episodes'}`}
-      className={` relative group col-span-1 md:col-span-2 self-stretch rounded-md flex flex-col gap-6 justify-end items-start p-[20px] place-self-stretch ${types[type].background}`}
+      className={` h-full relative group col-span-1 md:col-span-2 self-stretch rounded-md flex flex-col gap-6 justify-end items-start p-[20px] place-self-stretch ${types[type].background}`}
     >
       {listTitle && (
         <div className="mb-3 flex items-center content-start flex-wrap">

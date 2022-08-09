@@ -11,6 +11,8 @@ import DiscographyHeader from '../component/Discography/DiscographyHeader';
 import Grid from '../component/Grid/Grid';
 import CardMusic from '../component/Cards/CardMusic';
 
+import { PageLayout } from '../component/Discography/DiscographyHeader';
+
 interface Track {
   track: number;
   title: string;
@@ -113,7 +115,7 @@ const allDiscography: Array<Album> = [
 // == Component =>
 const Discography = () => {
   const [filteredAlbums, setFilteredAlbums] = useState<Array<Album>>([]);
-  const [pageLayout, setPageLayout] = useState<'list' | 'grid'>('list');
+  const [pageLayout, setPageLayout] = useState<PageLayout>(PageLayout.List);
 
   const { albumType } = useParams();
 
@@ -134,9 +136,9 @@ const Discography = () => {
   };
 
   useEffect(() => {
-    const pageLayoutFromStorage = localStorage.getItem('pageLayout') as
-      | 'grid'
-      | 'list';
+    const pageLayoutFromStorage = localStorage.getItem(
+      'pageLayout'
+    ) as PageLayout;
     if (pageLayoutFromStorage) {
       setPageLayout(pageLayoutFromStorage);
     }
@@ -144,7 +146,7 @@ const Discography = () => {
 
   useEffect(() => {
     filterDiscography(albumType, allDiscography);
-  }, [albumType, allDiscography]);
+  }, [albumType]);
 
   return (
     <Layout>
@@ -154,7 +156,7 @@ const Discography = () => {
         setPageLayout={setPageLayout}
       />
       {filteredAlbums.length > 0 ? (
-        pageLayout === 'list' ? (
+        pageLayout === PageLayout.List ? (
           filteredAlbums.map((album, i) => (
             <DiscographyAlbum key={i} {...album} />
           ))
