@@ -1,19 +1,25 @@
-import { useFormContext } from 'react-hook-form';
-
-interface Props {
-  type: string;
-  placeholder: string;
-  name: string;
+export enum InputType {
+  Text = 'text',
+  Password = 'password',
 }
 
-const Input = ({ type, placeholder, name }: Props) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+export enum InputName {
+  Pseudo = 'pseudo',
+  Password = 'password',
+}
 
-  const error: boolean = !!errors[name];
-  const errorMessage = errors[name]?.message as string | undefined;
+interface Props {
+  type: InputType;
+  placeholder: string;
+  errors?: any;
+  inputName: InputName;
+}
+
+const Input = ({ type, placeholder, errors, inputName, ...props }: Props) => {
+
+  console.log(props)
+  const error: boolean = !!errors[inputName];
+  const errorMessage = errors[inputName]?.message as string | undefined;
 
   return (
     <>
@@ -24,7 +30,7 @@ const Input = ({ type, placeholder, name }: Props) => {
         }`}
         type={type}
         placeholder={placeholder}
-        {...register(name)}
+        {...props}
       />
       {error && (
         <p className="font-circularBook text-[#e91429]">{errorMessage}</p>
