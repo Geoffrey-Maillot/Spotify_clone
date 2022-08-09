@@ -1,3 +1,7 @@
+import { UseFormRegister } from 'react-hook-form';
+
+import { Inputs } from './Form';
+
 export enum InputType {
   Text = 'text',
   Password = 'password',
@@ -13,13 +17,13 @@ interface Props {
   placeholder: string;
   errors?: any;
   inputName: InputName;
+  register: UseFormRegister<Inputs>;
 }
 
-const Input = ({ type, placeholder, errors, inputName, ...props }: Props) => {
-
-  console.log(props)
-  const error: boolean = !!errors[inputName];
-  const errorMessage = errors[inputName]?.message as string | undefined;
+const Input = ({ type, placeholder, errors, inputName, register }: Props) => {
+  const error: boolean = errors && !!errors[inputName];
+  const errorMessage =
+    errors && (errors[inputName]?.message as string | undefined);
 
   return (
     <>
@@ -30,7 +34,7 @@ const Input = ({ type, placeholder, errors, inputName, ...props }: Props) => {
         }`}
         type={type}
         placeholder={placeholder}
-        {...props}
+        {...register(inputName)}
       />
       {error && (
         <p className="font-circularBook text-[#e91429]">{errorMessage}</p>

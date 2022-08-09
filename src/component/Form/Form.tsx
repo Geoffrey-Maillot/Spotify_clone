@@ -14,14 +14,14 @@ import { Navigate } from 'react-router-dom';
 import Input from './Input';
 import { InputType, InputName } from './Input';
 
-interface Inputs {
+export interface Inputs {
   [InputName.Pseudo]: string;
   [InputName.Password]: string;
 }
 
 const schema = yup.object({
-  pseudo: yup.string().required('Remplir le champs'),
-  password: yup.string().required('Remplir le champs'),
+  pseudo: yup.string().required('Veuillez remplir ce champ'),
+  password: yup.string().required('Veuillez remplir ce champ '),
 });
 
 const Form = observer(() => {
@@ -56,7 +56,7 @@ const Form = observer(() => {
               placeholder=" Adresse email ou nom d'utilisateur"
               inputName={InputName.Pseudo}
               errors={errors}
-              {...register(InputName.Pseudo)}
+              register={register}
             />
           </div>
           <div className="w-full ">
@@ -68,7 +68,7 @@ const Form = observer(() => {
               placeholder=" Mot de passe"
               inputName={InputName.Password}
               errors={errors}
-              {...register(InputName.Password)}
+              register={register}
             />
           </div>
           <button
