@@ -6,7 +6,7 @@ import Layout from '../component/Layout/Layout';
 import H1 from '../component/Typo/H1/H1';
 import H2 from '../component/Typo/H2/H2';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
-import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
+import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 import TabsView from '../component/TabView/TabView';
 
 // Import Icon
@@ -180,7 +180,7 @@ const Artist = () => {
           />
         </span>
       </header>
-      <HeadBandPlay type="artist" />
+      <HeaderBandPlay type="artist" />
       <section className="px-8 flex justify-start items-start flex-col xl:flex-row gap-10">
         <div className="w-full">
           <div className="mb-4">

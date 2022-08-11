@@ -7,7 +7,7 @@ import H1 from '../component/Typo/H1/H1';
 import H2 from '../component/Typo/H2/H2';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
-import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
+import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 import CardMusic from '../component/Cards/CardMusic';
 
 // Import icon
@@ -92,7 +92,7 @@ const Episode = () => {
           <Paragraph label="1h26" />
         )}
       </section>
-      <HeadBandPlay type="episode" />
+      <HeaderBandPlay type="episode" />
       <section className="max-w-[42rem] pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
         <H2 size="xl2" label="Description de l'épisode" />
         <PanelHideContent>

@@ -20,7 +20,7 @@ interface Props {
 }
 
 // == Component =>
-const HeadBandPlay = ({
+const HeaderBandPlay = ({
   type = 'playlist',
   subscriber,
 }: Props) => {
@@ -82,4 +82,4 @@ const removeFromLibrary = () => {
   );
 };
 
-export default HeadBandPlay;
+export default HeaderBandPlay;

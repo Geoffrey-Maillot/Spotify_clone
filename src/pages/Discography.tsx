@@ -21,7 +21,7 @@ interface Track {
   liked: boolean;
 }
 
-interface Album {
+export interface Album {
   img: string;
   title: string;
   type: string;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 // Import Router
 import { useParams } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import H1 from '../component/Typo/H1/H1';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import H2 from '../component/Typo/H2/H2';
 import PlaylistTable from '../component/Tables/TableEpisodes';
-import HeadBandPlay from '../component/HeadbandPlay/HeadBandPlay';
+import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
 
 interface Props {
@@ -64,7 +64,7 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
           <H2 size="xl2" color="white" label="Benjamin Brillaud" />
         </span>
       </header>
-      <HeadBandPlay type="podcast" subscriber={true} />
+      <HeaderBandPlay type="podcast" subscriber={true} />
       <div className="flex items-start justify-start pl-4 gap-4 xl:flex-row flex-col-reverse">
         <div className=" xl:w-3/5 w-full max-w-[726px] xl:max-w-max">
           <PlaylistTable episodesList={episodesList} />
