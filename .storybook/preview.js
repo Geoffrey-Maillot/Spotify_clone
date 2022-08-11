@@ -9,6 +9,7 @@ export const parameters = {
   options: {
     theme: themes.dark
   },
+
   controls: {
     matchers: {
       color: /(background|color)$/i,

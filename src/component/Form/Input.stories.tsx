@@ -10,7 +10,7 @@ import { InputType, InputName } from './Input';
 import { Inputs } from './Form';
 
 export default {
-  title: 'LoginForm/Input',
+  title: 'form/Input',
   component: Input,
   decorators: [withRouter],
   argTypes: {

@@ -28,7 +28,7 @@ const Form = observer(() => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
