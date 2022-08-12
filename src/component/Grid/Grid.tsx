@@ -1,5 +1,5 @@
 interface Props {
-  children: Array<any>;
+  children: React.ReactNode;
 }
 
 const Grid = ({ children }: Props) => {

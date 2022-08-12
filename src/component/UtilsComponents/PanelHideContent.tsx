@@ -5,7 +5,7 @@ import H2 from '../Typo/H2/H2';
 
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
 }
 
 const PanelHideContent = ({ children }: Props) => {

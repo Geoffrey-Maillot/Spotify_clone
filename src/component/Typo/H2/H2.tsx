@@ -1,5 +1,5 @@
 interface Props {
-  children?: any;
+  children?: React.ReactNode;
   className?: string;
   label?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl2' | 'xl3' | 'xl5';

@@ -11,7 +11,7 @@ import Footer from '../PlayBar/PlayBar';
 import { observer } from 'mobx-react-lite';
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
 }
 
 const Layout = observer(({ children }: Props) => {

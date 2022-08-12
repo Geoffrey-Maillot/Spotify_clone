@@ -11,7 +11,7 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 interface Props {
   to: string;
   label?: string;
-  children?: string;
+  children?: React.ReactNode;
   color?: 'white' | 'gray' | 'lightGray' | 'veryLightGray' | 'blue';
   type?: 'Primary' | 'Secondary';
 }

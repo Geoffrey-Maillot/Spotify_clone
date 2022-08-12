@@ -15,7 +15,7 @@ interface Props {
   icon?: boolean;
   iconType?: 'home' | 'search' | 'library';
   label?: string;
-  children?: string;
+  children?: React.ReactNode;
   to: string;
 }
 
