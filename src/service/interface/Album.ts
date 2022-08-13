@@ -4,3 +4,14 @@ export interface Album {
   content: string;
   type?: 'artist' | 'show' | 'playlist' | 'episode' | 'user';
 }
+
+export interface Track {
+  track: number;
+  img: string;
+  title: string;
+  artist?: string;
+  album?: string;
+  duration: string;
+  liked: boolean;
+  like?: number;
+}

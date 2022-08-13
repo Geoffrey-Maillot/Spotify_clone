@@ -12,17 +12,8 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
-// TODO : Remplacer any par les infos provenant de l'api
-
-interface Track {
-  track: number;
-  img: string;
-  title: string;
-  artist: string;
-  album: string;
-  duration: string;
-  liked: boolean;
-}
+// Import Interface
+import { Track } from '../../service/interface/Album';
 
 interface Props {
   tracksList: Array<Track>;

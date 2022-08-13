@@ -11,8 +11,6 @@
 ## Routing 🚗
 
 - Lire article sur les bonnes pratique du routing
-  - Mettre les routes dans un tableau?
-  - Faire un composant route pour les routes protéger
   - Lazy routing (**Perf**)
 
 ## Mobx
