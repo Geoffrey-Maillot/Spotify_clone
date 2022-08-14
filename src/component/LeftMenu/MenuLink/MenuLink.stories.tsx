@@ -2,6 +2,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import MenuLink from './MenuLink';
 
+
+
 export default {
   title: 'Menu/MenuLink',
   component: MenuLink,
@@ -18,3 +20,4 @@ Default.args = { label: 'Nav Link', to: '/' };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = { label: 'With icon', icon: true, to: '/' };
+

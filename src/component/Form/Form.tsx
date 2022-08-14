@@ -56,7 +56,7 @@ const Form = observer(() => {
               placeholder=" Adresse email ou nom d'utilisateur"
               inputName={InputName.Pseudo}
               errors={errors}
-              register={register}
+              {...register(InputName.Pseudo)}
             />
           </div>
           <div className="w-full ">
@@ -68,7 +68,7 @@ const Form = observer(() => {
               placeholder=" Mot de passe"
               inputName={InputName.Password}
               errors={errors}
-              register={register}
+              {...register(InputName.Password)}
             />
           </div>
           <button

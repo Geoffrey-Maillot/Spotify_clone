@@ -64,11 +64,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
       >
         {listSlice.map((card, i) => (
           <CardMusic
-            key={i}
-            img={card.img}
-            title={card.title}
-            content={card.content}
-            type={card.type}
+            {...card}
           />
         ))}
       </div>

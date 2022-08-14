@@ -1,9 +1,11 @@
 // Import component
 import Layout from '../../component/Layout/Layout';
-import HeaderNav from '../../component/HeaderNav/HeaderNav';
 import H2 from '../../component/Typo/H2/H2';
 import Grid from '../../component/Grid/Grid';
 import CardMusic from '../../component/Cards/CardMusic';
+
+// Interface
+import { PageType } from '../../service/interface/Album';
 
 const podcasts = [
   {
@@ -61,7 +63,7 @@ const Artists = () => (
         <H2 size="xl2"> Artistes </H2>
         <Grid>
           {podcasts.map((item, i) => (
-            <CardMusic key={i} {...item} type={'artist'} />
+            <CardMusic key={i} {...item} type={PageType.ARTIST} />
           ))}
         </Grid>
       </section>

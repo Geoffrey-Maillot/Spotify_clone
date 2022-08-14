@@ -62,7 +62,7 @@ const Layout = observer(({ children }: Props) => {
 
   return (
     <div
-      className={`grid  grid-cols-1 lg:grid-cols-[var(--leftMenuWidth)_1fr] grid-rows-[1fr,_5.625rem] select-none transition ${
+      className={`grid  grid-cols-1 lg:grid-cols-[var(--leftMenuWidth)_1fr] grid-rows-[1fr,_5.625rem] select-none transition overflow-hidden ${
         resizeIsActive && 'cursor-col-resize'
       }`}
       style={{ ['--leftMenuWidth' as any]: `${panelSize}px` }}
@@ -71,7 +71,7 @@ const Layout = observer(({ children }: Props) => {
 
       <main className="relative bg-dark-100  h-[calc(100vh_-_5.625rem)] overflow-auto  scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-100">
         <div
-          className="absolute z-50 h-full w-1 inset-y-0 left-0 cursor-col-resize bg-[#121212] "
+          className="hidden lg:block absolute z-50 h-full w-1 inset-y-0 left-0 cursor-col-resize bg-[#121212] "
           onMouseDown={(e) => onReziseStart(e)}
         >
           {' '}

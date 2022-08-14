@@ -14,6 +14,9 @@ import CardMusic from '../component/Cards/CardMusic';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { BsCheck2 } from 'react-icons/bs';
 
+// Import interface
+import { PageType } from '../service/interface/Album';
+
 const Episode = () => {
   const listen = true;
 
@@ -126,7 +129,7 @@ const Episode = () => {
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(12.5rem,_15.375rem))] gap-4 mt-4  justify-center sm:justify-start">
           {related.map((episode, i) => (
             <div key={i} className="">
-              <CardMusic type="episode" {...episode} />
+              <CardMusic type={PageType.EPISODE} {...episode} />
             </div>
           ))}
         </div>

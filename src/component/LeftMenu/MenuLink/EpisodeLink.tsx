@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useMatch } from 'react-router-dom';
 
 import { BsBookmarkFill } from 'react-icons/bs';
-import H2 from '../Typo/H2/H2';
+import H2 from '../../Typo/H2/H2';
 
 interface Props {
   to: string;

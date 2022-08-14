@@ -5,7 +5,7 @@ import DiscographyAlbumList from './DiscographyAlbumList';
 
 
 export default {
-  title: 'DiscographyAlbumList',
+  title: 'Discographie/DiscographyAlbumList',
   component: DiscographyAlbumList,
   decorators: [withRouter],
 } as ComponentMeta<typeof DiscographyAlbumList>;

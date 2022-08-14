@@ -7,7 +7,7 @@ import CardMusic from '../Cards/CardMusic';
 import CardGender from '../Cards/CardGender';
 
 export default {
-  title: 'layout/Grid',
+  title: 'Grid',
   component: Grid,
   decorators: [withRouter],
 } as ComponentMeta<typeof Grid>;

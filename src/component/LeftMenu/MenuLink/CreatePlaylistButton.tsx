@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import H2 from '../Typo/H2/H2';
+import H2 from '../../Typo/H2/H2';
 
 // Import icon
 import { AiOutlinePlus } from 'react-icons/ai';
 
-const MenuLink = () => {
+const CreatePlaylistButton = () => {
   const [isHover, setIsHover] = useState(false);
 
   const handlerOnMouseEnter = () => {
@@ -40,4 +40,4 @@ const MenuLink = () => {
   );
 };
 
-export default MenuLink;
+export default CreatePlaylistButton;

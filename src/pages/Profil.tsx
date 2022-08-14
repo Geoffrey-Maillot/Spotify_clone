@@ -9,7 +9,7 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import AlbumList from '../component/AlbumList/AlbumList';
 
 // Interface
-import { Album } from '../service/interface/Album';
+import { Album, PageType } from '../service/interface/Album';
 import TableProfil from '../component/Tables/TableProfil';
 
 const topArtists: Array<Album> = [
@@ -17,25 +17,25 @@ const topArtists: Array<Album> = [
     img: 'https://i.scdn.co/image/ab67616100005174c2f3c2db3aa6f86aa810f7d4',
     title: 'Nneka',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab6761610000517495a14413f9430851ec1941eb',
     title: 'Rousseau',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616100005174dfaa7347b64261717901a4d7',
     title: 'Scylla',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab6761610000f17824dfcd336d5f992814d54972',
     title: 'Sofiane Pamart',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
 ];
 
@@ -131,13 +131,13 @@ const abonnés: Array<Album> = [
     img: 'https://source.unsplash.com/random/300x300',
     title: 'Jimmy Garcia',
     content: 'Profil',
-    type: 'user',
+    type: PageType.USER,
   },
   {
     img: 'https://source.unsplash.com/random/300x300',
     title: 'Julien B.',
     content: 'Profil',
-    type: 'user',
+    type: PageType.USER,
   },
 ];
 
@@ -146,55 +146,55 @@ const abonnées: Array<Album> = [
     img: 'https://i.scdn.co/image/ab67616100005174c2f3c2db3aa6f86aa810f7d4',
     title: 'Nneka',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab6761610000517495a14413f9430851ec1941eb',
     title: 'Rousseau',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616d00001e02976bcd0c353a3a85006080ac',
     title: 'Kaf malbar',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616d00001e02c817de6f6d4bf8f2d069f62a',
     title: 'Cassiya',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616d00001e021bb72304e120d4633ee16237',
     title: 'Ousanousava',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616100005174a2a0b9e3448c1e702de9dc90',
     title: 'Mickael Jackson',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab676161000051745796c88846b0bbecb07fccfc',
     title: 'Skillet',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616100005174ee20ac45eacc19a559507d67',
     title: 'Gentleman',
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
   {
     img: 'https://i.scdn.co/image/ab67616100005174fad69ba2257abfdd56eb9dec',
     title: "Jacob's Piano",
     content: 'Artiste',
-    type: 'artist',
+    type: PageType.ARTIST,
   },
 ];
 

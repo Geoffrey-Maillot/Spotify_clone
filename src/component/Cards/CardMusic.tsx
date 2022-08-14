@@ -10,11 +10,14 @@ import RenderIf from '../UtilsComponents/RenderIf';
 // Import Icon
 import { GoPrimitiveDot } from 'react-icons/go';
 
+// Import interface
+import { PageType } from '../../service/interface/Album';
+
 interface Props {
   img?: string;
   title?: string;
   content?: string; //? Le contenu sera peu être sous forme d'objet quand les datas viendront de l'api
-  type?: 'artist' | 'show' | 'playlist' | 'episode' | 'user';
+  type?: PageType
   id?: string;
   date?: string;
   duration?: string;
@@ -24,7 +27,7 @@ const CardMusic = ({
   img = 'https://source.unsplash.com/random/301x301',
   title = 'Daily Mix 1',
   content = 'Mes super titres',
-  type = 'playlist',
+  type = PageType.ARTIST,
   id = 'id12345',
   date,
   duration,

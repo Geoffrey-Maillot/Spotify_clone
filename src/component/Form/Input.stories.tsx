@@ -30,7 +30,7 @@ const Template: ComponentStory<typeof Input> = (args) => {
   const { register } = useForm<Inputs>({
     resolver: yupResolver(schema),
   });
-  return <Input {...args} register={register} />;
+  return <Input {...args} {...register(InputName.Pseudo)} />;
 };
 
 export const pseudo = Template.bind({});

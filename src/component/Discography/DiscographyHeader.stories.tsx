@@ -5,7 +5,7 @@ import DiscographyHeader from './DiscographyHeader';
 import { PageLayout } from './DiscographyHeader';
 
 export default {
-  title: 'DiscographyHeader',
+  title: 'Discographie/DiscographyHeader',
   component: DiscographyHeader,
   decorators: [withRouter],
 } as ComponentMeta<typeof DiscographyHeader>;

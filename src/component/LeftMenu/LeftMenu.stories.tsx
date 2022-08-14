@@ -5,10 +5,9 @@ import LeftMenu from './LeftMenu';
 export default {
   title: 'Menu/LeftMenu',
   component: LeftMenu,
-  decorators: [withRouter],
+  decorators: [withRouter, (story) => (<div style={{height: '100vh', width: '320px'}}>{story()}</div>)],
 } as ComponentMeta<typeof LeftMenu>;
 
-//👇 We create a “template” of how args map to rendering
-const Template: ComponentStory<typeof LeftMenu> = (args) => <LeftMenu />;
+const Template: ComponentStory<typeof LeftMenu> = () => <LeftMenu />;
 
-export const Menu = Template.bind({});
+export const leftMenu = Template.bind({});
