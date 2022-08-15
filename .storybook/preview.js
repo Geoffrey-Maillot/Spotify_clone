@@ -5,7 +5,7 @@ import { create } from '@storybook/theming';
 const myTheme =  create({
   base: 'dark',
   brandTitle: 'Spotifaie',
-  brandUrl: 'https://spotifaie.surge.sh',
+  brandUrl: 'https://spotifaie.netlify.app',
   brandImage: logo
 });
 

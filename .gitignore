@@ -11,7 +11,11 @@
 # production
 /build
 
-# misc
+# storybook
+/storybook-static
+build-storybook.log
+
+# miscY
 .DS_Store
 .env.local
 .env.development.local
@@ -21,3 +25,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
