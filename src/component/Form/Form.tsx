@@ -34,18 +34,11 @@ const Form = observer(() => {
     mode: 'onTouched',
   });
 
-  const onSubmit = () => {
-    auth.connection();
-  };
-
   return (
     <>
-      {auth.isAuth && <Navigate to="/" replace />}
+      {auth.getAuth && <Navigate to="/" replace />}
 
-      <form
-        className=" w-full flex  justify-center items-center px-8"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className=" w-full flex  justify-center items-center px-8">
         <div className="flex flex-col justify-start items-start gap-4">
           <div className="w-full ">
             <label className="block  font-circularBold text-lg mb-2">

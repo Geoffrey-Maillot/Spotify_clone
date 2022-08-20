@@ -63,9 +63,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
         style={{ ['--cols' as any]: nbrCols }}
       >
         {listSlice.map((card, i) => (
-          <CardMusic
-            {...card}
-          />
+          <CardMusic key={i} {...card} />
         ))}
       </div>
     </div>

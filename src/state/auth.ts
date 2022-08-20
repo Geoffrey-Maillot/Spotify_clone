@@ -13,6 +13,7 @@ class Auth {
 
   @action deconnexion() {
     this.isAuth = false;
+    localStorage.removeItem('token');
   }
 
   get getAuth() {
