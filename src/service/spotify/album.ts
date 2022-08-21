@@ -32,3 +32,21 @@ export const CheckAlbumsAreAlreadySaved = (
 /**
  * ALBUM
  */
+
+export const getAlbum = (albumId: string, params?: Object): Promise<Object> => {
+  return spotifyApi.getAlbum(albumId, params && params);
+};
+
+export const getAlbumTracks = (
+  albumId: string,
+  params?: Object
+): Promise<Object> => {
+  return spotifyApi.getAlbumTracks(albumId, params && params);
+};
+
+export const getAlbums = (
+  albumIds: Array<string>,
+  params?: Object
+): Promise<Object> => {
+  return spotifyApi.getAlbums(albumIds, params && params);
+};

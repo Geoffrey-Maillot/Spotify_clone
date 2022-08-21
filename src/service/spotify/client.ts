@@ -1,4 +1,10 @@
 import { useLayoutEffect } from 'react';
+
+/**
+ * spotify-web-api-js :
+ *  https://github.com/jmperez/spotify-web-api-js
+ *  https://jmperezperez.com/spotify-web-api-js/#src-spotify-web-api.js-constr.prototype.getuser
+ */
 import Spotify from 'spotify-web-api-js';
 import Q from 'q';
 import { useStores } from '../../state/storeContext';

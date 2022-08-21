@@ -7,3 +7,7 @@ export const getCurrentUser = () => {
 export const getUser = (userId: string, params?: Object): Promise<Object> => {
   return spotifyApi.getUser(userId, params && params);
 };
+
+export const getDevices = (): Promise<Object> => {
+  return spotifyApi.getMyDevices();
+};
