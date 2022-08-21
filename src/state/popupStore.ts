@@ -1,6 +1,6 @@
 import { observable, action, makeAutoObservable } from 'mobx';
 
-class Popup {
+export default class Popups {
   @observable searchInput = false;
 
   constructor() {
@@ -15,5 +15,3 @@ class Popup {
     return this.searchInput;
   }
 }
-
-export default new Popup();

@@ -1,9 +1,9 @@
-import { spotifyApi } from './Client';
+import { spotifyApi } from './client';
 
-export const authUserPlaylist = () => {
-  return spotifyApi.getUserPlaylists();
+export const getCurrentUser = () => {
+  return spotifyApi.getMe();
 };
 
-export const authuser = () => {
-  return spotifyApi.getMe();
+export const getUser = (userId: string, params?: Object): Promise<Object> => {
+  return spotifyApi.getUser(userId, params && params);
 };

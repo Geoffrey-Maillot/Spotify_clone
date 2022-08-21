@@ -1,6 +1,6 @@
 import { observable, action, makeAutoObservable } from 'mobx';
 
-class Auth {
+export default class Auth {
   @observable isAuth = false;
 
   constructor() {
@@ -20,5 +20,3 @@ class Auth {
     return this.isAuth;
   }
 }
-
-export default new Auth();

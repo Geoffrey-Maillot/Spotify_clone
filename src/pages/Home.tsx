@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
-
-import { observer } from 'mobx-react-lite';
-
-import user from '../state/authUser';
+import { useEffect } from 'react';
 
 // Import Component
 import Layout from '../component/Layout/Layout';
 
 import AlbumFirstSuggestion from '../component/AlbumFirstSuggestion/AlbumFirstSuggestion';
 import AlbumList from '../component/AlbumList/AlbumList';
-import authUser from '../state/authUser';
+import { getLikedTracks } from '../service/spotify/track';
 
 const listAlbumFirstSuggestion = [
   {
@@ -94,17 +90,10 @@ const albumNews = [
   },
 ];
 
-const Home = observer(() => {
-  const [currentUser, setCurrentUser] = useState({});
-
+const Home = () => {
   useEffect(() => {
-    user.fetchAuthUser();
-    user.fetchPlaylistAuthUser();
-    const _user = authUser.authUser;
-    setCurrentUser(_user);
+   console.log(getLikedTracks({offset: 20, limit: 20}).then((data)=> console.log(data))) 
   });
-
-  console.log(currentUser);
 
   return (
     <Layout>
@@ -158,6 +147,7 @@ const Home = observer(() => {
       </div>
     </Layout>
   );
-});
+};
 
 export default Home;
+

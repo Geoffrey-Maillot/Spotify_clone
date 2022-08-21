@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Mobx
 import { observer } from 'mobx-react-lite';
-import auth from './state/auth';
+import { useStores } from './state/storeContext';
 
 // Import Component
 import Home from './pages/Home';
@@ -30,19 +30,19 @@ import ProtectedRoute from './component/UtilsComponents/ProtectedRoute';
 // Todo : Pour les headers, conditionner l'image du background ou la couleur et l'image de gauche si il y en une
 
 const Router = observer(() => {
-  const isAuth = auth.getAuth;
+  const { authStore } = useStores();
 
   return (
     <Routes>
       <Route
         path="/login"
         element={
-          <ProtectedRoute isAllowed={!isAuth} redirectionPath="/">
+          <ProtectedRoute isAllowed={!authStore.getAuth} redirectionPath="/">
             <Login />
           </ProtectedRoute>
         }
       />
-      <Route element={<ProtectedRoute isAllowed={isAuth} />}>
+      <Route element={<ProtectedRoute isAllowed={authStore.getAuth} />}>
         <Route path="/" element={<Home />} />
         <Route path="search" element={<Search />} />
         <Route path="collection">
@@ -77,3 +77,6 @@ const Router = observer(() => {
 });
 
 export default Router;
+function useStore(): { authStore: any } {
+  throw new Error('Function not implemented.');
+}

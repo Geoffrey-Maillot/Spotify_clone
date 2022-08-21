@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 
 // State
-import popup from '../../state/popup';
-import auth from '../../state/auth';
+import { useStores } from '../../state/storeContext';
+
 
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
@@ -41,6 +41,7 @@ interface Props {
 //Todo: Supprimer les sugestions de l'input search
 
 const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
+  const {authStore, popupsStore} = useStores()
   const navLinkNames: { [x: string]: string } = {
     playlists: 'Playlists',
     podcasts: 'Podcasts',
@@ -93,17 +94,17 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
   }, [windowWidth, panelSize]);
 
   const deconnexion = () => {
-    auth.deconnexion();
+    authStore.deconnexion();
   };
 
   const toggleSearchDialog = () => {
-    popup.toggleSearchInput();
+    popupsStore.toggleSearchInput();
   };
 
   return (
     <>
       <Suspense fallback={<div>Chargement...</div>}>
-        <SearchDialog isOpen={popup.searchInputIsOpen} onHide={popup.toggleSearchInput} />
+        <SearchDialog isOpen={popupsStore.searchInputIsOpen} onHide={popupsStore.toggleSearchInput} />
       </Suspense>
       <header
         ref={header}
