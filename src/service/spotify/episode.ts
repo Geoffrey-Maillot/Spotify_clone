@@ -1,5 +1,4 @@
 import { spotifyApi } from './client';
-import { episode } from '../../component/HeaderBandPlay/HeaderBandPlay.stories';
 
 export const getShowEpisodes = (
   showId: string,

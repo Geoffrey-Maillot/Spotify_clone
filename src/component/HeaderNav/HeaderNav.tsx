@@ -1,8 +1,14 @@
-import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  lazy,
+  Suspense,
+  useCallback,
+} from 'react';
 
 // State
 import { useStores } from '../../state/storeContext';
-
 
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
@@ -28,6 +34,7 @@ import { BiLinkExternal } from 'react-icons/bi';
 
 // Import Component PrimeReact
 import { OverlayPanel } from 'primereact/overlaypanel';
+import { observer } from 'mobx-react-lite';
 
 // Lazy Components
 const SearchDialog = lazy(() => import('../Dialogs/SearchDialog'));
@@ -40,8 +47,8 @@ interface Props {
 //Todo: Disable les boutons de nav si il n'y a pas de nav (voir su spotify)
 //Todo: Supprimer les sugestions de l'input search
 
-const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
-  const {authStore, popupsStore} = useStores()
+const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
+  const { authStore, popupsStore } = useStores();
   const navLinkNames: { [x: string]: string } = {
     playlists: 'Playlists',
     podcasts: 'Podcasts',
@@ -97,14 +104,17 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
     authStore.deconnexion();
   };
 
-  const toggleSearchDialog = () => {
+  const toggleSearchDialog = useCallback(() => {
     popupsStore.toggleSearchInput();
-  };
+  }, [popupsStore]);
 
   return (
     <>
       <Suspense fallback={<div>Chargement...</div>}>
-        <SearchDialog isOpen={popupsStore.searchInputIsOpen} onHide={popupsStore.toggleSearchInput} />
+        <SearchDialog
+          isOpen={popupsStore.searchInputIsOpen}
+          onHide={toggleSearchDialog}
+        />
       </Suspense>
       <header
         ref={header}
@@ -287,6 +297,6 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
       </header>
     </>
   );
-};
+});
 
 export default HeaderNav;

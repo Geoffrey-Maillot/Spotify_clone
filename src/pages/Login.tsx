@@ -1,5 +1,5 @@
 import { UUID } from '../service/utils/uuid';
-
+import { useEffect } from 'react';
 
 //TODO : METTRE le bouton de connexion dans un composant
 
@@ -35,11 +35,13 @@ const Login = () => {
   const STATE = UUID(16);
   const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}&response_type=${TYPE}&state=${STATE}`;
 
+  useEffect(() => {
+    window.location.href = AUTH_URL;
+  });
+
   return (
     <div className=" h-screen grid grid-rows-[auto_1fr]">
-  
-        <a href={AUTH_URL}>LOGIN</a>
-
+      <a href={AUTH_URL}>LOGIN</a>
     </div>
   );
 };
