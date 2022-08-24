@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
 
 // Import Component
 import Layout from '../component/Layout/Layout';
 
 import AlbumFirstSuggestion from '../component/AlbumFirstSuggestion/AlbumFirstSuggestion';
 import AlbumList from '../component/AlbumList/AlbumList';
-import { getLikedTracks } from '../service/spotify/track';
 
 const listAlbumFirstSuggestion = [
   {
@@ -91,10 +89,6 @@ const albumNews = [
 ];
 
 const Home = () => {
-  useEffect(() => {
-   console.log(getLikedTracks({offset: 20, limit: 20}).then((data)=> console.log(data))) 
-  });
-
   return (
     <Layout>
       <div className=" px-4 sm:px-8 pt-6 grid gap-6 ">

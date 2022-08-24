@@ -49,7 +49,6 @@ interface Props {
 //Todo: Supprimer les sugestions de l'input search
 
 const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
-  const [user, setUser] = useState<SpotifyApi.CurrentUsersProfileResponse>({} as any)
   const { authStore, popupsStore } = useStores();
   const navLinkNames: Record<string, string> = {
     playlists: 'Playlists',
@@ -102,9 +101,14 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
     }
   }, [windowWidth, panelSize]);
 
+  const [user, setUser] = useState<SpotifyApi.CurrentUsersProfileResponse>(
+    {} as any
+  );
+
   useEffect(() => {
-getCurrentUser().then((user) => setUser(user))
-}, [])
+    getCurrentUser().then((user) => setUser(user));
+  }, []);
+  console.log(user);
 
   const logoutFromSpotify = () => {
     const url = 'https://www.spotify.com/logout/';
@@ -273,6 +277,7 @@ getCurrentUser().then((user) => setUser(user))
                   className="rounded-full object-cover"
                   src={user.images?.at(0)?.url}
                   alt="Profil"
+                  loading="lazy"
                 />
               </div>
               <span className=" justify-start items-center g-2 hidden lg:flex">
