@@ -21,8 +21,8 @@ export const useSession = () => {
       authStore.connection();
     } else if (window.location.hash.split('&')[0].split('=')[1]) {
       const token = window.location.hash.split('&')[0].split('=')[1];
-      spotifyApi.setAccessToken(localStorage.token);
       localStorage.setItem('token', token);
+      spotifyApi.setAccessToken(token);
       authStore.connection();
     }
   });

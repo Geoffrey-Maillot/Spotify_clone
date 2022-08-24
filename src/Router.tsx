@@ -77,6 +77,3 @@ const Router = observer(() => {
 });
 
 export default Router;
-function useStore(): { authStore: any } {
-  throw new Error('Function not implemented.');
-}
