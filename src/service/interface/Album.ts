@@ -1,5 +1,3 @@
-import Artists from '../../pages/Collection/Artists';
-import { spotifyApi } from '../spotify/client';
 export enum PageType {
   ARTIST = 'artist',
   SHOW = 'show',

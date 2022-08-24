@@ -19,17 +19,17 @@ const CardGender = ({
   size = 'small',
   id='id12345'
 }: Props) => {
-  const spanSizes: { [x: string]: string } = {
+  const spanSizes: Record<string, string> = {
     small: 'col-span-1',
     large: 'col-span-2',
   };
 
-  const fontSizes: { [x: string]: string } = {
+  const fontSizes: Record<string, string> = {
     small: 'text-2xl',
     large: 'text-5xl',
   };
 
-  const imgSize: { [x: string]: string } = {
+  const imgSize: Record<string, string> = {
     small: 'w-[6rem] h-[6rem]',
     large: 'w-[8rem] h-[8rem]',
   };

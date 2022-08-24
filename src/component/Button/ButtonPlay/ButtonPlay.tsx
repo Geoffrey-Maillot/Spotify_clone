@@ -7,7 +7,7 @@ interface Props {
 
 // == Component =>
 const ButtonPlay = ({ size = 'small' }: Props) => {
-  const sizes: { [x: string]: string } = {
+  const sizes: Record<string, string> = {
     small: 'w-[3.125rem] h-[3.125rem] ',
     large: 'w-[3.5rem] h-[3.5rem] ',
   };

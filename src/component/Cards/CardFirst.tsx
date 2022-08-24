@@ -17,7 +17,7 @@ interface Props {
 
 const CardFirst = ({ type = 'playlist', listTitle }: Props) => {
   const total: number = 418;
-  const types: { [x: string]: { [x: string]: string } } = {
+  const types: { [x: string]: Record<string, string> } = {
     playlist: {
       title: total > 0 ? 'Titres likés' : 'Titre liké',
       subTitle: total > 0 ? 'titres likés' : 'titre liké',

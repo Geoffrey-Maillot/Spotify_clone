@@ -3,7 +3,6 @@ import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 // State
 import { useStores } from '../../state/storeContext';
 
-
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
 
@@ -41,8 +40,8 @@ interface Props {
 //Todo: Supprimer les sugestions de l'input search
 
 const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
-  const {authStore, popupsStore} = useStores()
-  const navLinkNames: { [x: string]: string } = {
+  const { authStore, popupsStore } = useStores();
+  const navLinkNames: Record<string, string> = {
     playlists: 'Playlists',
     podcasts: 'Podcasts',
     artists: 'Artistes',
@@ -93,8 +92,19 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
     }
   }, [windowWidth, panelSize]);
 
+  const logoutFromSpotify = () => {
+    const url = 'https://www.spotify.com/logout/';
+    const spotifyLogoutWindow = window.open(
+      url,
+      'Spotify Logout',
+      'popup=true'
+    );
+    setTimeout(() => !!spotifyLogoutWindow && spotifyLogoutWindow.close(), 2000);
+  };
+
   const deconnexion = () => {
-    authStore.deconnexion();
+    authStore.deconnexion()
+    logoutFromSpotify()
   };
 
   const toggleSearchDialog = () => {
@@ -104,7 +114,10 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
   return (
     <>
       <Suspense fallback={<div>Chargement...</div>}>
-        <SearchDialog isOpen={popupsStore.searchInputIsOpen} onHide={popupsStore.toggleSearchInput} />
+        <SearchDialog
+          isOpen={popupsStore.searchInputIsOpen}
+          onHide={popupsStore.toggleSearchInput}
+        />
       </Suspense>
       <header
         ref={header}

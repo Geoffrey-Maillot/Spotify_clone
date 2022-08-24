@@ -18,7 +18,7 @@ const H2 = ({
   clamp,
   nbrLineClamp = 1,
 }: Props) => {
-  const fontSize: { [x: string]: string } = {
+  const fontSize: Record<string, string> = {
     xs: 'text-xs',
     sm: 'text-sm',
     md: 'text-md',
@@ -28,7 +28,7 @@ const H2 = ({
     xl5: 'text-5xl',
   };
 
-  const colors: { [x: string]: string } = {
+  const colors: Record<string, string> = {
     white: 'text-white',
     gray: 'text-gray-300',
     lightGray: 'text-gray-200',

@@ -33,7 +33,7 @@ const DiscographyHeader = ({ artist, pageLayout, setPageLayout }: Props) => {
   const arrayPath = location.pathname.split('/');
   const path = arrayPath[arrayPath.length - 1];
 
-  const buttonValues: { [x: string]: string } = {
+  const buttonValues: Record<string, string> = {
     all: 'Tous',
     album: 'Albums',
     single: 'Singles et EP',

@@ -38,7 +38,7 @@ const LottieButton = ({ togglePanelLeft }: Props) => {
     setPlay(false);
   };
 
-  const pointerEvent: { [x: string]: string } = {
+  const pointerEvent: Record<string, string> = {
     pointerEvents: disable ? 'none' : '',
   };
 

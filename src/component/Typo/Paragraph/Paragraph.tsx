@@ -26,7 +26,7 @@ const Paragraph = ({
   clamp,
   nbrLineClamp = 2,
 }: Props) => {
-  const fontSize: { [x: string]: string } = {
+  const fontSize: Record<string, string> = {
     xs: 'text-xs',
     sm: 'text-sm',
     md: 'text-md',
@@ -35,7 +35,7 @@ const Paragraph = ({
     xl3: 'text-3xl',
   };
 
-  const colors: { [x: string]: string } = {
+  const colors: Record<string, string> = {
     white: 'text-white',
     lightWhite: 'text-white/70',
     gray: 'text-gray-300',
