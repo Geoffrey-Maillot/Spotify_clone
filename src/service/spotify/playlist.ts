@@ -1,5 +1,4 @@
 import { spotifyApi } from './client';
-
 /**
  * PLAYLISTS CURRENT USER
  */
@@ -7,7 +6,9 @@ import { spotifyApi } from './client';
 export const getCurrentUserPlaylists = (params?: Object): Promise<Object> => {
   return spotifyApi
     .getMe()
-    .then((user) => spotifyApi.getUserPlaylists(user.id, params && params));
+    .then((user: any) =>
+      spotifyApi.getUserPlaylists(user.id, params && params)
+    );
 };
 
 export const createPlaylist = (
@@ -81,4 +82,24 @@ export const getPlaylistCoverImage = (id: string): Promise<Object> => {
 
 export const getPlaylistTracks = (id: string, params?: Promise<Object>) => {
   return spotifyApi.getPlaylistTracks(id, params && params);
+};
+
+/**
+ * PLAYLIST RECOMMANDATION
+ */
+
+export const getFeaturedPlaylists = (params?: Object): Promise<Object> => {
+  return spotifyApi.getFeaturedPlaylists(params && params);
+};
+
+export const getNewReleases = (params?: Object): Promise<Object> => {
+  return spotifyApi.getNewReleases(params && params);
+};
+
+export const getRecommendations = (params?: Object): Promise<Object> => {
+  return spotifyApi.getRecommendations(params && params);
+};
+
+export const getAvailableGenreSeeds = (): Promise<Object> => {
+  return spotifyApi.getAvailableGenreSeeds();
 };

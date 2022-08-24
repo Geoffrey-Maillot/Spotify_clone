@@ -1,4 +1,11 @@
-import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  lazy,
+  Suspense,
+  useCallback,
+} from 'react';
 
 // State
 import { useStores } from '../../state/storeContext';
@@ -27,6 +34,7 @@ import { BiLinkExternal } from 'react-icons/bi';
 
 // Import Component PrimeReact
 import { OverlayPanel } from 'primereact/overlaypanel';
+import { observer } from 'mobx-react-lite';
 
 // Lazy Components
 const SearchDialog = lazy(() => import('../Dialogs/SearchDialog'));
@@ -39,7 +47,7 @@ interface Props {
 //Todo: Disable les boutons de nav si il n'y a pas de nav (voir su spotify)
 //Todo: Supprimer les sugestions de l'input search
 
-const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
+const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
   const { authStore, popupsStore } = useStores();
   const navLinkNames: Record<string, string> = {
     playlists: 'Playlists',
@@ -99,17 +107,20 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
       'Spotify Logout',
       'popup=true'
     );
-    setTimeout(() => !!spotifyLogoutWindow && spotifyLogoutWindow.close(), 2000);
+    setTimeout(
+      () => !!spotifyLogoutWindow && spotifyLogoutWindow.close(),
+      2000
+    );
   };
 
   const deconnexion = () => {
-    authStore.deconnexion()
-    logoutFromSpotify()
+    authStore.deconnexion();
+    logoutFromSpotify();
   };
 
-  const toggleSearchDialog = () => {
+  const toggleSearchDialog = useCallback(() => {
     popupsStore.toggleSearchInput();
-  };
+  }, [popupsStore]);
 
   return (
     <>
@@ -300,6 +311,6 @@ const HeaderNav = ({ panelSize, togglePanelLeft }: Props) => {
       </header>
     </>
   );
-};
+});
 
 export default HeaderNav;
