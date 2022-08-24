@@ -35,6 +35,7 @@ import { BiLinkExternal } from 'react-icons/bi';
 // Import Component PrimeReact
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { observer } from 'mobx-react-lite';
+import { getCurrentUser } from '../../service/spotify/user';
 
 // Lazy Components
 const SearchDialog = lazy(() => import('../Dialogs/SearchDialog'));
@@ -48,6 +49,7 @@ interface Props {
 //Todo: Supprimer les sugestions de l'input search
 
 const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
+  const [user, setUser] = useState<SpotifyApi.CurrentUsersProfileResponse>({} as any)
   const { authStore, popupsStore } = useStores();
   const navLinkNames: Record<string, string> = {
     playlists: 'Playlists',
@@ -99,6 +101,10 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
       setheaderWidth(header.current?.clientWidth);
     }
   }, [windowWidth, panelSize]);
+
+  useEffect(() => {
+getCurrentUser().then((user) => setUser(user))
+}, [])
 
   const logoutFromSpotify = () => {
     const url = 'https://www.spotify.com/logout/';
@@ -265,12 +271,12 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
               <div className="w-7 h-7 ">
                 <img
                   className="rounded-full object-cover"
-                  src="https://source.unsplash.com/random/28x28"
+                  src={user.images?.at(0)?.url}
                   alt="Profil"
                 />
               </div>
               <span className=" justify-start items-center g-2 hidden lg:flex">
-                <H2 label="Geoffrey Maillot" size="sm" color="white" />
+                <H2 label={user.display_name} size="sm" color="white" />
                 <span ref={chevronIconAccount}>
                   <RiArrowDownSFill color="white" size="1.4rem" />
                 </span>
