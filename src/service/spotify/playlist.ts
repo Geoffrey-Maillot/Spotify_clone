@@ -1,11 +1,11 @@
 import { spotifyApi } from './client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 /**
  * PLAYLISTS CURRENT USER
  */
 
 export const useGetCurrentUserPlaylists = (params?: Object) => {
-  return useQuery<SpotifyApi.ListOfUsersPlaylistsResponse, any>(
+  return useInfiniteQuery<SpotifyApi.ListOfUsersPlaylistsResponse, any>(
     ['CurrentUserPlaylists'],
     () => {
       return spotifyApi

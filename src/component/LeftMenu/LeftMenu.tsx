@@ -10,11 +10,19 @@ import logo from '../../assets/img/Spotify_Logo.png';
 import LikedTraksLink from './MenuLink/LikedTraksLink';
 import EpisodeLink from './MenuLink/EpisodeLink';
 
+// Spotify Queries
+import { useGetCurrentUserPlaylists } from '../../service/spotify/playlist';
+
 interface Props {
   forwardRef?: React.RefObject<HTMLDivElement>;
 }
 
+// == Component =>
 const LeftMenu = ({ forwardRef }: Props) => {
+
+  const result = useGetCurrentUserPlaylists()
+  console.log(result)
+
   return (
     <div
       ref={forwardRef}
