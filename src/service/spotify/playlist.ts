@@ -7,12 +7,17 @@ import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 export const useGetCurrentUserPlaylists = (params?: Object) => {
   return useInfiniteQuery<SpotifyApi.ListOfUsersPlaylistsResponse, any>(
     ['CurrentUserPlaylists'],
-    () => {
+    ({ pageParam }) => {
       return spotifyApi
         .getMe()
         .then((user: any) =>
-          spotifyApi.getUserPlaylists(user.id, params && params)
+          spotifyApi.getUserPlaylists(user.id, params || pageParam)
         );
+    },
+    {
+      getNextPageParam: (lastPage: SpotifyApi.ListOfUsersPlaylistsResponse) => {
+        return !!lastPage.next && { offset: lastPage.offset + 20 };
+      },
     }
   );
 };

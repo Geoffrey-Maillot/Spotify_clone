@@ -2,12 +2,6 @@
 import Layout from '../component/Layout/Layout';
 import AlbumFirstSuggestion from '../component/AlbumFirstSuggestion/AlbumFirstSuggestion';
 import AlbumList from '../component/AlbumList/AlbumList';
-import { useGetFeaturedPlaylists } from '../service/spotify/playlist';
-import {
-  useGetRecommendations,
-  useGetAvailableGenreSeeds,
-} from '../service/spotify/playlist';
-import { useGetCategoryPlaylists } from '../service/spotify/categorie';
 
 // Spotify Service
 const listAlbumFirstSuggestion = [
@@ -95,14 +89,6 @@ const albumNews = [
 
 // == Component =>
 const Home = () => {
-  const {
-    data: recommendations,
-    error,
-    isError,
-    isLoading,
-  } = useGetFeaturedPlaylists();
-  console.log(error);
-
   return (
     <Layout>
       <div className=" px-4 sm:px-8 pt-6 grid gap-6 ">
