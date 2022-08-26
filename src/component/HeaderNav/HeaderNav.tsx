@@ -20,6 +20,7 @@ import RenderIf from '../UtilsComponents/RenderIf';
 import ButtonMenuleft from './ButtonMenuLeft';
 import NavLink from './NavLink';
 import Search from '../SearchInput/SearchInput';
+import UserSkeleton from '../Skeleton/UserSkeleton';
 
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
@@ -35,7 +36,9 @@ import { BiLinkExternal } from 'react-icons/bi';
 // Import Component PrimeReact
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { observer } from 'mobx-react-lite';
-import { getCurrentUser } from '../../service/spotify/user';
+
+//Queries
+import { UseGetCurrentUser } from '../../service/spotify/user';
 
 // Lazy Components
 const SearchDialog = lazy(() => import('../Dialogs/SearchDialog'));
@@ -101,15 +104,6 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
     }
   }, [windowWidth, panelSize]);
 
-  const [user, setUser] = useState<SpotifyApi.CurrentUsersProfileResponse>(
-    {} as any
-  );
-
-  useEffect(() => {
-    getCurrentUser().then((user) => setUser(user));
-  }, []);
-  console.log(user);
-
   const logoutFromSpotify = () => {
     const url = 'https://www.spotify.com/logout/';
     const spotifyLogoutWindow = window.open(
@@ -131,6 +125,8 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
   const toggleSearchDialog = useCallback(() => {
     popupsStore.toggleSearchInput();
   }, [popupsStore]);
+
+  const { data: user, error, isError, isLoading } = UseGetCurrentUser();
 
   return (
     <>
@@ -267,57 +263,62 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
               </a>
             )}
           </RenderIf>
-          <div className="relative flex-none">
-            <button
-              className="flex items-center justify-center gap-2 p-1 rounded-full bg-dark-400 hover:bg-dark-50"
-              onClick={showPopupAccount}
-            >
-              <div className="w-7 h-7 ">
-                <img
-                  className="rounded-full object-cover"
-                  src={user.images?.at(0)?.url}
-                  alt="Profil"
-                  loading="lazy"
-                />
-              </div>
-              <span className=" justify-start items-center g-2 hidden lg:flex">
-                <H2 label={user.display_name} size="sm" color="white" />
-                <span ref={chevronIconAccount}>
-                  <RiArrowDownSFill color="white" size="1.4rem" />
+          <RenderIf bool={isLoading}>
+            <UserSkeleton />
+          </RenderIf>
+          <RenderIf bool={!!user}>
+            <div className="relative flex-none">
+              <button
+                className="flex items-center justify-center gap-2 p-1 rounded-full bg-dark-400 hover:bg-dark-50"
+                onClick={showPopupAccount}
+              >
+                <div className="w-7 h-7 ">
+                  <img
+                    className="rounded-full object-cover"
+                    src={user?.images?.at(0)?.url}
+                    alt="Profil"
+                    loading="lazy"
+                  />
+                </div>
+                <span className=" justify-start items-center g-2 hidden lg:flex">
+                  <H2 label={user?.display_name} size="sm" color="white" />
+                  <span ref={chevronIconAccount}>
+                    <RiArrowDownSFill color="white" size="1.4rem" />
+                  </span>
                 </span>
-              </span>
-            </button>
-            <OverlayPanel ref={popupAccount} className="absolute, ">
-              <div className="  w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col  ">
-                <a href="/">
-                  <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
-                    <Paragraph label="Compte" color="lightWhite" />
-                    <BiLinkExternal color="#ffffffe6" size="1.4rem" />
-                  </span>
-                </a>
-                <Link
-                  to="/user/idProfil"
-                  className="py-3 pr-2 pl-2 rounded hover:bg-white/10"
-                >
-                  {' '}
-                  <Paragraph label="Profil" color="lightWhite" />
-                </Link>
-                <a href="https://www.spotify.com/fr/premium/">
-                  <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
-                    <Paragraph label="Passer à Premium" color="lightWhite" />
-                    <BiLinkExternal color="#ffffffe6" size="1.4rem" />
-                  </span>
-                </a>
-                <button
-                  onClick={deconnexion}
-                  className="py-3 pr-2 pl-2 rounded hover:bg-white/10 text-left"
-                >
-                  {' '}
-                  <Paragraph label="Déconnexion" color="lightWhite" />
-                </button>
-              </div>
-            </OverlayPanel>
-          </div>
+              </button>
+              <OverlayPanel ref={popupAccount} className="absolute, ">
+                <div className="  w-[12.25rem] bg-dark-250 rounded p-1 flex flex-col  ">
+                  <a href="/">
+                    <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
+                      <Paragraph label="Compte" color="lightWhite" />
+                      <BiLinkExternal color="#ffffffe6" size="1.4rem" />
+                    </span>
+                  </a>
+                  <Link
+                    to="/user/idProfil"
+                    className="py-3 pr-2 pl-2 rounded hover:bg-white/10"
+                  >
+                    {' '}
+                    <Paragraph label="Profil" color="lightWhite" />
+                  </Link>
+                  <a href="https://www.spotify.com/fr/premium/">
+                    <span className="flex items-center justify-between py-3 pr-2 pl-2 rounded hover:bg-white/10">
+                      <Paragraph label="Passer à Premium" color="lightWhite" />
+                      <BiLinkExternal color="#ffffffe6" size="1.4rem" />
+                    </span>
+                  </a>
+                  <button
+                    onClick={deconnexion}
+                    className="py-3 pr-2 pl-2 rounded hover:bg-white/10 text-left"
+                  >
+                    {' '}
+                    <Paragraph label="Déconnexion" color="lightWhite" />
+                  </button>
+                </div>
+              </OverlayPanel>
+            </div>
+          </RenderIf>
         </div>
       </header>
     </>

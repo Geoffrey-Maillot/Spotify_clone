@@ -1,14 +1,20 @@
 import { spotifyApi } from './client';
+import { useQuery } from '@tanstack/react-query';
 /**
  * PLAYLISTS CURRENT USER
  */
 
-export const getCurrentUserPlaylists = (params?: Object): Promise<Object> => {
-  return spotifyApi
-    .getMe()
-    .then((user: any) =>
-      spotifyApi.getUserPlaylists(user.id, params && params)
-    );
+export const useGetCurrentUserPlaylists = (params?: Object) => {
+  return useQuery<SpotifyApi.ListOfUsersPlaylistsResponse, any>(
+    ['CurrentUserPlaylists'],
+    () => {
+      return spotifyApi
+        .getMe()
+        .then((user: any) =>
+          spotifyApi.getUserPlaylists(user.id, params && params)
+        );
+    }
+  );
 };
 
 export const createPlaylist = (
@@ -73,7 +79,7 @@ export const uploadCoverImagePlaylist = (
  */
 
 export const getPlaylists = (id: string, params?: Object): Promise<Object> => {
-  return spotifyApi.getPlaylist(id, params && params);
+  return spotifyApi.getPlaylist(id, params);
 };
 
 export const getPlaylistCoverImage = (id: string): Promise<Object> => {
@@ -81,25 +87,34 @@ export const getPlaylistCoverImage = (id: string): Promise<Object> => {
 };
 
 export const getPlaylistTracks = (id: string, params?: Promise<Object>) => {
-  return spotifyApi.getPlaylistTracks(id, params && params);
+  return spotifyApi.getPlaylistTracks(id, params);
 };
 
 /**
  * PLAYLIST RECOMMANDATION
  */
 
-export const getFeaturedPlaylists = (params?: Object): Promise<Object> => {
-  return spotifyApi.getFeaturedPlaylists(params && params);
+export const useGetFeaturedPlaylists = (params?: Object) => {
+  return useQuery<SpotifyApi.ListOfFeaturedPlaylistsResponse, any>(
+    ['featuredPlaylists'],
+    () => spotifyApi.getFeaturedPlaylists(params)
+  );
 };
 
-export const getNewReleases = (params?: Object): Promise<Object> => {
-  return spotifyApi.getNewReleases(params && params);
+export const getNewRedleases = (params?: Object): Promise<Object> => {
+  return spotifyApi.getNewReleases(params);
 };
 
-export const getRecommendations = (params?: Object): Promise<Object> => {
-  return spotifyApi.getRecommendations(params && params);
+export const useGetRecommendations = (params?: Object) => {
+  return useQuery<SpotifyApi.RecommendationsFromSeedsResponse, any>(
+    ['recommendations'],
+    () => spotifyApi.getRecommendations(params && params)
+  );
 };
 
-export const getAvailableGenreSeeds = (): Promise<Object> => {
-  return spotifyApi.getAvailableGenreSeeds();
+export const useGetAvailableGenreSeeds = () => {
+  return useQuery<SpotifyApi.AvailableGenreSeedsResponse, any>(
+    ['availableGenreSeeds'],
+    () => spotifyApi.getAvailableGenreSeeds()
+  );
 };

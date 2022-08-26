@@ -28,6 +28,6 @@ export const useSession = () => {
   });
 };
 
-export const getToken = (): string | null => {
+export const getToken = (): string | null | Promise<string> => {
   return spotifyApi.getAccessToken();
 };
