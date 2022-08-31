@@ -87,6 +87,7 @@ const albumNews = [
   },
 ];
 
+
 // == Component =>
 const Home = () => {
   return (
