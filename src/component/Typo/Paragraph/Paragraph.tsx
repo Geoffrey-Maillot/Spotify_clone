@@ -1,7 +1,7 @@
 interface Props {
   children?: React.ReactNode;
   className?: string;
-  label?: string;
+  label: string | null;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl2' | 'xl3';
   clamp?: boolean;
   nbrLineClamp?: number;

@@ -1,5 +1,20 @@
 ## Next✅
 
+NEXT =>
+
+- Installer react-intersection-observer
+- Cacher un bouton dans le composant Infinite scroll
+- Fetcher les datas quand on voit le bouton
+
+---
+
+- Créer une card de chargement avec :
+
+  - Image par défault
+  - Text Skeleton
+
+- Gérer error / isLoading page Playlist
+
 ---
 
 ## Storybook🧐

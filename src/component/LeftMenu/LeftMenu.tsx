@@ -38,12 +38,6 @@ const LeftMenu = ({ forwardRef }: Props) => {
       <Link to="/" className="w-[8.1875rem] h-10 mb-4 ml-6 ">
         <img src={logo} alt="Logo Spotify" />
       </Link>
-      <button
-        className="px-4 bg-green-200 rounded"
-        onClick={() => fetchNextPage()}
-      >
-        TEST
-      </button>
       <ul className="mb-5 px-6 w-full">
         <li>
           <MenuLink to="/" icon iconType="home" label="Acceuil" />

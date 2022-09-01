@@ -20,7 +20,7 @@ import { Album } from '../../service/interface/Album';
 
 interface Props {
   title?: string;
-  subTitle?: string;
+  subTitle: string;
   albums: Array<Album>;
   link: string;
 }
