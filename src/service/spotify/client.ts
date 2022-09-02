@@ -9,6 +9,8 @@ import Spotify from 'spotify-web-api-js';
 import Q from 'q';
 import { useStores } from '../../state/storeContext';
 
+export const spotifyUrlApi = 'https://api.spotify.com/v1';
+
 export const spotifyApi = new Spotify();
 
 spotifyApi.setPromiseImplementation(Q);

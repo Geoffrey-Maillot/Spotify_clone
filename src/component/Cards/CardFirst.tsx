@@ -1,14 +1,12 @@
+import { UUID } from '../../service/utils/uuid';
+
 // Import Router
 import { Link } from 'react-router-dom';
-
-// Import icon
-import { GoPrimitiveDot } from 'react-icons/go';
 
 // Import Component
 import H2 from '../Typo/H2/H2';
 import Paragraph from '../Typo/Paragraph/Paragraph';
 import ButtonPlay from '../Button/ButtonPlay/ButtonPlay';
-import { artist } from '../HeaderBandPlay/HeaderBandPlay.stories';
 
 export enum Type {
   PLAYLIST = 'playlist',
@@ -17,11 +15,17 @@ export enum Type {
 
 interface Props {
   type: Type;
-  listTitle: Array<{ track: string; artist: string }>;
+  listTitleTracks?: Array<{ track: string; artist: string }>;
+  listTitleEpisodes?: Array<string>;
   total?: number;
 }
 
-const CardFirst = ({ type, listTitle, total }: Props) => {
+const CardFirst = ({
+  type,
+  listTitleTracks,
+  listTitleEpisodes,
+  total,
+}: Props) => {
   const types: { [x: string]: Record<string, string> } = {
     playlist: {
       title: total && total > 0 ? 'Titres likés' : 'Titre liké',
@@ -40,12 +44,13 @@ const CardFirst = ({ type, listTitle, total }: Props) => {
       to={`/collection/${type === Type.PLAYLIST ? 'tracks' : 'episodes'}`}
       className={` h-full relative group col-span-1 md:col-span-2 self-stretch rounded-md flex flex-col gap-6 justify-end items-start p-[20px] place-self-stretch ${types[type].background}`}
     >
-      {listTitle && (
+      {(listTitleTracks || listTitleEpisodes) && (
         <div className="mb-3 flex items-center content-start flex-wrap">
           <p className="line-clamp" style={{ WebkitLineClamp: 3 }}>
-            {listTitle.length > 0 &&
-              listTitle.map((track) => (
-                <>
+            {listTitleTracks &&
+              listTitleTracks.length > 0 &&
+              listTitleTracks.map((track) => (
+                <span key={UUID()}>
                   <span className="text-lg font-circularBook text-white mx-1">
                     {track.artist}
                   </span>
@@ -53,7 +58,18 @@ const CardFirst = ({ type, listTitle, total }: Props) => {
                     {track.track}
                   </span>
                   <span className="w-1 h-1 rounded-full -translate-y-[2px] bg-white/70 mx-1 inline-block"></span>
-                </>
+                </span>
+              ))}
+            {listTitleEpisodes &&
+              listTitleEpisodes.length > 0 &&
+              listTitleEpisodes.map((name) => (
+                <span key={UUID()}>
+                  <span className="text-lg font-circularBook text-white mx-1">
+                    {name}
+                  </span>
+
+                  <span className="w-1 h-1 rounded-full -translate-y-[2px] bg-white/70 mx-1 inline-block"></span>
+                </span>
               ))}
           </p>
         </div>

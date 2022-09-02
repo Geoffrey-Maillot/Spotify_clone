@@ -1,5 +1,6 @@
 import { spotifyApi } from './client';
 
+
 export enum Type {
   ALBUM = 'album',
   ARTIST = 'artist',

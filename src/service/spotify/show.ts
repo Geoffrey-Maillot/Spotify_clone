@@ -1,11 +1,22 @@
 import { spotifyApi } from './client';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 /**
  * SHOW CURRENT USER
  */
 
-export const getSavedShows = (params?: Object): Promise<Object> => {
-  return spotifyApi.getMySavedShows(params && params);
+export const useGetSavedShows = (params?: Object) => {
+  return useInfiniteQuery<SpotifyApi.ListOfUsersShowsResponse, any>(
+    ['savedShows'],
+    ({ pageParam }) => {
+      return spotifyApi.getMySavedShows(params || pageParam);
+    },
+    {
+      getNextPageParam: (lastPage: SpotifyApi.ListOfUsersShowsResponse) => {
+        return !!lastPage.next && { offset: lastPage.offset + 20 };
+      },
+    }
+  );
 };
 
 export const addToSavedShows = (

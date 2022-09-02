@@ -51,9 +51,8 @@ const Playlists = () => {
         {isLoadingPlaylists && <CardSkeleton />}
         {playlists.length === 0 && (
           <div>
-            {' '}
             Oh vous n'avez pas encore de playlist 🙁? Créer votre première
-            playlist : Button
+            playlist : Créer le bouton
           </div>
         )}
         <InfiniteScroll
@@ -64,7 +63,7 @@ const Playlists = () => {
             <CardFirst
               type={Type.PLAYLIST}
               total={total}
-              listTitle={listLikedTracks}
+              listTitleTracks={listLikedTracks}
             />
 
             {playlists.map((playlist) => (

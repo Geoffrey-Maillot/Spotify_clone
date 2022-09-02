@@ -1,4 +1,5 @@
-import { spotifyApi } from './client';
+import { spotifyApi, spotifyUrlApi } from './client';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 export const getShowEpisodes = (
   showId: string,
@@ -19,4 +20,20 @@ export const getEpisodes = (
   params: Object
 ): Promise<Object> => {
   return spotifyApi.getEpisodes(episodeIds, params && params);
+};
+
+export const useGetMyEpisodes = () => {
+  return useInfiniteQuery<any, any>(
+    ['myEpisodes'],
+    ({ pageParam = { offset: 0, limit: 20 } }) => {
+      return spotifyApi.getGeneric(
+        `${spotifyUrlApi}/me/episodes?offset=${pageParam.offset}&limit=${pageParam.limit}`
+      );
+    },
+    {
+      getNextPageParam: (lastPage: any) => {
+        return lastPage.next && { offset: lastPage.offset + 20 };
+      },
+    }
+  );
 };
