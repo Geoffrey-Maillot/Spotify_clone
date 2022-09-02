@@ -7,6 +7,7 @@ import CardFirst from '../../component/Cards/CardFirst';
 
 // Import interface
 import { PageType } from '../../service/interface/Album';
+import { Type } from '../../component/Cards/CardFirst';
 
 const podcasts = [
   {
@@ -39,17 +40,17 @@ const podcasts = [
 // == Component =>
 const Podcasts = () => (
   <Layout>
-    <div className="px-8 pt-6">
-      <section>
+    <section className="px-8 pt-6">
+    
         <H2 size="xl2"> Podcasts </H2>
         <Grid>
-          <CardFirst type="podcast" />
+          <CardFirst listTitle={[]} type={Type.PODCAST} />
           {podcasts.map((item, i) => (
-            <CardMusic key={i} {...item} type={PageType.SHOW}/>
+            <CardMusic key={i} {...item} type={PageType.SHOW} />
           ))}
         </Grid>
-      </section>
-    </div>
+ 
+    </section>
   </Layout>
 );
 

@@ -61,11 +61,7 @@ const LeftMenu = ({ forwardRef }: Props) => {
         <div className="absolute  z-10 right-4 left-0  top-0 h-4 bg-gradient-to-b from-[#00000070]/70 to-transparent " />
       </div>
 
-      <InfiniteScroll
-        className=" w-full overflow-y-scroll h-full scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-400 px-6 "
-        trigger={fetchNextPage}
-        hasNextPage={hasNextPage}
-      >
+      <ul className=" w-full overflow-y-scroll h-full scrollbar scrollbar-thumb-dark-150 scrollbar-track-dark-400 px-6 ">
         {error ? (
           <div className=" font-circularBook text-sm text-white mt-4">
             Une erreur est survenue pendant le chargement des playlist
@@ -73,15 +69,17 @@ const LeftMenu = ({ forwardRef }: Props) => {
         ) : isLoading ? (
           <Spinner />
         ) : (
-          playlists.map((playlist) => (
-            <MenuLink
-              key={playlist.id}
-              to={`/playlist/${playlist.id}`}
-              label={playlist.name}
-            />
-          ))
+          <InfiniteScroll hasNextPage={hasNextPage} trigger={fetchNextPage}>
+            {playlists.map((playlist) => (
+              <MenuLink
+                key={playlist.id}
+                to={`/playlist/${playlist.id}`}
+                label={playlist.name}
+              />
+            ))}
+          </InfiniteScroll>
         )}
-      </InfiniteScroll>
+      </ul>
     </div>
   );
 };

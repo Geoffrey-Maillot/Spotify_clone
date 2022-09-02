@@ -4,7 +4,7 @@ import { spotifyApi } from './client';
  * SHOW CURRENT USER
  */
 
-export const getSavedShows = (params: Object): Promise<Object> => {
+export const getSavedShows = (params?: Object): Promise<Object> => {
   return spotifyApi.getMySavedShows(params && params);
 };
 
@@ -33,7 +33,7 @@ export const containsSavedShows = (
  * SHOW
  */
 
-export const getShow = (showId: string, params: Object): Promise<Object> => {
+export const getShow = (showId: string, params?: Object): Promise<Object> => {
   return spotifyApi.getShow(showId, params && params);
 };
 

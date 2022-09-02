@@ -1,11 +1,22 @@
 import { spotifyApi } from './client';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 /**
  * TRACKS CURRENT USER
  */
 
-export const getLikedTracks = (params?: Object): Promise<Object> => {
-  return spotifyApi.getMySavedTracks(params && params);
+export const useGetLikedTracks = (params?: Object) => {
+  return useInfiniteQuery<SpotifyApi.UsersSavedTracksResponse, any>(
+    ['likedTracks'],
+    ({ pageParam }) => {
+      return spotifyApi.getMySavedTracks(params || pageParam);
+    },
+    {
+      getNextPageParam: (lastPage: SpotifyApi.UsersSavedTracksResponse) => {
+        return lastPage.next && { offset: lastPage.offset + 20 };
+      },
+    }
+  );
 };
 
 export const addToLikedTracks = (
@@ -56,7 +67,9 @@ export const getTrackAudioFeatures = (trackId: string): Promise<Object> => {
   return spotifyApi.getAudioFeaturesForTrack(trackId);
 };
 
-export const getTracksAudioFeatures = (trackIds: Array<string>): Promise<Object> => {
+export const getTracksAudioFeatures = (
+  trackIds: Array<string>
+): Promise<Object> => {
   return spotifyApi.getAudioFeaturesForTracks(trackIds);
 };
 

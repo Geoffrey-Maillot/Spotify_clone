@@ -8,8 +8,8 @@ const UserSkeleton = (props: UserSkeletonProps) => (
     width={162.2}
     height={36}
     viewBox="0 0 162.2 36"
-    backgroundColor="#d9d9d9"
-    foregroundColor="#ecebeb"
+    backgroundColor="#cbcbcb"
+    foregroundColor="#fff"
     className="bg-dark-400 rounded-full"
     {...props}
   >
