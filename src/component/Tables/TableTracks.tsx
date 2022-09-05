@@ -12,9 +12,6 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
-import { artist } from '../HeaderBandPlay/HeaderBandPlay.stories';
-
-// TODO : Remplacer any par les infos provenant de l'api
 
 interface Props {
   tracksList: Array<SpotifyApi.PlaylistTrackObject>;
@@ -38,7 +35,7 @@ const TableTracks = ({ tracksList }: Props) => {
     setSelectedRow(e.value);
   };
 
-  const buttonLike = (rowData: any) => {
+  const ButtonLike = (rowData: any) => {
     return (
       <span className="w-full flex justify-end">
         {rowData.liked ? (
@@ -57,13 +54,22 @@ const TableTracks = ({ tracksList }: Props) => {
     );
   };
   // TODO : Afficher la date si moins de 7 jours sison "Il y a x jours "
-  const addedContent = (rowData: any) => {
+  const AddedContent = (rowData: any) => {
     return <p> Il y a {rowData?.added} jours</p>;
   };
 
-  const titleContent = (rowData: any) => {
+  const TrackNumber = (rowData: any) => {
+    return <span>{tableData.indexOf(rowData) + 1}</span>;
+  };
 
-  const artists = rowData.artists.map((artist: any) => artist.name).join(', ')
+  const Duration = (rowData: any) => {
+    return <span>{(rowData.duration_ms / (60 * 1000)).toFixed(2)}</span>;
+  };
+
+  const TitleContent = (rowData: any) => {
+    const artists = rowData.artists
+      .map((artist: any) => artist.name)
+      .join(', ');
 
     return (
       <div className="flex justify-start flex-row-reverse md:flex-row items-center text-right md:text-left gap-3">
@@ -117,12 +123,13 @@ const TableTracks = ({ tracksList }: Props) => {
           }}
           field="track"
           header="#"
+          body={TrackNumber}
         />
         <Column
           field="title"
           bodyStyle={{ padding: '8px' }}
           header="Titre"
-          body={titleContent}
+          body={TitleContent}
         />
 
         <Column
@@ -144,7 +151,7 @@ const TableTracks = ({ tracksList }: Props) => {
           field="added"
           bodyStyle={{ flex: 'none', paddingInline: '8px', minWidth: '100px' }}
           header="Ajoutée le"
-          body={addedContent}
+          body={AddedContent}
           className="hidden lg:table-cell"
         />
 
@@ -152,14 +159,14 @@ const TableTracks = ({ tracksList }: Props) => {
           field=""
           header=""
           bodyStyle={{ flex: 'none', paddingInline: '8px' }}
-          body={buttonLike}
+          body={ButtonLike}
         />
         <Column
           headerStyle={{
             paddingRight: '16px',
             textAlign: 'end',
           }}
-          field="duration"
+          body={Duration}
           bodyStyle={{
             textAlign: 'end',
             paddingRight: '16px',
