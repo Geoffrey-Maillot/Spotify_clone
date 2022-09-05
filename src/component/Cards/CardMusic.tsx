@@ -11,18 +11,24 @@ import RenderIf from '../UtilsComponents/RenderIf';
 import { GoPrimitiveDot } from 'react-icons/go';
 
 interface Props
-  extends Partial<Omit<SpotifyApi.PlaylistObjectSimplified, 'type'>>,
-    Partial<Omit<SpotifyApi.SavedShowObject, 'type'>> {
+  extends Partial<Omit<SpotifyApi.PlaylistObjectSimplified, 'tracks' | 'type'>>,
+    Partial<SpotifyApi.SavedShowObject>,
+    Partial<Omit<SpotifyApi.AlbumObjectFull, 'tracks' | 'type'>> {
   type?: string;
 }
 
 const CardMusic = ({
   images = [],
-  name = 'Daily Mix 1',
-  description = 'Mes super titres',
-  type = 'playlist',
-  id = 'id12345',
+  name,
+  description,
+  type,
+  id,
+  artists,
 }: Props) => {
+  const artistsName: string | undefined = artists
+    ?.map((artist) => artist.name)
+    .join(', ');
+
   return (
     <Link
       to={`/${type}/${id}`}
@@ -61,6 +67,10 @@ const CardMusic = ({
             <GoPrimitiveDot color="#b3b3b3" size=".4rem" />
             <Paragraph label="durée" />
           </div>
+        ) : type === 'artist' ? (
+          <Paragraph label="Artiste" clamp />
+        ) : type === 'album' && artistsName ? (
+          <Paragraph label={artistsName} clamp />
         ) : (
           <Paragraph label={description} clamp />
         )}

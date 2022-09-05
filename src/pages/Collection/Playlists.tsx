@@ -37,7 +37,7 @@ const Playlists = () => {
 
   dataPlaylists?.pages
     .flat()
-    .forEach((item) => (playlists = [...playlists, ...item.items]));
+    .forEach((playlist) => (playlists = [...playlists, ...playlist.items]));
 
   return (
     <Layout>

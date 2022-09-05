@@ -84,16 +84,30 @@ export const uploadCoverImagePlaylist = (
  * PLAYLISTS
  */
 
-export const getPlaylists = (id: string, params?: Object): Promise<Object> => {
-  return spotifyApi.getPlaylist(id, params);
+export const useGetPlaylist = (id: string, params?: Object) => {
+  return useQuery<SpotifyApi.SinglePlaylistResponse, any>(
+    ['playlist', id],
+    () => spotifyApi.getPlaylist(id, params)
+  );
 };
 
-export const getPlaylistCoverImage = (id: string): Promise<Object> => {
-  return spotifyApi.getPlaylistCoverImage(id);
+export const useGetPlaylistCoverImage = (id: string) => {
+  return useQuery<SpotifyApi.PlaylistCoverImageResponse, any>(
+    ['playlistCoverImage', id],
+    () => spotifyApi.getPlaylistCoverImage(id)
+  );
 };
 
-export const getPlaylistTracks = (id: string, params?: Promise<Object>) => {
-  return spotifyApi.getPlaylistTracks(id, params);
+export const useGetPlaylistTracks = (id: string, params?: Object) => {
+  return useInfiniteQuery<SpotifyApi.PlaylistTrackResponse>(
+    ['playlistTracks', id],
+    ({ pageParam }) => spotifyApi.getPlaylistTracks(id, params || pageParam),
+    {
+      getNextPageParam: (lastPage: SpotifyApi.PlaylistTrackResponse) => {
+        return !!lastPage.next && { offset: lastPage.offset + 20 };
+      },
+    }
+  );
 };
 
 /**

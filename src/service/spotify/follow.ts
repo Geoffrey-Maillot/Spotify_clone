@@ -1,4 +1,6 @@
 import { spotifyApi } from './client';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { next } from './player';
 
 /**
  * USER
@@ -34,8 +36,18 @@ export const isFollowingArtists = (
   return spotifyApi.isFollowingArtists(artistIds);
 };
 
-export const getFollowedArtist = (params?: Object): Promise<Object> => {
-  return spotifyApi.getFollowedArtists(params && params);
+export const useGetFollowedArtist = (params?: Object) => {
+  return useInfiniteQuery<SpotifyApi.UsersFollowedArtistsResponse, any>(
+    ['followedArtists'],
+    ({ pageParam }) => spotifyApi.getFollowedArtists(params || pageParam),
+    {
+      getNextPageParam: (lastPage: SpotifyApi.UsersFollowedArtistsResponse) => {
+        return (
+          !!lastPage.artists.next && { after: lastPage.artists.cursors.after }
+        );
+      },
+    }
+  );
 };
 
 /**

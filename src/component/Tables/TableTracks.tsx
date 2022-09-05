@@ -12,29 +12,22 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
+import { artist } from '../HeaderBandPlay/HeaderBandPlay.stories';
 
 // TODO : Remplacer any par les infos provenant de l'api
 
-interface Track {
-  track: number;
-  img: string;
-  title: string;
-  artist: string;
-  album: string;
-  added: number;
-  duration: string;
-  liked: boolean;
-}
-
 interface Props {
-  tracksList: Array<Track>;
+  tracksList: Array<SpotifyApi.PlaylistTrackObject>;
 }
 
 const TableTracks = ({ tracksList }: Props) => {
-  const [selectedRow, setSelectedRow] = useState<Track | null>(null);
+  const [selectedRow, setSelectedRow] =
+    useState<SpotifyApi.PlaylistTrackObject | null>(null);
   const [responsiveTableStyle, setResponsiveTableStyle] =
     useState<DataTableResponsiveLayoutType>('scroll');
   const windowWidth: number = useGetWindowWidth();
+
+  const tableData = tracksList.map((track) => track.track);
 
   useEffect(() => {
     const responsiveStyle = windowWidth <= 780 ? 'stack' : 'scroll';
@@ -69,23 +62,26 @@ const TableTracks = ({ tracksList }: Props) => {
   };
 
   const titleContent = (rowData: any) => {
+
+  const artists = rowData.artists.map((artist: any) => artist.name).join(', ')
+
     return (
       <div className="flex justify-start flex-row-reverse md:flex-row items-center text-right md:text-left gap-3">
         <div className="w-10 h-10 object-cover object-center flex-none">
-          <img src={rowData?.img} alt={rowData?.title} />
+          <img src={rowData?.album?.images[2]?.url} alt={rowData?.name} />
         </div>
         <div className="title">
           <Paragraph
             size="lg"
             color="white"
-            label={rowData?.title}
+            label={rowData?.name}
             clamp
             nbrLineClamp={1}
           />
           <Paragraph
             size="sm"
             color="lightGray"
-            label={rowData?.artist}
+            label={artists}
             clamp
             nbrLineClamp={1}
           />
@@ -97,8 +93,8 @@ const TableTracks = ({ tracksList }: Props) => {
   return (
     <div>
       <DataTable
-        value={tracksList}
-        dataKey="track"
+        value={tableData}
+        dataKey="id"
         selectionMode="single"
         responsiveLayout={responsiveTableStyle}
         className=" text-gray-200 text-left table-tracks"
@@ -136,7 +132,7 @@ const TableTracks = ({ tracksList }: Props) => {
           className="album"
           body={(rowData: any) => (
             <Paragraph
-              label={rowData.album}
+              label={rowData.album.name}
               clamp
               nbrLineClamp={2}
               className="title"

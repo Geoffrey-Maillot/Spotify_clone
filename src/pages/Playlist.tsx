@@ -12,112 +12,45 @@ import H2 from '../component/Typo/H2/H2';
 import TableTracks from '../component/Tables/TableTracks';
 import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 
+// Spotify
+import {
+  useGetPlaylist,
+  useGetPlaylistCoverImage,
+  useGetPlaylistTracks,
+} from '../service/spotify/playlist';
+
 // == Component =>
 const Playlist = () => {
-  const { id } = useParams();
+  const id = useParams().id as string;
 
-  const tracksList = [
-    {
-      track: 1,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre un peu beaucoup long pour tester les trois ti point',
-      artist: 'Artiste',
-      album: 'Album super long aussi',
-      added: 10,
-      duration: '3:21',
-      liked: true,
-    },
-    {
-      track: 2,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 3,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 4,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 5,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 6,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 7,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'titre super long',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 8,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 9,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 10,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: false,
-    },
-  ];
+  const {
+    data: dataPlaylist,
+    error: errorPlaylist,
+    isLoading: isLoadingPlaylist,
+  } = useGetPlaylist(id);
+  const {
+    data: dataCoverImage,
+    error: errorCoverImage,
+    isLoading: isLoadingCoverImage,
+  } = useGetPlaylistCoverImage(id);
+  const {
+    data: dataTracks,
+    error: errorTracks,
+    isLoading: isLoadingTracks,
+    fetchNextPage: fetchNextPageTracks,
+    hasNextPage: hasNextPageTracks,
+  } = useGetPlaylistTracks(id);
+
+  console.log('dataPlaylist : ', dataPlaylist);
+  console.log('dataCoverImage : ', dataCoverImage);
+  console.log('dataTracks : ', dataTracks);
+
+  let tracksList: Array<SpotifyApi.PlaylistTrackObject> = [];
+
+  dataTracks?.pages.flat().forEach((track) => {
+    tracksList = [...tracksList, ...track.items]
+})
+
 
   return (
     <Layout>

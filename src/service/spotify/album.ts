@@ -1,14 +1,19 @@
 import { spotifyApi } from './client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
+
 /**
  * ALBUM CURRENT USER
  */
 
-export const useGetMySavedAlbums = (params?: Object, options?: Object) => {
-  return useQuery<SpotifyApi.UsersSavedAlbumsResponse, any>(
+export const useGetMySavedAlbums = (params?: Object) => {
+  return useInfiniteQuery<SpotifyApi.UsersSavedAlbumsResponse, any>(
     ['savedAlbums'],
-    () => spotifyApi.getMySavedAlbums(params),
-    options
+    ({ pageParam }) => spotifyApi.getMySavedAlbums(params || pageParam),
+    {
+      getNextPageParam: (lastPage: SpotifyApi.UsersSavedAlbumsResponse) => {
+        return !!lastPage.next && { offset: lastPage.offset + 20 };
+      },
+    }
   );
 };
 
