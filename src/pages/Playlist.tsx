@@ -18,6 +18,7 @@ import {
   useGetPlaylistCoverImage,
   useGetPlaylistTracks,
 } from '../service/spotify/playlist';
+import InfiniteScroll from '../component/UtilsComponents/InfiniteScroll';
 
 // == Component =>
 const Playlist = () => {
@@ -37,20 +38,31 @@ const Playlist = () => {
     data: dataTracks,
     error: errorTracks,
     isLoading: isLoadingTracks,
+    isFetching: isFetchingTracks,
     fetchNextPage: fetchNextPageTracks,
     hasNextPage: hasNextPageTracks,
   } = useGetPlaylistTracks(id);
 
-  console.log('dataPlaylist : ', dataPlaylist);
-  console.log('dataCoverImage : ', dataCoverImage);
-  console.log('dataTracks : ', dataTracks);
-
   let tracksList: Array<SpotifyApi.PlaylistTrackObject> = [];
 
   dataTracks?.pages.flat().forEach((track) => {
-    tracksList = [...tracksList, ...track.items]
-})
+    tracksList = [...tracksList, ...track.items];
+  });
 
+  //? A Mettre dans un fichier à part
+  const chunkTable = (arr: Array<string>, sizeChunk: number): string[][] => {
+    const result = [];
+    for (let i = 0; i < arr.length; i += sizeChunk) {
+      const chunk = arr.slice(i, i + sizeChunk);
+      result.push(chunk);
+    }
+    return result;
+  };
+
+  // List de l'Id des tracks utilisé pour savoir si l'id est liké ou pas
+  const listIdTracks = tracksList.map((track) => track.track.id);
+
+  console.log(chunkTable(listIdTracks, 50));
 
   return (
     <Layout>
@@ -95,7 +107,16 @@ const Playlist = () => {
         </div>
       </header>
       <HeaderBandPlay type="playlist" />
-      <TableTracks tracksList={tracksList} />
+      <InfiniteScroll
+        trigger={fetchNextPageTracks}
+        hasNextPage={hasNextPageTracks}
+      >
+        <TableTracks
+          tracksList={tracksList}
+          isLoading={isLoadingTracks}
+          isFetching={isFetchingTracks}
+        />
+      </InfiniteScroll>
     </Layout>
   );
 };

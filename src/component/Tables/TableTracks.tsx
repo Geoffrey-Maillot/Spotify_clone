@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
@@ -15,16 +16,16 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 
 interface Props {
   tracksList: Array<SpotifyApi.PlaylistTrackObject>;
+  isLoading: boolean;
+  isFetching: boolean;
 }
 
-const TableTracks = ({ tracksList }: Props) => {
+const TableTracks = ({ tracksList, isLoading, isFetching }: Props) => {
   const [selectedRow, setSelectedRow] =
     useState<SpotifyApi.PlaylistTrackObject | null>(null);
   const [responsiveTableStyle, setResponsiveTableStyle] =
     useState<DataTableResponsiveLayoutType>('scroll');
   const windowWidth: number = useGetWindowWidth();
-
-  const tableData = tracksList.map((track) => track.track);
 
   useEffect(() => {
     const responsiveStyle = windowWidth <= 780 ? 'stack' : 'scroll';
@@ -54,33 +55,45 @@ const TableTracks = ({ tracksList }: Props) => {
     );
   };
   // TODO : Afficher la date si moins de 7 jours sison "Il y a x jours "
-  const AddedContent = (rowData: any) => {
-    return <p> Il y a {rowData?.added} jours</p>;
+  const AddedContent = ({ added_at }: any) => {
+    const addedDate = dayjs(added_at);
+    const todayDate = dayjs();
+    const diffDate = todayDate.diff(addedDate, 'day');
+    const addedFormatedDate = dayjs(added_at).format('DD MMM YYYY');
+
+    const displayDate =
+      diffDate === 0
+        ? "Aujourd'hui"
+        : diffDate > 30
+        ? addedFormatedDate
+        : `Il y a ${diffDate} jours`;
+
+    return <p> {displayDate}</p>;
   };
 
   const TrackNumber = (rowData: any) => {
-    return <span>{tableData.indexOf(rowData) + 1}</span>;
+    return <span>{tracksList.indexOf(rowData) + 1}</span>;
   };
 
-  const Duration = (rowData: any) => {
-    return <span>{(rowData.duration_ms / (60 * 1000)).toFixed(2)}</span>;
+  const Duration = ({ track: { duration_ms } }: any) => {
+    return (
+      <span>{(duration_ms / (60 * 1000)).toFixed(2).split('.').join(':')}</span>
+    );
   };
 
-  const TitleContent = (rowData: any) => {
-    const artists = rowData.artists
-      .map((artist: any) => artist.name)
-      .join(', ');
+  const TitleContent = ({ track }: any) => {
+    const artists = track.artists.map((artist: any) => artist.name).join(', ');
 
     return (
       <div className="flex justify-start flex-row-reverse md:flex-row items-center text-right md:text-left gap-3">
         <div className="w-10 h-10 object-cover object-center flex-none">
-          <img src={rowData?.album?.images[2]?.url} alt={rowData?.name} />
+          <img src={track?.album?.images[2]?.url} alt={track?.name} />
         </div>
         <div className="title">
           <Paragraph
             size="lg"
             color="white"
-            label={rowData?.name}
+            label={track?.name}
             clamp
             nbrLineClamp={1}
           />
@@ -99,13 +112,14 @@ const TableTracks = ({ tracksList }: Props) => {
   return (
     <div>
       <DataTable
-        value={tableData}
-        dataKey="id"
+        value={tracksList}
+        dataKey="track"
         selectionMode="single"
         responsiveLayout={responsiveTableStyle}
         className=" text-gray-200 text-left table-tracks"
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
+        loading={isFetching || isLoading}
       >
         <Column
           headerStyle={{
@@ -139,7 +153,7 @@ const TableTracks = ({ tracksList }: Props) => {
           className="album"
           body={(rowData: any) => (
             <Paragraph
-              label={rowData.album.name}
+              label={rowData.track.album.name}
               clamp
               nbrLineClamp={2}
               className="title"
