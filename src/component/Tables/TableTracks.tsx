@@ -18,9 +18,18 @@ interface Props {
   tracksList: Array<SpotifyApi.PlaylistTrackObject>;
   isLoading: boolean;
   isFetching: boolean;
+  tracksIsLiked: {
+    id: string;
+    liked: boolean | undefined;
+  }[];
 }
 
-const TableTracks = ({ tracksList, isLoading, isFetching }: Props) => {
+const TableTracks = ({
+  tracksList,
+  isLoading,
+  isFetching,
+  tracksIsLiked,
+}: Props) => {
   const [selectedRow, setSelectedRow] =
     useState<SpotifyApi.PlaylistTrackObject | null>(null);
   const [responsiveTableStyle, setResponsiveTableStyle] =
@@ -36,10 +45,12 @@ const TableTracks = ({ tracksList, isLoading, isFetching }: Props) => {
     setSelectedRow(e.value);
   };
 
-  const ButtonLike = (rowData: any) => {
+  const ButtonLike = ({ track: { id } }: any) => {
+    const idIsLiked = tracksIsLiked.find((item) => item.id === id);
+
     return (
       <span className="w-full flex justify-end">
-        {rowData.liked ? (
+        {idIsLiked?.liked ? (
           <AiFillHeart
             color="#1ed760"
             className=" buttonLike liked"

@@ -1,5 +1,5 @@
 import { spotifyApi } from './client';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueries } from '@tanstack/react-query';
 
 /**
  * TRACKS CURRENT USER
@@ -34,13 +34,17 @@ export const removeFromLikedTracks = (
 };
 
 export const useCheckTracksAreAlreadySaved = (
-  trackIds: Array<string>,
+  trackIds: string[][],
   params?: Object
 ) => {
-  return useQuery([
-    'checkTracksAreAlreadySaved',
-    () => spotifyApi.containsMySavedTracks(trackIds, params),
-  ]);
+  return useQueries({
+    queries: trackIds.map((chunk) => {
+      return {
+        queryKey: ['tracksAreAlreadySaved', chunk],
+        queryFn: () => spotifyApi.containsMySavedTracks(chunk, params),
+      };
+    }),
+  });
 };
 
 export const getTopTracksCurrentUser = (params?: Object): Promise<Object> => {
