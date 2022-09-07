@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+import { UseMutationResult } from '@tanstack/react-query';
 
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
@@ -13,6 +14,7 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
+import { addToSavedShows } from '../../service/spotify/show';
 
 interface Props {
   tracksList: Array<SpotifyApi.PlaylistTrackObject>;
@@ -22,6 +24,18 @@ interface Props {
     id: string;
     liked: boolean | undefined;
   }[];
+  addToLikedTracks: UseMutationResult<
+    SpotifyApi.SaveTracksForUserResponse,
+    unknown,
+    string[],
+    unknown
+  >;
+  removeToLikedTracks: UseMutationResult<
+    SpotifyApi.SaveTracksForUserResponse,
+    unknown,
+    string[],
+    unknown
+  >;
 }
 
 const TableTracks = ({
@@ -29,6 +43,8 @@ const TableTracks = ({
   isLoading,
   isFetching,
   tracksIsLiked,
+  addToLikedTracks,
+  removeToLikedTracks,
 }: Props) => {
   const [selectedRow, setSelectedRow] =
     useState<SpotifyApi.PlaylistTrackObject | null>(null);
@@ -45,24 +61,44 @@ const TableTracks = ({
     setSelectedRow(e.value);
   };
 
+  const onMutate = (
+    tracksState:
+      | {
+          id: string;
+          liked: boolean | undefined;
+        }
+      | undefined
+  ) => {
+    const id = tracksState?.id as string;
+    const isLiked = tracksState?.liked as boolean;
+
+    if (!isLiked) {
+      addToLikedTracks.mutate([id]);
+    } else {
+      removeToLikedTracks.mutate([id]);
+    }
+  };
+
   const ButtonLike = ({ track: { id } }: any) => {
     const idIsLiked = tracksIsLiked.find((item) => item.id === id);
 
     return (
-      <span className="w-full flex justify-end">
-        {idIsLiked?.liked ? (
-          <AiFillHeart
-            color="#1ed760"
-            className=" buttonLike liked"
-            size="1.2rem"
-          />
-        ) : (
-          <AiOutlineHeart
-            className="buttonLike text-lightGray hover:text-white"
-            size="1.2rem"
-          />
-        )}
-      </span>
+      <button onClick={() => onMutate(idIsLiked)}>
+        <span className="w-full flex justify-end">
+          {idIsLiked?.liked ? (
+            <AiFillHeart
+              color="#1ed760"
+              className=" buttonLike liked"
+              size="1.2rem"
+            />
+          ) : (
+            <AiOutlineHeart
+              className="buttonLike text-lightGray hover:text-white"
+              size="1.2rem"
+            />
+          )}
+        </span>
+      </button>
     );
   };
   // TODO : Afficher la date si moins de 7 jours sison "Il y a x jours "
@@ -131,6 +167,7 @@ const TableTracks = ({
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
         loading={isFetching || isLoading}
+        emptyMessage="Cette playlist ne contient aucun titre "
       >
         <Column
           headerStyle={{

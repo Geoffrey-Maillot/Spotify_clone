@@ -19,18 +19,12 @@ export const useGetLikedTracks = (params?: Object) => {
   );
 };
 
-export const addToLikedTracks = (
-  trackIds: Array<string>,
-  params?: Object
-): Promise<Object> => {
-  return spotifyApi.addToMySavedTracks(trackIds, params && params);
+export const useAddToLikedTracks = (trackIds: Array<string>) => {
+  return spotifyApi.addToMySavedTracks(trackIds);
 };
 
-export const removeFromLikedTracks = (
-  trackIds: Array<string>,
-  params?: Object
-): Promise<Object> => {
-  return spotifyApi.removeFromMySavedAlbums(trackIds, params && params);
+export const useRemoveFromLikedTracks = (trackIds: Array<string>) => {
+  return spotifyApi.removeFromMySavedTracks(trackIds);
 };
 
 export const useCheckTracksAreAlreadySaved = (

@@ -11,33 +11,37 @@ import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import H2 from '../component/Typo/H2/H2';
 import TableTracks from '../component/Tables/TableTracks';
 import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
+import InfiniteScroll from '../component/UtilsComponents/InfiniteScroll';
 
 // Spotify
 import {
   useGetPlaylist,
-  useGetPlaylistCoverImage,
   useGetPlaylistTracks,
 } from '../service/spotify/playlist';
-import InfiniteScroll from '../component/UtilsComponents/InfiniteScroll';
-import { useCheckTracksAreAlreadySaved } from '../service/spotify/track';
+import {
+  useCheckTracksAreAlreadySaved,
+  useAddToLikedTracks,
+  useRemoveFromLikedTracks,
+} from '../service/spotify/track';
 
 // Utils
 import { chunkTable, flatAndMergeArray } from '../service/utils/arrayFunctions';
 
+// React Query
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 // == Component =>
 const Playlist = () => {
   const id = useParams().id as string;
+
+  const queryClient = useQueryClient();
 
   const {
     data: dataPlaylist,
     error: errorPlaylist,
     isLoading: isLoadingPlaylist,
   } = useGetPlaylist(id);
-  const {
-    data: dataCoverImage,
-    error: errorCoverImage,
-    isLoading: isLoadingCoverImage,
-  } = useGetPlaylistCoverImage(id);
+
   const {
     data: dataTracks,
     error: errorTracks,
@@ -46,6 +50,18 @@ const Playlist = () => {
     fetchNextPage: fetchNextPageTracks,
     hasNextPage: hasNextPageTracks,
   } = useGetPlaylistTracks(id);
+
+  const addLikedTracksMutation = useMutation(useAddToLikedTracks, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tracksAreAlreadySaved']);
+    },
+  });
+
+  const removeLikedTracksMutation = useMutation(useRemoveFromLikedTracks, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tracksAreAlreadySaved']);
+    },
+  });
 
   let tracksList: Array<SpotifyApi.PlaylistTrackObject> = [];
 
@@ -70,60 +86,107 @@ const Playlist = () => {
     listTracksLikedOrNot
   );
 
+  if (errorPlaylist) {
+    return (
+      <Layout>
+        <div className="px-8 pt-6 font-circularBold text-lg text-white">
+          Une erreur est survenue pendant le chargement de la playlist
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
-      <header
-        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
-        style={{
-          background:
-            'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
-          backgroundSize: 'cover',
-        }}
-      >
-        <span className="mb-4">
-          <H2 label="PLAYLIST" />
-        </span>
-        <H1 label="Futur Hits" />
-        <span className="mt-4">
-          <Paragraph
-            size="lg"
-            color="lightWhite"
-            label="Les hit de demain sont déjà ici. Photo : Ckay"
-          />
-        </span>
-        <div className="flex justify-start items-center mt-4">
-          <span>
-            <Paragraph label="Spotify" color="white" />
-          </span>{' '}
-          <span>
-            <GoPrimitiveDot size=".6rem" color="#fff" />
+      <>
+        <header
+          className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
+          style={{
+            background:
+              'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
+            backgroundSize: 'cover',
+          }}
+        >
+          <span className="mb-4">
+            <H2 className="uppercase" label={dataPlaylist?.type} />
           </span>
-          <span>
-            <Paragraph color="white" label="147 658 like" />
+          <H1 label={dataPlaylist?.name} />
+          <span className="mt-4">
+            <Paragraph
+              size="lg"
+              color="lightWhite"
+              label={dataPlaylist?.description}
+            />
           </span>
-          <span>
-            <GoPrimitiveDot size=".6rem" color="#b3b3b3" />
-          </span>
-          <span>
-            <Paragraph color="white" label="50 titres, " />
-          </span>
-          <span className="ml-1">
-            <Paragraph color="lightWhite" label=" 2 h 27min" />
-          </span>
-        </div>
-      </header>
-      <HeaderBandPlay type="playlist" />
-      <InfiniteScroll
-        trigger={fetchNextPageTracks}
-        hasNextPage={hasNextPageTracks}
-      >
-        <TableTracks
-          tracksList={tracksList}
-          isLoading={isLoadingTracks}
-          isFetching={isFetchingTracks}
-          tracksIsLiked={tracksIsLiked}
-        />
-      </InfiniteScroll>
+          <div className="flex justify-start items-center mt-4">
+            {!isLoadingPlaylist && dataPlaylist?.owner.display_name && (
+              <>
+                <span>
+                  <Paragraph
+                    label={dataPlaylist?.owner.display_name}
+                    color="white"
+                  />
+                </span>
+                <span>
+                  <GoPrimitiveDot size=".6rem" color="#fff" className="mx-1" />
+                </span>
+              </>
+            )}
+            {!isLoadingPlaylist &&
+              dataPlaylist &&
+              dataPlaylist.followers.total > 0 && (
+                <>
+                  <span>
+                    <Paragraph
+                      color="white"
+                      label={dataPlaylist?.followers.total + ' like'}
+                    />
+                  </span>
+                  <span>
+                    <GoPrimitiveDot
+                      size=".6rem"
+                      color="#b3b3b3"
+                      className="mx-1"
+                    />
+                  </span>
+                </>
+              )}
+            {!isLoadingPlaylist && (
+              <span>
+                <Paragraph
+                  color="white"
+                  label={`${dataPlaylist?.tracks.total} ${
+                    dataPlaylist && dataPlaylist?.tracks?.total > 1
+                      ? 'titres'
+                      : 'titre'
+                  }`}
+                />
+              </span>
+            )}
+          </div>
+        </header>
+        <HeaderBandPlay type="playlist" />
+        {errorTracks && (
+          <div className="text-white text-lg font-circularBold">
+            Une erreur a eu lieu pendant le chargement des titres
+          </div>
+        )}
+        {!errorTracks && (
+          <InfiniteScroll
+            trigger={fetchNextPageTracks}
+            hasNextPage={hasNextPageTracks}
+          >
+            <TableTracks
+              tracksList={tracksList}
+              isLoading={isLoadingTracks}
+              isFetching={isFetchingTracks}
+              tracksIsLiked={tracksIsLiked}
+              addToLikedTracks={addLikedTracksMutation}
+              removeToLikedTracks={removeLikedTracksMutation}
+            />
+          </InfiniteScroll>
+        )}
+      </>
     </Layout>
   );
 };
