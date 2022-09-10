@@ -1,5 +1,5 @@
 import { spotifyApi } from './client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 /**
  * SHOW CURRENT USER
@@ -44,8 +44,10 @@ export const containsSavedShows = (
  * SHOW
  */
 
-export const getShow = (showId: string, params?: Object): Promise<Object> => {
-  return spotifyApi.getShow(showId, params && params);
+export const useGetShow = (showId: string, params?: Object) => {
+  return useQuery<SpotifyApi.SingleShowResponse, any>(['getShow', showId], () =>
+    spotifyApi.getShow(showId, params)
+  );
 };
 
 export const getShows = (

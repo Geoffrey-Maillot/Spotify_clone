@@ -1,11 +1,16 @@
 import { spotifyApi, spotifyUrlApi } from './client';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-export const getShowEpisodes = (
-  showId: string,
-  params: Object
-): Promise<Object> => {
-  return spotifyApi.getShowEpisodes(showId, params && params);
+export const useGetShowEpisodes = (showId: string, params?: Object) => {
+  return useInfiniteQuery(
+    ['showEpisode', showId],
+    ({ pageParam }) => spotifyApi.getShowEpisodes(showId, params || pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        return !!lastPage.next && { offset: lastPage.offset + 20 };
+      },
+    }
+  );
 };
 
 export const getEpisode = (

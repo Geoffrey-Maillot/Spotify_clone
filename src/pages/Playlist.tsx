@@ -27,12 +27,17 @@ import {
 // Utils
 import { chunkTable, flatAndMergeArray } from '../service/utils/arrayFunctions';
 
+// Hook
+import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
+
 // React Query
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 // == Component =>
 const Playlist = () => {
   const id = useParams().id as string;
+  const windowWidth = useGetWindowWidth();
+  const isBackgroundImage = windowWidth < 781;
 
   const queryClient = useQueryClient();
 
@@ -86,6 +91,12 @@ const Playlist = () => {
     listTracksLikedOrNot
   );
 
+  const imgPlaylist = dataPlaylist?.images.at(0);
+
+  const bgStyle = {
+    backgroundImage: isBackgroundImage ? `url(${imgPlaylist?.url})` : '',
+  };
+
   if (errorPlaylist) {
     return (
       <Layout>
@@ -100,69 +111,74 @@ const Playlist = () => {
     <Layout>
       <>
         <header
-          className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
-          style={{
-            background:
-              'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
-            backgroundSize: 'cover',
-          }}
+          className="h-[22rem] w-full px-8 pb-6 ]  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
+          style={bgStyle}
         >
-          <span className="mb-4">
-            <H2 className="uppercase" label={dataPlaylist?.type} />
-          </span>
-          <H1 label={dataPlaylist?.name} />
-          <span className="mt-4">
-            <Paragraph
-              size="lg"
-              color="lightWhite"
-              label={dataPlaylist?.description}
-            />
-          </span>
-          <div className="flex justify-start items-center mt-4">
-            {!isLoadingPlaylist && dataPlaylist?.owner.display_name && (
-              <>
-                <span>
-                  <Paragraph
-                    label={dataPlaylist?.owner.display_name}
-                    color="white"
-                  />
-                </span>
-                <span>
-                  <GoPrimitiveDot size=".6rem" color="#fff" className="mx-1" />
-                </span>
-              </>
-            )}
-            {!isLoadingPlaylist &&
-              dataPlaylist &&
-              dataPlaylist.followers.total > 0 && (
+          <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block">
+            <img src={imgPlaylist?.url} alt={dataPlaylist?.name} />
+          </div>
+          <div className="flex flex-col justify-end items-start">
+            <span className="mb-4">
+              <H2 className="uppercase" label={dataPlaylist?.type} />
+            </span>
+            <H1 label={dataPlaylist?.name} />
+            <span className="mt-4">
+              <Paragraph
+                size="lg"
+                color="lightWhite"
+                label={dataPlaylist?.description}
+              />
+            </span>
+            <div className="flex justify-start items-center mt-4">
+              {!isLoadingPlaylist && dataPlaylist?.owner.display_name && (
                 <>
                   <span>
                     <Paragraph
+                      label={dataPlaylist?.owner.display_name}
                       color="white"
-                      label={dataPlaylist?.followers.total + ' like'}
                     />
                   </span>
                   <span>
                     <GoPrimitiveDot
                       size=".6rem"
-                      color="#b3b3b3"
+                      color="#fff"
                       className="mx-1"
                     />
                   </span>
                 </>
               )}
-            {!isLoadingPlaylist && (
-              <span>
-                <Paragraph
-                  color="white"
-                  label={`${dataPlaylist?.tracks.total} ${
-                    dataPlaylist && dataPlaylist?.tracks?.total > 1
-                      ? 'titres'
-                      : 'titre'
-                  }`}
-                />
-              </span>
-            )}
+              {!isLoadingPlaylist &&
+                dataPlaylist &&
+                dataPlaylist.followers.total > 0 && (
+                  <>
+                    <span>
+                      <Paragraph
+                        color="white"
+                        label={dataPlaylist?.followers.total + ' like'}
+                      />
+                    </span>
+                    <span>
+                      <GoPrimitiveDot
+                        size=".6rem"
+                        color="#b3b3b3"
+                        className="mx-1"
+                      />
+                    </span>
+                  </>
+                )}
+              {!isLoadingPlaylist && (
+                <span>
+                  <Paragraph
+                    color="white"
+                    label={`${dataPlaylist?.tracks.total} ${
+                      dataPlaylist && dataPlaylist?.tracks?.total > 1
+                        ? 'titres'
+                        : 'titre'
+                    }`}
+                  />
+                </span>
+              )}
+            </div>
           </div>
         </header>
         <HeaderBandPlay type="playlist" />

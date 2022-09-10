@@ -1,4 +1,3 @@
-
 // Import Router
 import { useParams } from 'react-router-dom';
 
@@ -11,12 +10,31 @@ import PlaylistTable from '../component/Tables/TableEpisodes';
 import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
 
+// Spotify
+import { useGetShow } from '../service/spotify/show';
+import { useGetShowEpisodes } from '../service/spotify/episode';
+
 interface Props {
   isLikedTracks?: boolean;
 }
 
 const Podcast = ({ isLikedTracks = false }: Props) => {
-  const { id } = useParams();
+  const id = useParams().id as string;
+
+  const {
+    data: dataShow,
+    isLoading: isLoadingShow,
+    error: errorShow,
+  } = useGetShow(id);
+
+  const {
+    data: dataEpisodesList,
+    isLoading: isLoadingEpisodeList,
+    error: errorEpisodeList,
+  } = useGetShowEpisodes(id);
+
+
+
   const episodesList = [
     {
       img: 'https://source.unsplash.com/random/201x201',
