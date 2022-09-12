@@ -34,7 +34,7 @@ interface Episode {
 }
 
 interface Props {
-  episodesList: Array<Episode>;
+  episodesList: Array<SpotifyApi.EpisodeObjectSimplified>;
 }
 
 const TableEpisodes = ({ episodesList }: Props) => {

@@ -117,7 +117,7 @@ const Playlist = () => {
           <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block">
             <img src={imgPlaylist?.url} alt={dataPlaylist?.name} />
           </div>
-          <div className="flex flex-col justify-end items-start">
+          <div className="flex flex-col justify-end items-start md:bg-dark-400/0 bg-dark-400/40  rounded p-2">
             <span className="mb-4">
               <H2 className="uppercase" label={dataPlaylist?.type} />
             </span>

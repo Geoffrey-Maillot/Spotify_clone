@@ -10,9 +10,13 @@ import PlaylistTable from '../component/Tables/TableEpisodes';
 import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
 
+// Hook
+import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
+
 // Spotify
 import { useGetShow } from '../service/spotify/show';
 import { useGetShowEpisodes } from '../service/spotify/episode';
+import InfiniteScroll from '../component/UtilsComponents/InfiniteScroll';
 
 interface Props {
   isLikedTracks?: boolean;
@@ -20,6 +24,9 @@ interface Props {
 
 const Podcast = ({ isLikedTracks = false }: Props) => {
   const id = useParams().id as string;
+  const windowWidth = useGetWindowWidth();
+
+  const isBackgroundImage = windowWidth < 781;
 
   const {
     data: dataShow,
@@ -31,9 +38,21 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
     data: dataEpisodesList,
     isLoading: isLoadingEpisodeList,
     error: errorEpisodeList,
+    hasNextPage: hasNextPageShow,
+    fetchNextPage: fetchNextPageShow,
   } = useGetShowEpisodes(id);
 
+  let showEpisodeList: Array<SpotifyApi.EpisodeObjectSimplified> = [];
 
+  dataEpisodesList?.pages.flat().forEach((episodes) => {
+    showEpisodeList = [...showEpisodeList, ...episodes.items];
+  });
+
+  const imgShow = dataShow?.images.at(0);
+
+  const bgStyle = {
+    backgroundImage: isBackgroundImage ? `url(${imgShow?.url})` : '',
+  };
 
   const episodesList = [
     {
@@ -67,39 +86,40 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
   return (
     <Layout>
       <header
-        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
-        style={{
-          background:
-            'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
-          backgroundSize: 'cover',
-        }}
+        className="h-[22rem] w-full px-8 pb-6 ]  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
+        style={bgStyle}
       >
-        <span className="mb-4">
-          <H2 label="PODCAST" />
-        </span>
-        <H1 label="Nota Bene" />
-        <span className="mt-4">
-          <H2 size="xl2" color="white" label="Benjamin Brillaud" />
-        </span>
+        <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block">
+          <img src={imgShow?.url} alt={dataShow?.name} />
+        </div>
+        <div className="flex flex-col justify-end items-start md:bg-dark-400/0 bg-dark-400/40  rounded p-2">
+          <span className="mb-4">
+            <H2 label={dataShow?.type} />
+          </span>
+          <H1 label={dataShow?.name} />
+          <span className="mt-4">
+            <H2 size="xl2" color="white" label={dataShow?.publisher} />
+          </span>
+        </div>
       </header>
       <HeaderBandPlay type="podcast" subscriber={true} />
       <div className="flex items-start justify-start pl-4 gap-4 xl:flex-row flex-col-reverse">
         <div className=" xl:w-3/5 w-full max-w-[726px] xl:max-w-max">
-          <PlaylistTable episodesList={episodesList} />
+          {!errorEpisodeList && (
+            <InfiniteScroll
+              hasNextPage={hasNextPageShow}
+              trigger={fetchNextPageShow}
+            >
+              <PlaylistTable episodesList={showEpisodeList} />
+            </InfiniteScroll>
+          )}
         </div>
         <div className="flex flex-col justify-start items-start gap-6  xl:w-2/5 w-full max-w-[726px] xl:max-w-max px-4">
           <span className="pt-4">
             <H2 size="xl2" label="Plus d'infos" />
           </span>
           <PanelHideContent>
-            <Paragraph size="lg">
-              Nota Bene, c'est une autre façon de découvrir l'Histoire de France
-              et du monde ! L'Histoire est sociale, économique, scientifique,
-              politique, elle touche à tous les domaines. A travers des
-              émissions thématiques et des entretiens avec des historiens,
-              archéologues et chercheurs, voyagez de l'Antiquité à nos jours et
-              redécouvrez la richesse de cette Histoire !
-            </Paragraph>
+            <Paragraph size="lg">{dataShow?.description}</Paragraph>
           </PanelHideContent>
 
           <div>
