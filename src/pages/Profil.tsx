@@ -9,10 +9,10 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import AlbumList from '../component/AlbumList/AlbumList';
 
 // Interface
-import { Album, PageType } from '../service/interface/Album';
+import { PageType } from '../service/interface/Album';
 import TableProfil from '../component/Tables/TableProfil';
 
-const topArtists: Array<Album> = [
+const topArtists = [
   {
     img: 'https://i.scdn.co/image/ab67616100005174c2f3c2db3aa6f86aa810f7d4',
     title: 'Nneka',
@@ -126,7 +126,7 @@ const albums = [
   },
 ];
 
-const abonnés: Array<Album> = [
+const abonnés = [
   {
     img: 'https://source.unsplash.com/random/300x300',
     title: 'Jimmy Garcia',
@@ -141,7 +141,7 @@ const abonnés: Array<Album> = [
   },
 ];
 
-const abonnées: Array<Album> = [
+const abonnées = [
   {
     img: 'https://i.scdn.co/image/ab67616100005174c2f3c2db3aa6f86aa810f7d4',
     title: 'Nneka',

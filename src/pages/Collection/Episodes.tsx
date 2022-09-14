@@ -74,7 +74,7 @@ const Episodes = () => {
         <ButtonPlay size="large" />
       </div>
       <div className="max-w-[58.5rem]">
-        <TableEpisodes episodesList={episodesList} />
+        {/*<TableEpisodes episodesList={episodesList} />*/}
       </div>
     </Layout>
   );

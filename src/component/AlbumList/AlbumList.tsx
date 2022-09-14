@@ -15,13 +15,11 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 import RenderIf from '../UtilsComponents/RenderIf';
 import CardMusic from '../Cards/CardMusic';
 
-// Interface
-import { Album } from '../../service/interface/Album';
 
 interface Props {
   title?: string;
-  subTitle: string;
-  albums: Array<Album>;
+  subTitle?: string;
+  albums: any;
   link: string;
 }
 // == Component =>
@@ -62,7 +60,7 @@ const AlbumList = ({ title, subTitle, albums, link }: Props) => {
         className={`grid grid-cols-[repeat(var(--cols),_minmax(0,_1fr))]  gap-6 `}
         style={{ ['--cols' as any]: nbrCols }}
       >
-        {listSlice.map((card, i) => (
+        {listSlice.map((card: any, i: any) => (
           <CardMusic key={i} {...card} />
         ))}
       </div>

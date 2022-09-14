@@ -5,6 +5,9 @@ import { UseMutationResult } from '@tanstack/react-query';
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
+// Utils
+import { milisecondToMinTrack } from '../../service/utils/time';
+
 // Import PrimeReact
 import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -14,7 +17,6 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 import Paragraph from '../Typo/Paragraph/Paragraph';
-import { addToSavedShows } from '../../service/spotify/show';
 
 interface Props {
   tracksList: Array<SpotifyApi.PlaylistTrackObject>;
@@ -123,9 +125,7 @@ const TableTracks = ({
   };
 
   const Duration = ({ track: { duration_ms } }: any) => {
-    return (
-      <span>{(duration_ms / (60 * 1000)).toFixed(2).split('.').join(':')}</span>
-    );
+    return <span>{milisecondToMinTrack(duration_ms)}</span>;
   };
 
   const TitleContent = ({ track }: any) => {

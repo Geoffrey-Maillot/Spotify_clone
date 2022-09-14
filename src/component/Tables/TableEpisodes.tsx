@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
+// Utils
+import { milisecondToMinEpisode } from '../../service/utils/time';
+
 // Import PrimeReact
 import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -22,17 +25,6 @@ import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { BsCheckLg } from 'react-icons/bs';
 import ButtonPlayLight from '../Button/ButtonPlay/ButtonPlayLight';
 
-// TODO : Remplacer any par les infos provenant de l'api
-interface Episode {
-  img: string;
-  title: string;
-  content: string;
-  date: string;
-  duration: number;
-  id: string;
-  isSave: boolean;
-}
-
 interface Props {
   episodesList: Array<SpotifyApi.EpisodeObjectSimplified>;
 }
@@ -47,7 +39,10 @@ const TableEpisodes = ({ episodesList }: Props) => {
     setResponsiveTableStyle(responsiveStyle);
   }, [windowWidth]);
 
-  const TableEpisodesContent = (rowData: Episode) => {
+  const TableEpisodesContent = (
+    rowData: SpotifyApi.EpisodeObjectSimplified
+  ) => {
+    console.log(rowData);
     return (
       <Link
         to={`/episode/${rowData.id}`}
@@ -56,27 +51,29 @@ const TableEpisodes = ({ episodesList }: Props) => {
         <div className="sm:w-[7.375rem] sm:h-[7.375rem] w-[5.125rem] h-[5.125rem] flex-none">
           <img
             className="object-cover object-center rounded-lg"
-            src={rowData.img}
-            alt={rowData.title}
+            src={rowData.images[0].url}
+            alt={rowData.name}
           />
         </div>
         <div className="flex flex-col gap-4 justify-start items-start">
-          <H2 label={rowData.title} size="lg" />
-          <Paragraph clamp label={rowData.content} />
+          <H2 label={rowData.name} size="lg" />
+          <Paragraph clamp label={rowData.description} />
           <div className="flex items-center justify-between w-full flex-wrap gap-4">
             <div className="flex items-center justify-start gap-6 ">
               <ButtonPlayLight />
               <span className="flex items-center justify-start gap-1">
-                <Paragraph label={rowData.date} />
+                <Paragraph label={rowData.release_date} />
                 <GoPrimitiveDot size={'.4rem'} />
-                <Paragraph label={rowData.duration + ' min'} />
+                <Paragraph
+                  label={milisecondToMinEpisode(rowData.duration_ms)}
+                />
               </span>
             </div>
             <div className="flex items justify-start gap-6">
               <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default">
                 <MdOutlineIosShare size="1.5rem" className="hover:text-white" />
               </button>
-              {rowData.isSave ? (
+              {rowData ? (
                 <button className="bg-green-200 rounded-full w-[1.375rem] h-[1.375rem] flex items-center justify-center cursor-default">
                   <BsCheckLg color="#000" size=".8rem" />
                 </button>
