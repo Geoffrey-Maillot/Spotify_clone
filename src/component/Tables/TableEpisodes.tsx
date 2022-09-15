@@ -42,7 +42,7 @@ const TableEpisodes = ({ episodesList }: Props) => {
   const TableEpisodesContent = (
     rowData: SpotifyApi.EpisodeObjectSimplified
   ) => {
-    console.log(rowData);
+   // console.log(rowData);
     return (
       <Link
         to={`/episode/${rowData.id}`}

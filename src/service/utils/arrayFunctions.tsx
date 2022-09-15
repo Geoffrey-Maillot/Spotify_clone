@@ -12,7 +12,7 @@ export const chunkTable = (
 
 export const flatAndMergeArray = (
   arrayId: string[][],
-  arrayBool: (SpotifyApi.CheckUsersSavedTracksResponse | undefined)[]
+  arrayBool: any
 ): { id: string; liked: boolean | undefined }[] => {
   return arrayId.flat().map((id, i) => {
     return {

@@ -1,5 +1,5 @@
 import { spotifyApi, spotifyUrlApi } from './client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueries } from '@tanstack/react-query';
 
 export const useGetShowEpisodes = (showId: string, params?: Object) => {
   return useInfiniteQuery(
@@ -41,4 +41,16 @@ export const useGetMyEpisodes = () => {
       },
     }
   );
+};
+
+export const useCheckEpisodeAreAlreadySaved = (trackIds: Array<string>) => {
+  return useQueries({
+    queries: trackIds.map((chunk) => {
+      return {
+        queryKey: ['episodesAreAlreadySaved', chunk],
+        queryFn: () =>
+          spotifyApi.getGeneric(`${spotifyUrlApi}/me/episodes/contains?ids=${chunk}`),
+      };
+    }),
+  });
 };

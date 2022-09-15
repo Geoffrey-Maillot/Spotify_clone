@@ -1,6 +1,9 @@
 ## Next✅
-
-NEXT =>
+- Page Podcast
+  - Passer le tableau de titres liké ou pas au composant TableEpisode
+  - Créer la route pour checker si on est abboné au Podcast
+  - Gérer les status error / loading
+- Page Loader
 
 
 ---

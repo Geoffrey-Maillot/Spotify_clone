@@ -11,7 +11,7 @@ import { AUTH_URL } from './pages/Login';
 // Todo : Pour les headers, conditionner l'image du background ou la couleur et l'image de gauche si il y en une
 
 const App = () => {
-  const { error, isError } = UseGetCurrentUser();
+  const { error, isError, isLoading } = UseGetCurrentUser();
 
   if (isError && error.response.includes('token')) {
     localStorage.removeItem('token');
@@ -19,6 +19,9 @@ const App = () => {
   }
 
   useSession();
+
+  if (error || isLoading)
+    return <div>CHARGEMENT.... Remplacer par UN LOADER)</div>;
 
   return <Router />;
 };
