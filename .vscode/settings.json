@@ -1,4 +1,6 @@
 {
   "js/ts.implicitProjectConfig.experimentalDecorators": true,
-  "editor.stickyScroll.enabled": true
+  "editor.stickyScroll.enabled": true,
+  "glassit.alpha": 230,
+  "glassit.step": 5
 }

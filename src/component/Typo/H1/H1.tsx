@@ -5,15 +5,10 @@ interface Props {
 }
 
 // == Component =>
-const H1 = ({ children, label, size = 'xl8' }: Props) => {
-  const sizes: Record<string, string> = {
-    xl8: 'xl:text-8xl',
-    xl7: 'xl:text-7xl',
-  };
-
+const H1 = ({ children, label }: Props) => {
   return (
     <h1
-      className={`font-circularBlack  text-white ${sizes[size]} text-6xl tracking-tight`}
+      className={`font-circularBlack  text-white  text-3xl sm:text-5xl xl:text-6xl 3xl:text-7xl tracking-tight`}
     >
       {label ? label : children}
     </h1>

@@ -1,5 +1,5 @@
 // Import Router
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // Import Component
 import Layout from '../component/Layout/Layout';
@@ -14,11 +14,28 @@ import CardMusic from '../component/Cards/CardMusic';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { BsCheck2 } from 'react-icons/bs';
 
+// Hook
+import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
+
 // Import interface
 import { PageType } from '../service/interface/Album';
+import { useGetEpisode } from '../service/spotify/episode';
+import { milisecondToMinOrHour } from '../service/utils/time';
 
 const Episode = () => {
+  const windowWidth = useGetWindowWidth();
+
+  const isBackgroundImage = windowWidth < 781;
+
   const listen = true;
+  const id = useParams().id as string;
+  const { data, isLoading, isError } = useGetEpisode(id);
+
+  const imgShow = data?.images.at(0);
+
+  const bgStyle = {
+    backgroundImage: isBackgroundImage ? `url(${imgShow?.url})` : '',
+  };
 
   const related = [
     {
@@ -68,53 +85,32 @@ const Episode = () => {
   return (
     <Layout>
       <header
-        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6"
-        style={{
-          background:
-            'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
-          backgroundSize: 'cover',
-        }}
+        className="h-[22rem] w-full px-8 pb-6  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
+        style={bgStyle}
       >
-        <span className="mb-4">
-          <H2 label="Épisode Podcast" />
-        </span>
-        <H1 size="xl7" label="Episode 81 - 13 sentinels: Aegis Rim" />
-        <span className="mt-4">
-          <H2 size="xl2" color="white" label="Fin du Game" />
-        </span>
+        <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block flex-none">
+          <img src={imgShow?.url} alt={data?.name} />
+        </div>
+        <div className="flex flex-col justify-end items-start md:bg-dark-400/0 bg-dark-400/40  rounded p-2">
+          <span className="mb-4">
+            <H2 label="Épisode Podcast" />
+          </span>
+          <H1 label={data?.name} />
+          <span className="mt-4">
+            <H2 size="xl2" color="white" label={data?.show.name} />
+          </span>
+        </div>
       </header>
       <section className="px-10 pt-8 flex items-center justify-start gap-1">
         <Paragraph label="27 juin" />
         <GoPrimitiveDot color="#b3b3b3" size=".4rem" />
-        {listen ? (
-          <div className="flex items-center justify-start gap-2">
-            <Paragraph label="Écouté" />
-            <BsCheck2 className="text-green-200" size="1.4rem" />
-          </div>
-        ) : (
-          <Paragraph label="1h26" />
-        )}
+        <Paragraph label={milisecondToMinOrHour(data?.duration_ms)} />
       </section>
       <HeaderBandPlay type="episode" />
       <section className="max-w-[42rem] pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
         <H2 size="xl2" label="Description de l'épisode" />
         <PanelHideContent>
-          <Paragraph size="lg">
-            Des lycéens. Des mechas, des kaijus, des boucles temporelles des
-            clones des androïdes des nanomachines des complots des doubles
-            personnalités des souvenirs artificiels... Difficile de trouver un
-            code de la SF que 13 Sentinels: Aegis Rim ne reprend pas à son
-            compte. Le dernier projet de Kamitani et de VanillaWare lorgne du
-            côté du Visual Novel avec une narration éclatée où chaque scénette
-            devient la pièce d'un (trop?) grand puzzle. Mais l'ensemble tient à
-            peu près jusqu'au bout grâce à des choix judicieux dans l'ergonomie
-            et des combats divertissants qui permettent de souffler entre deux
-            twists. Un titre ambitieux donc, qui restera a priori unique dans le
-            catalogue du studio, tant il a été difficile à mener à bien. Merci à
-            nos patreotes qui financent l'émission sur
-            https://patreon.com/findugame Rejoignez le club de lecture sur
-            Discord : discord.gg/YTGbSkN
-          </Paragraph>
+          <Paragraph size="lg">{data?.description}</Paragraph>
         </PanelHideContent>
         <Link
           className="border border-gray-200  rounded-full px-4 py-2 hover:scale-105"

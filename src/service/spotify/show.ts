@@ -4,7 +4,6 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 /**
  * SHOW CURRENT USER
  */
-
 export const useGetSavedShows = (params?: Object) => {
   return useInfiniteQuery<SpotifyApi.ListOfUsersShowsResponse, any>(
     ['savedShows'],
@@ -21,29 +20,30 @@ export const useGetSavedShows = (params?: Object) => {
 
 export const addToSavedShows = (
   showIds: Array<string>,
-  params: Object
+  params?: Object
 ): Promise<Object> => {
-  return spotifyApi.addToMySavedShows(showIds, params && params);
+  return spotifyApi.addToMySavedShows(showIds, params);
 };
 
 export const removeFromSavedShows = (
   showIds: Array<string>,
-  params: Object
+  params?: Object
 ): Promise<Object> => {
-  return spotifyApi.removeFromMySavedShows(showIds, params && params);
+  return spotifyApi.removeFromMySavedShows(showIds, params);
 };
 
-export const containsSavedShows = (
+export const useContainsSavedShows = (
   showIds: Array<string>,
-  params: Object
-): Promise<Object> => {
-  return spotifyApi.containsMySavedShows(showIds, params && params);
+  params?: Object
+) => {
+  return useQuery(['containsSavedShow'], () =>
+    spotifyApi.containsMySavedShows(showIds, params)
+  );
 };
 
 /**
  * SHOW
  */
-
 export const useGetShow = (showId: string, params?: Object) => {
   return useQuery<SpotifyApi.SingleShowResponse, any>(['getShow', showId], () =>
     spotifyApi.getShow(showId, params)

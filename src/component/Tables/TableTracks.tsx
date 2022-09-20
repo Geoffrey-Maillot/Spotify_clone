@@ -6,7 +6,7 @@ import { UseMutationResult } from '@tanstack/react-query';
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // Utils
-import { milisecondToMinTrack } from '../../service/utils/time';
+import { milisecondToMinOrHour } from '../../service/utils/time';
 
 // Import PrimeReact
 import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
@@ -125,7 +125,7 @@ const TableTracks = ({
   };
 
   const Duration = ({ track: { duration_ms } }: any) => {
-    return <span>{milisecondToMinTrack(duration_ms)}</span>;
+    return <span>{milisecondToMinOrHour(duration_ms)}</span>;
   };
 
   const TitleContent = ({ track }: any) => {

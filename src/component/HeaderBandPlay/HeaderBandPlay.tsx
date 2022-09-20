@@ -17,23 +17,24 @@ import { OverlayPanel } from 'primereact/overlaypanel';
 interface Props {
   type: 'playlist' | 'artist' | 'podcast' | 'episode';
   subscriber?: boolean;
+  mutateShow?: () => void;
 }
 
 // == Component =>
 const HeaderBandPlay = ({
   type = 'playlist',
   subscriber,
+  mutateShow,
 }: Props) => {
-const [isInLibrary, setIsInLibrary ] = useState(false)
+  const [isInLibrary, setIsInLibrary] = useState(false);
 
-const saveInLibrary = () => {
-  setIsInLibrary(true)
-}
+  const saveInLibrary = () => {
+    setIsInLibrary(true);
+  };
 
-const removeFromLibrary = () => {
-  setIsInLibrary(false)
-}
-
+  const removeFromLibrary = () => {
+    setIsInLibrary(false);
+  };
 
   const showOptionPanel = (e: React.MouseEvent) => {
     if (optionPanel.current) {
@@ -52,17 +53,23 @@ const removeFromLibrary = () => {
         <ButtonPlay size="large" />
       </RenderIf>
       <RenderIf bool={type === 'artist' || type === 'podcast'}>
-        <button className=" py-2 px-4 h-9 rounded border-gray-500 hover:border-white border uppercase">
+        <button
+          onClick={mutateShow}
+          className=" py-2 px-4 h-9 rounded border-gray-500 hover:border-white border uppercase"
+        >
           <H2 label={subscriber ? 'Abonné' : "S'abonné"} size="sm" />
         </button>
       </RenderIf>
       <RenderIf bool={type === 'episode'}>
         {isInLibrary ? (
-          <button  onClick={removeFromLibrary} className="bg-green-200 h-8 w-8 p-1 rounded-full flex items-center justify-center">
+          <button
+            onClick={removeFromLibrary}
+            className="bg-green-200 h-8 w-8 p-1 rounded-full flex items-center justify-center"
+          >
             <BsCheckLg size="1rem" color="#000" />
           </button>
         ) : (
-          <button onClick={saveInLibrary}  className="text-gray-200 ">
+          <button onClick={saveInLibrary} className="text-gray-200 ">
             <IoAddCircleOutline size="2.3rem" />
           </button>
         )}

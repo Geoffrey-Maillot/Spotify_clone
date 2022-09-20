@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, MutableRefObject, Ref } from 'react';
 
 // Import Router
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
 
 // Utils
-import { milisecondToMinEpisode } from '../../service/utils/time';
+import { milisecondToMinOrHour } from '../../service/utils/time';
 
 // Import PrimeReact
 import { DataTable, DataTableResponsiveLayoutType } from 'primereact/datatable';
@@ -27,9 +27,13 @@ import ButtonPlayLight from '../Button/ButtonPlay/ButtonPlayLight';
 
 interface Props {
   episodesList: Array<SpotifyApi.EpisodeObjectSimplified>;
+  episodesAreLikedOrNot: {
+    id: string;
+    liked: boolean | undefined;
+  }[];
 }
 
-const TableEpisodes = ({ episodesList }: Props) => {
+const TableEpisodes = ({ episodesList, episodesAreLikedOrNot }: Props) => {
   const [responsiveTableStyle, setResponsiveTableStyle] =
     useState<DataTableResponsiveLayoutType>('scroll');
   const windowWidth: number = useGetWindowWidth();
@@ -42,7 +46,10 @@ const TableEpisodes = ({ episodesList }: Props) => {
   const TableEpisodesContent = (
     rowData: SpotifyApi.EpisodeObjectSimplified
   ) => {
-   // console.log(rowData);
+    const episodeIdIsLikedOrNot = episodesAreLikedOrNot.find(
+      (episode) => episode.id === rowData.id
+    );
+
     return (
       <Link
         to={`/episode/${rowData.id}`}
@@ -65,7 +72,7 @@ const TableEpisodes = ({ episodesList }: Props) => {
                 <Paragraph label={rowData.release_date} />
                 <GoPrimitiveDot size={'.4rem'} />
                 <Paragraph
-                  label={milisecondToMinEpisode(rowData.duration_ms)}
+                  label={milisecondToMinOrHour(rowData.duration_ms)}
                 />
               </span>
             </div>
@@ -73,7 +80,7 @@ const TableEpisodes = ({ episodesList }: Props) => {
               <button className="opacity-100 lg:opacity-0 group-hover:opacity-100 cursor-default">
                 <MdOutlineIosShare size="1.5rem" className="hover:text-white" />
               </button>
-              {rowData ? (
+              {episodeIdIsLikedOrNot?.liked ? (
                 <button className="bg-green-200 rounded-full w-[1.375rem] h-[1.375rem] flex items-center justify-center cursor-default">
                   <BsCheckLg color="#000" size=".8rem" />
                 </button>

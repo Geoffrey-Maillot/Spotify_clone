@@ -17,23 +17,30 @@ import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
 import { chunkTable, flatAndMergeArray } from '../service/utils/arrayFunctions';
 
 // Spotify
-import { useGetShow } from '../service/spotify/show';
+import {
+  addToSavedShows,
+  removeFromSavedShows,
+  useContainsSavedShows,
+  useGetShow,
+} from '../service/spotify/show';
 import {
   useGetShowEpisodes,
   useCheckEpisodeAreAlreadySaved,
 } from '../service/spotify/episode';
 import InfiniteScroll from '../component/UtilsComponents/InfiniteScroll';
-import { episode } from '../component/HeaderBandPlay/HeaderBandPlay.stories';
 
-interface Props {
-  isLikedTracks?: boolean;
-}
+// React Query
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const Podcast = ({ isLikedTracks = false }: Props) => {
+interface Props {}
+
+const Podcast = ({}: Props) => {
   const id = useParams().id as string;
   const windowWidth = useGetWindowWidth();
 
   const isBackgroundImage = windowWidth < 781;
+
+  const queryClient = useQueryClient();
 
   const {
     data: dataShow,
@@ -49,6 +56,28 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
     fetchNextPage: fetchNextPageShow,
   } = useGetShowEpisodes(id);
 
+  const { data: checkShowIsSaved } = useContainsSavedShows([id]);
+
+  const saveShow = useMutation(addToSavedShows, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['containsSavedShow']);
+    },
+  });
+
+  const removeFromSavedShow = useMutation(removeFromSavedShows, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['containsSavedShow']);
+    },
+  });
+
+  const mutateShow = () => {
+    if (checkShowIsSaved && dataShow && checkShowIsSaved[0]) {
+      removeFromSavedShow.mutate([dataShow?.id]);
+    } else if (checkShowIsSaved && dataShow && !!checkIfEpisodeIsLiked[0]) {
+      saveShow.mutate([dataShow.id]);
+    }
+  };
+
   let showEpisodeList: Array<SpotifyApi.EpisodeObjectSimplified> = [];
 
   dataEpisodesList?.pages.flat().forEach((episodes) => {
@@ -62,7 +91,6 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
   const stringifiedListId = listIdEpisodeChunked.map((chunk) =>
     chunk.join(',')
   );
-  console.log(stringifiedListId);
 
   const checkIfEpisodeIsLiked =
     useCheckEpisodeAreAlreadySaved(stringifiedListId);
@@ -71,11 +99,10 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
     (response) => response.data
   );
 
-  const episodeIsLiked = flatAndMergeArray(
+  const episodesAreLikedOrNot = flatAndMergeArray(
     listIdEpisodeChunked,
     listEpisodeLikedOrNot
   );
-  console.log(episodeIsLiked);
 
   const imgShow = dataShow?.images.at(0);
 
@@ -86,7 +113,7 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
   return (
     <Layout>
       <header
-        className="h-[22rem] w-full px-8 pb-6 ]  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
+        className="h-[22rem] w-full px-8 pb-6  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
         style={bgStyle}
       >
         <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block">
@@ -102,7 +129,11 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
           </span>
         </div>
       </header>
-      <HeaderBandPlay type="podcast" subscriber={true} />
+      <HeaderBandPlay
+        type="podcast"
+        subscriber={checkShowIsSaved && checkShowIsSaved[0]}
+        mutateShow={mutateShow}
+      />
       <div className="flex items-start justify-start pl-4 gap-4 xl:flex-row flex-col-reverse">
         <div className=" xl:w-3/5 w-full max-w-[726px] xl:max-w-max">
           {!errorEpisodeList && (
@@ -110,7 +141,10 @@ const Podcast = ({ isLikedTracks = false }: Props) => {
               hasNextPage={hasNextPageShow}
               trigger={fetchNextPageShow}
             >
-              <PlaylistTable episodesList={showEpisodeList} />
+              <PlaylistTable
+                episodesList={showEpisodeList}
+                episodesAreLikedOrNot={episodesAreLikedOrNot}
+              />
             </InfiniteScroll>
           )}
         </div>
