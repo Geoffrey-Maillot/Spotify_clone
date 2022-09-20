@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 // Import Component
+import Spinner from './component/Spinner/Spinner';
 import Router from './Router';
 import { useSession } from './service/spotify/client';
 import { UseGetCurrentUser } from './service/spotify/user';
@@ -20,8 +21,7 @@ const App = () => {
 
   useSession();
 
-  if (error || isLoading)
-    return <div>CHARGEMENT.... Remplacer par UN LOADER)</div>;
+  if (error || isLoading) return <Spinner />;
 
   return <Router />;
 };

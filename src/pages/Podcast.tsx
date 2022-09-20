@@ -6,7 +6,7 @@ import Layout from '../component/Layout/Layout';
 import H1 from '../component/Typo/H1/H1';
 import Paragraph from '../component/Typo/Paragraph/Paragraph';
 import H2 from '../component/Typo/H2/H2';
-import PlaylistTable from '../component/Tables/TableEpisodes';
+import TableEpisodes from '../component/Tables/TableEpisodes';
 import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
 import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
 
@@ -141,7 +141,7 @@ const Podcast = ({}: Props) => {
               hasNextPage={hasNextPageShow}
               trigger={fetchNextPageShow}
             >
-              <PlaylistTable
+              <TableEpisodes
                 episodesList={showEpisodeList}
                 episodesAreLikedOrNot={episodesAreLikedOrNot}
               />

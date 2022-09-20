@@ -5,7 +5,7 @@ import { useInfiniteQuery, useQueries, useQuery } from '@tanstack/react-query';
 //! Le getGeneric ne fonctionne que sur la route "get"
 
 export const useGetShowEpisodes = (showId: string, params?: Object) => {
-  return useInfiniteQuery(
+  return useInfiniteQuery<SpotifyApi.ShowEpisodesResponse, any>(
     ['showEpisode', showId],
     ({ pageParam }) => spotifyApi.getShowEpisodes(showId, params || pageParam),
     {

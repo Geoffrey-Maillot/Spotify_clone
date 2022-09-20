@@ -49,10 +49,10 @@
   color: white;
 }
 
-.p-datatable th:first-child .p-column-header-content {
+.p-datatable th:first-child .p-column-header-content :not(.table-podcasts) {
   justify-content: center;
 }
-.p-datatable th:last-child .p-column-header-content {
+.p-datatable th:last-child .p-column-header-content :not(.table-podcasts) {
   justify-content: end;
 }
 

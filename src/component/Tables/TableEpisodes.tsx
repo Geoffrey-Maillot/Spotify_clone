@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, MutableRefObject, Ref } from 'react';
+import { useState, useEffect } from 'react';
 
 // Import Router
 import { Link } from 'react-router-dom';
@@ -26,8 +26,8 @@ import { BsCheckLg } from 'react-icons/bs';
 import ButtonPlayLight from '../Button/ButtonPlay/ButtonPlayLight';
 
 interface Props {
-  episodesList: Array<SpotifyApi.EpisodeObjectSimplified>;
-  episodesAreLikedOrNot: {
+  episodesList: any;
+  episodesAreLikedOrNot?: {
     id: string;
     liked: boolean | undefined;
   }[];
@@ -46,7 +46,7 @@ const TableEpisodes = ({ episodesList, episodesAreLikedOrNot }: Props) => {
   const TableEpisodesContent = (
     rowData: SpotifyApi.EpisodeObjectSimplified
   ) => {
-    const episodeIdIsLikedOrNot = episodesAreLikedOrNot.find(
+    const episodeIdIsLikedOrNot = episodesAreLikedOrNot?.find(
       (episode) => episode.id === rowData.id
     );
 
@@ -71,9 +71,7 @@ const TableEpisodes = ({ episodesList, episodesAreLikedOrNot }: Props) => {
               <span className="flex items-center justify-start gap-1">
                 <Paragraph label={rowData.release_date} />
                 <GoPrimitiveDot size={'.4rem'} />
-                <Paragraph
-                  label={milisecondToMinOrHour(rowData.duration_ms)}
-                />
+                <Paragraph label={milisecondToMinOrHour(rowData.duration_ms)} />
               </span>
             </div>
             <div className="flex items justify-start gap-6">
@@ -120,6 +118,7 @@ const TableEpisodes = ({ episodesList, episodesAreLikedOrNot }: Props) => {
         <Column
           header="Tous les épidodes"
           headerClassName="text-2xl text-white py-4"
+          headerStyle={{ justifyContent: 'start' }}
           body={TableEpisodesContent}
         />
       </DataTable>

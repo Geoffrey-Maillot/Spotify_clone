@@ -21,13 +21,13 @@ import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
 import { PageType } from '../service/interface/Album';
 import { useGetEpisode } from '../service/spotify/episode';
 import { milisecondToMinOrHour } from '../service/utils/time';
+import Spinner from '../component/Spinner/Spinner';
 
 const Episode = () => {
   const windowWidth = useGetWindowWidth();
 
   const isBackgroundImage = windowWidth < 781;
 
-  const listen = true;
   const id = useParams().id as string;
   const { data, isLoading, isError } = useGetEpisode(id);
 
@@ -37,99 +37,52 @@ const Episode = () => {
     backgroundImage: isBackgroundImage ? `url(${imgShow?.url})` : '',
   };
 
-  const related = [
-    {
-      img: 'https://source.unsplash.com/random/300x300',
-      imgAlt: 'https://source.unsplash.com/random/40x40',
-      title: "Episode 80 - Majora's Mask",
-      date: '10 Juin',
-      duration: '99 min',
-    },
-    {
-      img: 'https://source.unsplash.com/random/300x300',
-      imgAlt: 'https://source.unsplash.com/random/40x40',
-      title: "Episode 80 - Majora's Mask",
-      date: '10 Juin',
-      duration: '99 min',
-    },
-    {
-      img: 'https://source.unsplash.com/random/300x300',
-      imgAlt: 'https://source.unsplash.com/random/40x40',
-      title: "Episode 80 - Majora's Mask",
-      date: '10 Juin',
-      duration: '99 min',
-    },
-    {
-      img: 'https://source.unsplash.com/random/300x300',
-      imgAlt: 'https://source.unsplash.com/random/40x40',
-      title: "Episode 80 - Majora's Mask",
-      date: '10 Juin',
-      duration: '99 min',
-    },
-    {
-      img: 'https://source.unsplash.com/random/300x300',
-      imgAlt: 'https://source.unsplash.com/random/40x40',
-      title: "Episode 80 - Majora's Mask",
-      date: '10 Juin',
-      duration: '99 min',
-    },
-    {
-      img: 'https://source.unsplash.com/random/300x300',
-      imgAlt: 'https://source.unsplash.com/random/40x40',
-      title: "Episode 80 - Majora's Mask",
-      date: '10 Juin',
-      duration: '99 min',
-    },
-  ];
-
   return (
     <Layout>
-      <header
-        className="h-[22rem] w-full px-8 pb-6  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
-        style={bgStyle}
-      >
-        <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block flex-none">
-          <img src={imgShow?.url} alt={data?.name} />
-        </div>
-        <div className="flex flex-col justify-end items-start md:bg-dark-400/0 bg-dark-400/40  rounded p-2">
-          <span className="mb-4">
-            <H2 label="Épisode Podcast" />
-          </span>
-          <H1 label={data?.name} />
-          <span className="mt-4">
-            <H2 size="xl2" color="white" label={data?.show.name} />
-          </span>
-        </div>
-      </header>
-      <section className="px-10 pt-8 flex items-center justify-start gap-1">
-        <Paragraph label="27 juin" />
-        <GoPrimitiveDot color="#b3b3b3" size=".4rem" />
-        <Paragraph label={milisecondToMinOrHour(data?.duration_ms)} />
-      </section>
-      <HeaderBandPlay type="episode" />
-      <section className="max-w-[42rem] pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
-        <H2 size="xl2" label="Description de l'épisode" />
-        <PanelHideContent>
-          <Paragraph size="lg">{data?.description}</Paragraph>
-        </PanelHideContent>
-        <Link
-          className="border border-gray-200  rounded-full px-4 py-2 hover:scale-105"
-          to={`/show/ff4e6e5`}
-        >
-          {' '}
-          <H2 label="Voir tous les épisodes" />{' '}
-        </Link>
-      </section>
-      <section className="px-8 mt-8 mb-10">
-        <H2 size="xl2" label="Vous devriez aussi aimez" />
-        <div className="grid grid-cols-[repeat(auto-fit,_minmax(12.5rem,_15.375rem))] gap-4 mt-4  justify-center sm:justify-start">
-          {related.map((episode, i) => (
-            <div key={i} className="">
-              <CardMusic type={PageType.EPISODE} {...episode} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <header
+            className="h-[22rem] w-full px-8 pb-6  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
+            style={bgStyle}
+          >
+            <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block flex-none">
+              <img src={imgShow?.url} alt={data?.name} />
             </div>
-          ))}
-        </div>
-      </section>
+            <div className="flex flex-col justify-end items-start md:bg-dark-400/0 bg-dark-400/40  rounded p-2">
+              <span className="mb-4">
+                <H2 label="Épisode Podcast" />
+              </span>
+              <H1 label={data?.name} />
+              <span className="mt-4">
+                <H2 size="xl2" color="white" label={data?.show.name} />
+              </span>
+            </div>
+          </header>
+          <section className="px-10 pt-8 flex items-center justify-start gap-1">
+            <Paragraph label="27 juin" />
+            <GoPrimitiveDot color="#b3b3b3" size=".4rem" />
+            <Paragraph label={milisecondToMinOrHour(data?.duration_ms)} />
+          </section>
+          <HeaderBandPlay type="episode" />
+          <section className="max-w-[42rem] pl-8 pr-4 mt-4 flex flex-col items-start justify-start gap-8">
+            <H2 size="xl2" label="Description de l'épisode" />
+            <PanelHideContent>
+              <Paragraph size="lg">{data?.description}</Paragraph>
+            </PanelHideContent>
+            <Link
+              className="border border-gray-200  rounded-full px-4 py-2 hover:scale-105"
+              to={`/show/ff4e6e5`}
+            >
+              <Link to={`/show/${data?.show.id}`}>
+                {' '}
+                <H2 label="Voir tous les épisodes" />
+              </Link>
+            </Link>
+          </section>
+        </>
+      )}
     </Layout>
   );
 };

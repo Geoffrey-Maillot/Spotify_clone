@@ -67,7 +67,7 @@ const LeftMenu = ({ forwardRef }: Props) => {
             Une erreur est survenue pendant le chargement des playlist
           </div>
         ) : isLoading ? (
-          <Spinner />
+          <Spinner small/>
         ) : (
           <InfiniteScroll hasNextPage={hasNextPage} trigger={fetchNextPage}>
             {playlists.map((playlist) => (

@@ -1,23 +1,19 @@
 import './spinner.scss';
 
-const Spinner = () => (
-  <div className="w-full h-full flex justify-center items-center">
-    <div className="loadingio-spinner-spinner-jm2p1p0t5l">
-      <div className="ldio-07oy0bow0kt">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+interface SpinnerProps {
+  small?: boolean;
+}
+
+const Spinner = ({ small }: SpinnerProps) => (
+  <div className={`spinner ${small ? 'spinner-small' : ''}`}>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
+    <div className="dot"></div>
   </div>
 );
 
