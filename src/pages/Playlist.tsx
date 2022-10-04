@@ -1,5 +1,5 @@
 // Import Router
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 // Import icon
 import { GoPrimitiveDot } from 'react-icons/go';
@@ -74,6 +74,8 @@ const Playlist = () => {
     tracksList = [...tracksList, ...track.items];
   });
 
+
+
   // List de l'Id des tracks utilisé pour savoir si l'id est liké ou pas
   const listIdTracks = tracksList.map((track) => track.track.id);
 
@@ -99,11 +101,7 @@ const Playlist = () => {
 
   if (errorPlaylist) {
     return (
-      <Layout>
-        <div className="px-8 pt-6 font-circularBold text-lg text-white">
-          Une erreur est survenue pendant le chargement de la playlist
-        </div>
-      </Layout>
+    <Navigate to="/login"/>
     );
   }
 
@@ -111,7 +109,7 @@ const Playlist = () => {
     <Layout>
       <>
         <header
-          className="h-[22rem] w-full px-8 pb-6 ]  bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
+          className="h-[22rem] w-full px-8 pb-6 bg-cover bg-center bg-no-repeat flex flex-row gap-4 items-end justify-start"
           style={bgStyle}
         >
           <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block">

@@ -1,5 +1,5 @@
 // Import Router
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 // Import Component
 import Layout from '../component/Layout/Layout';
@@ -13,8 +13,99 @@ import TabsView from '../component/TabView/TabView';
 import { HiBadgeCheck } from 'react-icons/hi';
 import TableArtist from '../component/Tables/TableArtist';
 import AlbumList from '../component/AlbumList/AlbumList';
+import {
+  useGetArtist,
+  useGetArtistAlbum,
+  useGetArtistTopTracks,
+
+} from '../service/spotify/artist';
+import { useGetWindowWidth } from 'service/hook/useGetWindowWidth';
+import {
+  useAddToLikedTracks,
+  useCheckTracksAreAlreadySaved,
+  useRemoveFromLikedTracks,
+} from 'service/spotify/track';
+import { flatAndMergeArray } from 'service/utils/arrayFunctions';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useFollowArtists, useIsFollowingArtists, useUnfollowArtists } from '../service/spotify/follow';
+
+// React Query
 
 const Artist = () => {
+  const id = useParams().id as string;
+
+  const queryClient = useQueryClient();
+
+  const windowWidth = useGetWindowWidth();
+
+  const isBackgroundImage = windowWidth < 781;
+
+  const {
+    data: artistsData,
+    isLoading: isLoadinArtist,
+    isError: isErrorArtist,
+  } = useGetArtist(id);
+
+  const {
+    data: dataTopTracks,
+    isLoading: isLoadingTopTrack,
+    isError: isErrorTopTracks,
+  } = useGetArtistTopTracks(id, 'fr');
+
+  const { data: isFollowingArtists } = useIsFollowingArtists([id]);
+
+  const listTopTracks: SpotifyApi.TrackObjectFull[] =
+    dataTopTracks?.tracks || [];
+
+  const listIdtracks = listTopTracks.map((track) => track.id);
+
+  const checkIfTracksIsLiked = useCheckTracksAreAlreadySaved([listIdtracks]);
+
+  const listTracksLikedOrNot = checkIfTracksIsLiked.map(
+    (response) => response.data
+  );
+
+  const tracksIsLiked = flatAndMergeArray([listIdtracks], listTracksLikedOrNot);
+
+  const addLikedTracksMutation = useMutation(useAddToLikedTracks, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tracksAreAlreadySaved']);
+    },
+  });
+
+  const removeLikedTracksMutation = useMutation(useRemoveFromLikedTracks, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['tracksAreAlreadySaved']);
+    },
+  });
+
+  const followArtist = useMutation(useFollowArtists, {
+    onSuccess: () => queryClient.invalidateQueries(['isFollowingArtist']),
+  });
+
+  const unFollowArtist = useMutation(useUnfollowArtists, {
+  onSuccess: () => queryClient.invalidateQueries(['isFollowingArtist'])
+})
+
+  const mutateFollowingArtist = () => {
+
+
+  if (!!isFollowingArtists?.at(0) ) {
+  unFollowArtist.mutate([id])
+} else {
+  followArtist.mutate([id])
+}
+}
+
+  const imgArtist = artistsData?.images[0].url;
+
+  const bgStyle = {
+    backgroundImage: isBackgroundImage ? `url(${imgArtist})` : '',
+  };
+
+  const { data: albumsArtist } = useGetArtistAlbum(id);
+  console.log(albumsArtist);
+
   const albums = [
     {
       img: 'https://source.unsplash.com/random/302x302',
@@ -62,131 +153,48 @@ const Artist = () => {
       content: 'Les hits de demain sont déjà ici. Photo : Måneskin',
     },
   ];
-  const tracksList = [
-    {
-      track: 1,
 
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre qui peu être long, voir très long voire encore plus long',
-      like: 145450,
-      duration: '3:21',
-      liked: true,
-    },
-    {
-      track: 2,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-
-      like: 1956560,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 3,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      like: 105645,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 4,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      like: 10895,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 5,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      like: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 6,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-
-      like: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 7,
-
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre super long',
-      like: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 8,
-
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-
-      like: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 9,
-
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-
-      like: 10,
-      duration: '3:36',
-      liked: false,
-    },
-    {
-      track: 10,
-
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-
-      like: 10,
-      duration: '3:36',
-      liked: false,
-    },
-  ];
-
-  const { id } = useParams();
+  if (isErrorArtist || isErrorTopTracks) {
+    <Navigate to="/login" />;
+  }
 
   return (
     <Layout>
       <header
-        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
-        style={{
-          background:
-            'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
-          backgroundSize: 'cover',
-        }}
+        className="h-[22rem] w-full  flex flex-row justify-start items-end gap-4 px-8 py-6 bg-cover bg-center bg-no-repeat"
+        style={bgStyle}
       >
-        <div className="mb-4 flex items-center justify-start gap-1">
-          <HiBadgeCheck size="1.5rem" className="fill-[#3d91f4]" />
-          <Paragraph label="Artiste vérifié" color="white" />
+        <div className="w-[12.5rem] md:w-[14.68rem] xl:w-[20rem] aspect-square hidden md:block rounded-full overflow-hidden">
+          <img src={imgArtist} alt={artistsData?.name} />
         </div>
-        <H1 label="Michael Jackson" size="xl8" />
-        <span className="mt-4">
-          <Paragraph
-            size="lg"
-            color="white"
-            label="30496653 auditeurs par mois"
-          />
-        </span>
+        <div className="flex flex-col justify-end items-start">
+          {/*<div className="mb-4 flex items-center justify-start gap-1">
+            <HiBadgeCheck size="1.5rem" className="fill-[#3d91f4]" />
+            <Paragraph label="Artiste vérifié" color="white" />
+          </div>*/}
+          <H1 label="Michael Jackson" size="xl8" />
+          <span className="mt-4">
+            <Paragraph
+              size="lg"
+              color="white"
+              label="30496653 auditeurs par mois"
+            />
+          </span>
+        </div>
       </header>
-      <HeaderBandPlay type="artist" />
+      <HeaderBandPlay type="artist" subscriber={isFollowingArtists?.at(0)} mutateFollowingArtist={mutateFollowingArtist}/>
       <section className="px-8 flex justify-start items-start flex-col xl:flex-row gap-10">
         <div className="w-full">
           <div className="mb-4">
             <H2 size="xl2" color="white" label="Populaires" />
           </div>
-          <TableArtist tracksList={tracksList} />
+          <TableArtist
+            tracksList={listTopTracks}
+            isLoading={isLoadingTopTrack}
+            tracksIsLiked={tracksIsLiked}
+            addToLikedTracks={addLikedTracksMutation}
+            removeToLikedTracks={removeLikedTracksMutation}
+          />
         </div>
         <div className="max-w-80 flex-none">
           <H2 size="xl2" color="white" label="Sélection de l'artiste" />

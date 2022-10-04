@@ -1,23 +1,25 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { withRouter } from 'storybook-addon-react-router-v6';
+export {}
 
-import CardFirst from './CardFirst';
+//import { ComponentStory, ComponentMeta } from '@storybook/react';
+//import { withRouter } from 'storybook-addon-react-router-v6';
 
-export default {
-  title: 'Card/CardFirst',
-  component: CardFirst,
-  decorators: [
-    withRouter,
-    (story) => <div style={{ height: '300px', width: '450px' }}>{story()}</div>,
-  ],
-} as ComponentMeta<typeof CardFirst>;
+//import CardFirst from './CardFirst';
 
-const Template: ComponentStory<typeof CardFirst> = (args) => (
-  <CardFirst {...args} />
-);
+//export default {
+//  title: 'Card/CardFirst',
+//  component: CardFirst,
+//  decorators: [
+//    withRouter,
+//    (story) => <div style={{ height: '300px', width: '450px' }}>{story()}</div>,
+//  ],
+//} as ComponentMeta<typeof CardFirst>;
 
-export const Playlist = Template.bind({});
-Playlist.args = { type: 'playlist' };
+//const Template: ComponentStory<typeof CardFirst> = (args) => (
+//  <CardFirst {...args} />
+//);
 
-export const Podcast = Template.bind({});
-Playlist.args = { type: 'podcast' };
+//export const Playlist = Template.bind({});
+//Playlist.args = { type: 'playlist' };
+
+//export const Podcast = Template.bind({});
+//Playlist.args = { type: 'podcast' };

@@ -1,20 +1,20 @@
 // Import Router
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 // Import Component
-import Layout from '../component/Layout/Layout';
-import H1 from '../component/Typo/H1/H1';
-import Paragraph from '../component/Typo/Paragraph/Paragraph';
-import H2 from '../component/Typo/H2/H2';
-import TableEpisodes from '../component/Tables/TableEpisodes';
-import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
-import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
+import Layout from 'component/Layout/Layout';
+import H1 from 'component/Typo/H1/H1';
+import Paragraph from 'component/Typo/Paragraph/Paragraph';
+import H2 from 'component/Typo/H2/H2';
+import TableEpisodes from 'component/Tables/TableEpisodes';
+import HeaderBandPlay from 'component/HeaderBandPlay/HeaderBandPlay';
+import PanelHideContent from 'component/UtilsComponents/PanelHideContent';
 
 // Hook
-import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
+import { useGetWindowWidth } from 'service/hook/useGetWindowWidth';
 
 // Function
-import { chunkTable, flatAndMergeArray } from '../service/utils/arrayFunctions';
+import { chunkTable, flatAndMergeArray } from 'service/utils/arrayFunctions';
 
 // Spotify
 import {
@@ -22,12 +22,12 @@ import {
   removeFromSavedShows,
   useContainsSavedShows,
   useGetShow,
-} from '../service/spotify/show';
+} from 'service/spotify/show';
 import {
   useGetShowEpisodes,
   useCheckEpisodeAreAlreadySaved,
-} from '../service/spotify/episode';
-import InfiniteScroll from '../component/UtilsComponents/InfiniteScroll';
+} from 'service/spotify/episode';
+import InfiniteScroll from 'component/UtilsComponents/InfiniteScroll';
 
 // React Query
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -71,10 +71,10 @@ const Podcast = ({}: Props) => {
   });
 
   const mutateShow = () => {
-    if (checkShowIsSaved && dataShow && checkShowIsSaved[0]) {
-      removeFromSavedShow.mutate([dataShow?.id]);
+    if (checkShowIsSaved && checkShowIsSaved[0]) {
+      removeFromSavedShow.mutate([id]);
     } else if (checkShowIsSaved && dataShow && !!checkIfEpisodeIsLiked[0]) {
-      saveShow.mutate([dataShow.id]);
+      saveShow.mutate([id]);
     }
   };
 
@@ -110,6 +110,11 @@ const Podcast = ({}: Props) => {
     backgroundImage: isBackgroundImage ? `url(${imgShow?.url})` : '',
   };
 
+  if (errorShow || errorEpisodeList) {
+  return <Navigate to="/login" />
+}
+
+
   return (
     <Layout>
       <header
@@ -136,17 +141,16 @@ const Podcast = ({}: Props) => {
       />
       <div className="flex items-start justify-start pl-4 gap-4 xl:flex-row flex-col-reverse">
         <div className=" xl:w-3/5 w-full max-w-[726px] xl:max-w-max">
-          {!errorEpisodeList && (
             <InfiniteScroll
               hasNextPage={hasNextPageShow}
               trigger={fetchNextPageShow}
             >
               <TableEpisodes
+                isLoading={isLoadingEpisodeList}
                 episodesList={showEpisodeList}
                 episodesAreLikedOrNot={episodesAreLikedOrNot}
               />
             </InfiniteScroll>
-          )}
         </div>
         <div className="flex flex-col justify-start items-start gap-6  xl:w-2/5 w-full max-w-[726px] xl:max-w-max px-4">
           <span className="pt-4">

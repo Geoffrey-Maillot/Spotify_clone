@@ -1,7 +1,7 @@
 import { spotifyApi } from './client';
 import { useQuery } from '@tanstack/react-query';
 
-export const UseGetCurrentUser = () => {
+export const useGetCurrentUser = () => {
   return useQuery<SpotifyApi.CurrentUsersProfileResponse, any>(
     ['currentUser'],
     spotifyApi.getMe

@@ -26,6 +26,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import ButtonPlayLight from '../Button/ButtonPlay/ButtonPlayLight';
 
 interface Props {
+  isLoading: boolean;
   episodesList: any;
   episodesAreLikedOrNot?: {
     id: string;
@@ -33,7 +34,7 @@ interface Props {
   }[];
 }
 
-const TableEpisodes = ({ episodesList, episodesAreLikedOrNot }: Props) => {
+const TableEpisodes = ({ episodesList, episodesAreLikedOrNot, isLoading }: Props) => {
   const [responsiveTableStyle, setResponsiveTableStyle] =
     useState<DataTableResponsiveLayoutType>('scroll');
   const windowWidth: number = useGetWindowWidth();
@@ -114,6 +115,7 @@ const TableEpisodes = ({ episodesList, episodesAreLikedOrNot }: Props) => {
         responsiveLayout="scroll"
         className=" text-gray-200 text-left table-podcasts "
         emptyMessage="Vous n'avez pas encore d'épisodes"
+        loading={isLoading}
       >
         <Column
           header="Tous les épidodes"

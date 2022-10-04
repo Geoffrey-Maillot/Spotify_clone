@@ -1,5 +1,5 @@
 import { spotifyApi } from './client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { next } from './player';
 
 /**
@@ -22,18 +22,19 @@ export const isFollowingUsers = (userIds: Array<string>): Promise<Object> => {
  * ARTIST
  */
 
-export const followArtists = (artistIds: Array<string>): Promise<Object> => {
+export const useFollowArtists = (artistIds: Array<string>) => {
   return spotifyApi.followArtists(artistIds);
 };
 
-export const unfollowArtists = (artistIds: Array<string>): Promise<Object> => {
+export const useUnfollowArtists = (artistIds: Array<string>) => {
   return spotifyApi.unfollowArtists(artistIds);
 };
 
-export const isFollowingArtists = (
-  artistIds: Array<string>
-): Promise<Object> => {
-  return spotifyApi.isFollowingArtists(artistIds);
+export const useIsFollowingArtists = (artistIds: Array<string>) => {
+  return useQuery<SpotifyApi.UserFollowsUsersOrArtistsResponse, any>(
+    ['isFollowingArtist', artistIds],
+    () => spotifyApi.isFollowingArtists(artistIds)
+  );
 };
 
 export const useGetFollowedArtist = (params?: Object) => {

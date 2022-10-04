@@ -1,0 +1,218 @@
+Date : 2022-09-28 21:17:50
+Directory : c:\Users\g.maillot\source\Spotify_clone\src
+Total : 147 files,  43966 codes, 419 comments, 1086 blanks, all 45471 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| XML              |          5 |     37,025 |          0 |          3 |     37,028 |
+| TypeScript React |        105 |      5,927 |        349 |        870 |      7,146 |
+| TypeScript       |         23 |        690 |         55 |        150 |        895 |
+| SCSS             |          9 |        287 |          6 |         53 |        346 |
+| PostCSS          |          3 |         36 |          0 |          7 |         43 |
+| JSON             |          1 |          1 |          0 |          0 |          1 |
+| JavaScript       |          1 |          0 |          9 |          3 |         12 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                        | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                           |        147 |     43,966 |        419 |      1,086 |     45,471 |
+| assets                                                                                                      |          6 |     37,026 |          0 |          3 |     37,029 |
+| assets\font                                                                                                 |          3 |     37,023 |          0 |          3 |     37,026 |
+| assets\font\circular-bold                                                                                   |          1 |     13,533 |          0 |          1 |     13,534 |
+| assets\font\ciruclar-black                                                                                  |          1 |     13,543 |          0 |          1 |     13,544 |
+| assets\font\ciruclar-book                                                                                   |          1 |      9,947 |          0 |          1 |      9,948 |
+| assets\img                                                                                                  |          3 |          3 |          0 |          0 |          3 |
+| component                                                                                                   |         85 |      4,029 |        274 |        654 |      4,957 |
+| component\AlbumFirstSuggestion                                                                              |          2 |         64 |          1 |         10 |         75 |
+| component\AlbumList                                                                                         |          2 |        112 |          6 |         20 |        138 |
+| component\Button                                                                                            |          4 |         52 |          4 |         17 |         73 |
+| component\Button\ButtonPlay                                                                                 |          4 |         52 |          4 |         17 |         73 |
+| component\Cards                                                                                             |         10 |        328 |        139 |         65 |        532 |
+| component\Carroussel                                                                                        |          2 |         91 |          3 |         14 |        108 |
+| component\Dialogs                                                                                           |          2 |         75 |          3 |         16 |         94 |
+| component\Discography                                                                                       |          4 |        279 |          7 |         35 |        321 |
+| component\Grid                                                                                              |          2 |         67 |          0 |         14 |         81 |
+| component\HeaderBandPlay                                                                                    |          3 |        145 |         12 |         26 |        183 |
+| component\HeaderNav                                                                                         |          8 |        556 |         16 |         69 |        641 |
+| component\Layout                                                                                            |          2 |         93 |          3 |         27 |        123 |
+| component\LeftMenu                                                                                          |         10 |        347 |         16 |         76 |        439 |
+| component\LeftMenu\MenuLink                                                                                 |          8 |        266 |         10 |         61 |        337 |
+| component\PlayBar                                                                                           |          2 |         15 |          2 |          7 |         24 |
+| component\SearchInput                                                                                       |          1 |         31 |          3 |          7 |         41 |
+| component\Skeleton                                                                                          |          2 |         66 |          0 |          8 |         74 |
+| component\Spinner                                                                                           |          2 |         61 |          0 |         12 |         73 |
+| component\TabView                                                                                           |          7 |        372 |         12 |         51 |        435 |
+| component\Tables                                                                                            |         10 |      1,044 |         30 |        131 |      1,205 |
+| component\Typo                                                                                              |          6 |        147 |         16 |         26 |        189 |
+| component\Typo\H1                                                                                           |          2 |         24 |          2 |          9 |         35 |
+| component\Typo\H2                                                                                           |          2 |         56 |          7 |          8 |         71 |
+| component\Typo\Paragraph                                                                                    |          2 |         67 |          7 |          9 |         83 |
+| component\UtilsComponents                                                                                   |          4 |         84 |          1 |         23 |        108 |
+| pages                                                                                                       |         18 |      1,912 |         63 |        211 |      2,186 |
+| pages\Collection                                                                                            |          7 |        407 |         21 |         63 |        491 |
+| service                                                                                                     |         19 |        668 |         54 |        134 |        856 |
+| service\hook                                                                                                |          2 |         39 |          0 |         11 |         50 |
+| service\interface                                                                                           |          1 |          7 |          0 |          0 |          7 |
+| service\spotify                                                                                             |         12 |        554 |         54 |        114 |        722 |
+| service\utils                                                                                               |          4 |         68 |          0 |          9 |         77 |
+| state                                                                                                       |          3 |         43 |          0 |         16 |         59 |
+| styles                                                                                                      |         10 |        182 |          6 |         41 |        229 |
++-------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                                    | language         | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\g.maillot\source\Spotify_clone\src\App.tsx                                                         | TypeScript React |         17 |          4 |          9 |         30 |
+| c:\Users\g.maillot\source\Spotify_clone\src\Router.tsx                                                      | TypeScript React |         66 |          6 |          8 |         80 |
+| c:\Users\g.maillot\source\Spotify_clone\src\assets\font\circular-bold\CircularStd-Bold.svg                  | XML              |     13,533 |          0 |          1 |     13,534 |
+| c:\Users\g.maillot\source\Spotify_clone\src\assets\font\ciruclar-black\CircularStd-Black.svg                | XML              |     13,543 |          0 |          1 |     13,544 |
+| c:\Users\g.maillot\source\Spotify_clone\src\assets\font\ciruclar-book\CircularStd-Book.svg                  | XML              |      9,947 |          0 |          1 |      9,948 |
+| c:\Users\g.maillot\source\Spotify_clone\src\assets\img\back.svg                                             | XML              |          1 |          0 |          0 |          1 |
+| c:\Users\g.maillot\source\Spotify_clone\src\assets\img\menu-nav.json                                        | JSON             |          1 |          0 |          0 |          1 |
+| c:\Users\g.maillot\source\Spotify_clone\src\assets\img\next.svg                                             | XML              |          1 |          0 |          0 |          1 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\AlbumFirstSuggestion\AlbumFirstSuggestion.stories.tsx | TypeScript React |         40 |          0 |          7 |         47 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\AlbumFirstSuggestion\AlbumFirstSuggestion.tsx         | TypeScript React |         24 |          1 |          3 |         28 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\AlbumList\AlbumList.stories.tsx                       | TypeScript React |         58 |          0 |          8 |         66 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\AlbumList\AlbumList.tsx                               | TypeScript React |         54 |          6 |         12 |         72 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Button\ButtonPlay\ButtonPlay Light.stories.tsx        | TypeScript React |         10 |          0 |          4 |         14 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Button\ButtonPlay\ButtonPlay.stories.tsx              | TypeScript React |         13 |          0 |          5 |         18 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Button\ButtonPlay\ButtonPlay.tsx                      | TypeScript React |         22 |          3 |          5 |         30 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Button\ButtonPlay\ButtonPlayLight.tsx                 | TypeScript React |          7 |          1 |          3 |         11 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardFirst.stories.tsx                           | TypeScript React |         18 |          0 |          6 |         24 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardFirst.tsx                                   | TypeScript React |         84 |          2 |          9 |         95 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardGender.stories.tsx                          | TypeScript React |         15 |          0 |          4 |         19 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardGender.tsx                                  | TypeScript React |         58 |          3 |          8 |         69 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardLastListen.stories.tsx                      | TypeScript React |         17 |          1 |          5 |         23 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardLastListen.tsx                              | TypeScript React |         49 |          3 |          9 |         61 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardMusic-copy-artist-copy.tsx                  | TypeScript React |          1 |         63 |          6 |         70 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardMusic-copy-show.tsx                         | TypeScript React |          1 |         63 |          6 |         70 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardMusic.stories.tsx                           | TypeScript React |         12 |          1 |          5 |         18 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Cards\CardMusic.tsx                                   | TypeScript React |         73 |          3 |          7 |         83 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Carroussel\Carroussel.stories.tsx                     | TypeScript React |         42 |          0 |          6 |         48 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Carroussel\Carroussel.tsx                             | TypeScript React |         49 |          3 |          8 |         60 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Dialogs\SearchDialog.stories.tsx                      | TypeScript React |         41 |          0 |          7 |         48 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Dialogs\SearchDialog.tsx                              | TypeScript React |         34 |          3 |          9 |         46 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Discography\DiscographyAlbumList.stories.tsx          | TypeScript React |         45 |          0 |          8 |         53 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Discography\DiscographyAlbumList.tsx                  | TypeScript React |         72 |          3 |          7 |         82 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Discography\DiscographyHeader.stories.tsx             | TypeScript React |         18 |          0 |          5 |         23 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Discography\DiscographyHeader.tsx                     | TypeScript React |        144 |          4 |         15 |        163 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Grid\Grid.stories.tsx                                 | TypeScript React |         56 |          0 |         11 |         67 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Grid\Grid.tsx                                         | TypeScript React |         11 |          0 |          3 |         14 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderBandPlay\HeaderBandPlay.stories.tsx             | TypeScript React |         19 |          0 |          8 |         27 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderBandPlay\HeaderBandPlay.tsx                     | TypeScript React |         76 |          5 |         12 |         93 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderBandPlay\OptionPanelList.tsx                    | TypeScript React |         50 |          7 |          6 |         63 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\ButtonHambergerMenu.scss                    | SCSS             |         97 |          0 |         11 |        108 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\ButtonMenuLeft.tsx                          | TypeScript React |         56 |          0 |          9 |         65 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\HeaderNav.stories.tsx                       | TypeScript React |         19 |          0 |          4 |         23 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\HeaderNav.tsx                               | TypeScript React |        290 |         13 |         26 |        329 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\HeaderNavCollection.stories.tsx             | TypeScript React |         19 |          0 |          4 |         23 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\HeaderNavSearch.stories.tsx                 | TypeScript React |         19 |          0 |          4 |         23 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\NavLink.stories.tsx                         | TypeScript React |         13 |          1 |          4 |         18 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\HeaderNav\NavLink.tsx                                 | TypeScript React |         43 |          2 |          7 |         52 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Layout\Layout.stories.tsx                             | TypeScript React |         17 |          0 |          9 |         26 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Layout\Layout.tsx                                     | TypeScript React |         76 |          3 |         18 |         97 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\LeftMenu.stories.tsx                         | TypeScript React |         10 |          0 |          4 |         14 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\LeftMenu.tsx                                 | TypeScript React |         71 |          6 |         11 |         88 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\CreatePlaylistButton.stories.tsx    | TypeScript React |         12 |          1 |          8 |         21 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\CreatePlaylistButton.tsx            | TypeScript React |         35 |          2 |          7 |         44 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\EpisodeLink.stories.tsx             | TypeScript React |         12 |          1 |          7 |         20 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\EpisodeLink.tsx                     | TypeScript React |         50 |          1 |          9 |         60 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\LikedTracksLink.stories.tsx         | TypeScript React |         15 |          1 |          3 |         19 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\LikedTraksLink.tsx                  | TypeScript React |         50 |          1 |          9 |         60 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\MenuLink.stories.tsx                | TypeScript React |         15 |          1 |          8 |         24 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\LeftMenu\MenuLink\MenuLink.tsx                        | TypeScript React |         77 |          2 |         10 |         89 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\PlayBar\PlayBar.tsx                                   | TypeScript React |          7 |          1 |          3 |         11 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\PlayBar\Playbar.stories.tsx                           | TypeScript React |          8 |          1 |          4 |         13 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\SearchInput\SearchInput.tsx                           | TypeScript React |         31 |          3 |          7 |         41 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Skeleton\CardSkeleton.tsx                             | TypeScript React |         48 |          0 |          4 |         52 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Skeleton\UserSkeleton.tsx                             | TypeScript React |         18 |          0 |          4 |         22 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Spinner\Spinner.tsx                                   | TypeScript React |         17 |          0 |          4 |         21 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Spinner\spinner.scss                                  | SCSS             |         44 |          0 |          8 |         52 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\Albums.tsx                                    | TypeScript React |         56 |          1 |          5 |         62 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\Compiles.tsx                                  | TypeScript React |         56 |          1 |          5 |         62 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\Releases.tsx                                  | TypeScript React |         56 |          1 |          5 |         62 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\Singles.tsx                                   | TypeScript React |         56 |          1 |          5 |         62 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\TabView.stories.tsx                           | TypeScript React |         15 |          1 |          6 |         22 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\TabView.tsx                                   | TypeScript React |        103 |          6 |         19 |        128 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\TabView\TitleHeader.tsx                               | TypeScript React |         30 |          1 |          6 |         37 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableArtist.stories.tsx                        | TypeScript React |         94 |          1 |         15 |        110 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableArtist.tsx                                | TypeScript React |        128 |          5 |         22 |        155 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableDiscography.stories.tsx                   | TypeScript React |         34 |          1 |          6 |         41 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableDiscography.tsx                           | TypeScript React |        126 |          4 |         17 |        147 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableEpisode.stories.tsx                       | TypeScript React |         43 |          1 |          5 |         49 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableEpisodes.tsx                              | TypeScript React |        109 |          6 |         15 |        130 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableProfil.stories.tsx                        | TypeScript React |         54 |          1 |          6 |         61 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableProfil.tsx                                | TypeScript React |        118 |          5 |         17 |        140 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableTracks.stories.tsx                        | TypeScript React |        117 |          1 |          4 |        122 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Tables\TableTracks.tsx                                | TypeScript React |        221 |          5 |         24 |        250 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Typo\H1\H1.stories.tsx                                | TypeScript React |          9 |          1 |          6 |         16 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Typo\H1\H1.tsx                                        | TypeScript React |         15 |          1 |          3 |         19 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Typo\H2\H2.stories.tsx                                | TypeScript React |          9 |          6 |          5 |         20 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Typo\H2\H2.tsx                                        | TypeScript React |         47 |          1 |          3 |         51 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Typo\Paragraph\Paragraph.stories.tsx                  | TypeScript React |         11 |          6 |          5 |         22 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\Typo\Paragraph\Paragraph.tsx                          | TypeScript React |         56 |          1 |          4 |         61 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\UtilsComponents\InfiniteScroll.tsx                    | TypeScript React |         25 |          0 |          6 |         31 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\UtilsComponents\PanelHideContent.tsx                  | TypeScript React |         33 |          1 |         10 |         44 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\UtilsComponents\ProtectedRoute.tsx                    | TypeScript React |         17 |          0 |          4 |         21 |
+| c:\Users\g.maillot\source\Spotify_clone\src\component\UtilsComponents\RenderIf.tsx                          | TypeScript React |          9 |          0 |          3 |         12 |
+| c:\Users\g.maillot\source\Spotify_clone\src\index.tsx                                                       | TypeScript React |         22 |          2 |          5 |         29 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Artist.tsx                                                | TypeScript React |        233 |          3 |         17 |        253 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\Albums.tsx                                     | TypeScript React |         43 |          2 |          8 |         53 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\Artists.tsx                                    | TypeScript React |         41 |          3 |          7 |         51 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\Episodes.tsx                                   | TypeScript React |         49 |          4 |          8 |         61 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\Genre.tsx                                      | TypeScript React |         72 |          3 |          9 |         84 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\LikedTracks.tsx                                | TypeScript React |         68 |          4 |         10 |         82 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\Playlists.tsx                                  | TypeScript React |         68 |          3 |         10 |         81 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Collection\Podcats.tsx                                    | TypeScript React |         66 |          2 |         11 |         79 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Discography.tsx                                           | TypeScript React |        167 |          3 |         17 |        187 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Episode.tsx                                               | TypeScript React |         71 |          5 |         13 |         89 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\GenrePage.tsx                                             | TypeScript React |         68 |          3 |          6 |         77 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Home.tsx                                                  | TypeScript React |        137 |          3 |          8 |        148 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Login.tsx                                                 | TypeScript React |         43 |          1 |          6 |         50 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Playlist.tsx                                              | TypeScript React |        177 |          9 |         25 |        211 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Podcast.tsx                                               | TypeScript React |        142 |          6 |         29 |        177 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Profil.tsx                                                | TypeScript React |        247 |          4 |         11 |        262 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Search.tsx                                                | TypeScript React |        148 |          2 |          7 |        157 |
+| c:\Users\g.maillot\source\Spotify_clone\src\pages\Section.tsx                                               | TypeScript React |         72 |          3 |          9 |         84 |
+| c:\Users\g.maillot\source\Spotify_clone\src\react-app-env.d.ts                                              | TypeScript       |          0 |          1 |          1 |          2 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\hook\useGetWindowWidth.ts                               | TypeScript       |         14 |          0 |          6 |         20 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\hook\useLocalStorage.ts                                 | TypeScript       |         25 |          0 |          5 |         30 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\interface\Album.ts                                      | TypeScript       |          7 |          0 |          0 |          7 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\album.ts                                        | TypeScript       |         69 |          6 |         10 |         85 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\artist.ts                                       | TypeScript       |         35 |          0 |          7 |         42 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\categorie.ts                                    | TypeScript       |         11 |          0 |          4 |         15 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\client.ts                                       | TypeScript       |         24 |          5 |          8 |         37 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\episode.ts                                      | TypeScript       |         52 |          2 |          7 |         61 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\follow.ts                                       | TypeScript       |         51 |          9 |         14 |         74 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\player.ts                                       | TypeScript       |         51 |         11 |         12 |         74 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\playlist.ts                                     | TypeScript       |        113 |          9 |         19 |        141 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\search.ts                                       | TypeScript       |         28 |          0 |          9 |         37 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\show.ts                                         | TypeScript       |         46 |          6 |          7 |         59 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\track.ts                                        | TypeScript       |         60 |          6 |         14 |         80 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\spotify\user.ts                                         | TypeScript       |         14 |          0 |          3 |         17 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\utils\arrayFunctions.tsx                                | TypeScript React |         22 |          0 |          2 |         24 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\utils\calcGridNbrCols.ts                                | TypeScript       |         13 |          0 |          2 |         15 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\utils\time.ts                                           | TypeScript       |         23 |          0 |          4 |         27 |
+| c:\Users\g.maillot\source\Spotify_clone\src\service\utils\uuid.ts                                           | TypeScript       |         10 |          0 |          1 |         11 |
+| c:\Users\g.maillot\source\Spotify_clone\src\spotify.d.ts                                                    | TypeScript       |          1 |          0 |          1 |          2 |
+| c:\Users\g.maillot\source\Spotify_clone\src\state\authStore.ts                                              | TypeScript       |         19 |          0 |          6 |         25 |
+| c:\Users\g.maillot\source\Spotify_clone\src\state\popupStore.ts                                             | TypeScript       |         13 |          0 |          5 |         18 |
+| c:\Users\g.maillot\source\Spotify_clone\src\state\storeContext.ts                                           | TypeScript       |         11 |          0 |          5 |         16 |
+| c:\Users\g.maillot\source\Spotify_clone\src\storybook.test.js                                               | JavaScript       |          0 |          9 |          3 |         12 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\carroussel.scss                                          | SCSS             |         40 |          1 |          9 |         50 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\dialog.scss                                              | SCSS             |          7 |          0 |          2 |          9 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\font.css                                                 | PostCSS          |         33 |          0 |          3 |         36 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\mixin.scss                                               | SCSS             |          5 |          0 |          1 |          6 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\primeReact.css                                           | PostCSS          |          0 |          0 |          1 |          1 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\styles.scss                                              | SCSS             |          7 |          0 |          1 |          8 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\tabView.scss                                             | SCSS             |          6 |          0 |          1 |          7 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\table.scss                                               | SCSS             |         71 |          5 |         18 |         94 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\tailwind.css                                             | PostCSS          |          3 |          0 |          3 |          6 |
+| c:\Users\g.maillot\source\Spotify_clone\src\styles\utils.scss                                               | SCSS             |         10 |          0 |          2 |         12 |
+| Total                                                                                                       |                  |     43,966 |        419 |      1,086 |     45,471 |
++-------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

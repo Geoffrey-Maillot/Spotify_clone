@@ -1,10 +1,10 @@
 ## Next✅
+- Page collection/episodes
+  - Gérer le isLoading
+  - Corriger erreur undefined
 - Page Podcast
-  - Passer le tableau de titres liké ou pas au composant TableEpisode
-  - Créer la route pour checker si on est abboné au Podcast
-  - Gérer les status error / loading
-- Page Loader
-
+  - Header page episodes
+  - page liked tracks 
 
 ---
 
@@ -40,7 +40,7 @@
     - lazy import / suspense
     - Lazy load ?
   - **Image** :
-    - Lazy Load
+    - Lazy Load 
   - **Data** :
     - Lazy Load
 

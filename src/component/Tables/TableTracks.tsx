@@ -22,11 +22,11 @@ interface Props {
   tracksList: Array<SpotifyApi.PlaylistTrackObject>;
   isLoading: boolean;
   isFetching: boolean;
-  tracksIsLiked: {
+  tracksIsLiked?: {
     id: string;
     liked: boolean | undefined;
   }[];
-  addToLikedTracks: UseMutationResult<
+  addToLikedTracks?: UseMutationResult<
     SpotifyApi.SaveTracksForUserResponse,
     unknown,
     string[],
@@ -48,6 +48,9 @@ const TableTracks = ({
   addToLikedTracks,
   removeToLikedTracks,
 }: Props) => {
+
+  console.log( tracksList)
+
   const [selectedRow, setSelectedRow] =
     useState<SpotifyApi.PlaylistTrackObject | null>(null);
   const [responsiveTableStyle, setResponsiveTableStyle] =
@@ -62,7 +65,6 @@ const TableTracks = ({
   const onSelectRow = (e: any) => {
     setSelectedRow(e.value);
   };
-
   const onMutate = (
     tracksState:
       | {
@@ -75,14 +77,14 @@ const TableTracks = ({
     const isLiked = tracksState?.liked as boolean;
 
     if (!isLiked) {
-      addToLikedTracks.mutate([id]);
+      addToLikedTracks?.mutate([id]);
     } else {
       removeToLikedTracks.mutate([id]);
     }
   };
 
   const ButtonLike = ({ track: { id } }: any) => {
-    const idIsLiked = tracksIsLiked.find((item) => item.id === id);
+    const idIsLiked = tracksIsLiked?.find((item) => item.id === id);
 
     return (
       <button onClick={() => onMutate(idIsLiked)}>
@@ -129,6 +131,7 @@ const TableTracks = ({
   };
 
   const TitleContent = ({ track }: any) => {
+    console.log(track)
     const artists = track.artists.map((artist: any) => artist.name).join(', ');
 
     return (

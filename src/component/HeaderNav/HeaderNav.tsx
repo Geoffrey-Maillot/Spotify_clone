@@ -8,22 +8,22 @@ import {
 } from 'react';
 
 // State
-import { useStores } from '../../state/storeContext';
+import { useStores } from 'state/storeContext';
 
 // Import Router
 import { useLocation, Link } from 'react-router-dom';
 
 // Import Component
-import H2 from '../Typo/H2/H2';
-import Paragraph from '../Typo/Paragraph/Paragraph';
-import RenderIf from '../UtilsComponents/RenderIf';
+import H2 from 'component/Typo/H2/H2';
+import Paragraph from 'component/Typo/Paragraph/Paragraph';
+import RenderIf from 'component/UtilsComponents/RenderIf';
 import ButtonMenuleft from './ButtonMenuLeft';
+import Search from 'component/SearchInput/SearchInput';
+import UserSkeleton from 'component/Skeleton/UserSkeleton';
 import NavLink from './NavLink';
-import Search from '../SearchInput/SearchInput';
-import UserSkeleton from '../Skeleton/UserSkeleton';
 
 // Import Hook
-import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
+import { useGetWindowWidth } from 'service/hook/useGetWindowWidth';
 
 // Import React Icon
 import { HiOutlineChevronLeft } from 'react-icons/hi';
@@ -38,7 +38,7 @@ import { OverlayPanel } from 'primereact/overlaypanel';
 import { observer } from 'mobx-react-lite';
 
 //Queries
-import { UseGetCurrentUser } from '../../service/spotify/user';
+import { useGetCurrentUser } from 'service/spotify/user';
 
 // Lazy Components
 const SearchDialog = lazy(() => import('../Dialogs/SearchDialog'));
@@ -126,7 +126,7 @@ const HeaderNav = observer(({ panelSize, togglePanelLeft }: Props) => {
     popupsStore.toggleSearchInput();
   }, [popupsStore]);
 
-  const { data: user, error, isError, isLoading } = UseGetCurrentUser();
+  const { data: user, error, isError, isLoading } = useGetCurrentUser();
 
   return (
     <>

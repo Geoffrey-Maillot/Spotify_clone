@@ -1,27 +1,26 @@
 // Import Router
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 // Import Component
-import Layout from '../component/Layout/Layout';
-import H1 from '../component/Typo/H1/H1';
-import H2 from '../component/Typo/H2/H2';
-import Paragraph from '../component/Typo/Paragraph/Paragraph';
-import PanelHideContent from '../component/UtilsComponents/PanelHideContent';
-import HeaderBandPlay from '../component/HeaderBandPlay/HeaderBandPlay';
-import CardMusic from '../component/Cards/CardMusic';
+import Layout from 'component/Layout/Layout';
+import H1 from 'component/Typo/H1/H1';
+import H2 from 'component/Typo/H2/H2';
+import Paragraph from 'component/Typo/Paragraph/Paragraph';
+import PanelHideContent from 'component/UtilsComponents/PanelHideContent';
+import HeaderBandPlay from 'component/HeaderBandPlay/HeaderBandPlay';
+
 
 // Import icon
 import { GoPrimitiveDot } from 'react-icons/go';
-import { BsCheck2 } from 'react-icons/bs';
+
 
 // Hook
-import { useGetWindowWidth } from '../service/hook/useGetWindowWidth';
+import { useGetWindowWidth } from 'service/hook/useGetWindowWidth';
 
 // Import interface
-import { PageType } from '../service/interface/Album';
-import { useGetEpisode } from '../service/spotify/episode';
-import { milisecondToMinOrHour } from '../service/utils/time';
-import Spinner from '../component/Spinner/Spinner';
+import { useGetEpisode } from 'service/spotify/episode';
+import { milisecondToMinOrHour } from 'service/utils/time';
+import Spinner from 'component/Spinner/Spinner';
 
 const Episode = () => {
   const windowWidth = useGetWindowWidth();
@@ -36,6 +35,10 @@ const Episode = () => {
   const bgStyle = {
     backgroundImage: isBackgroundImage ? `url(${imgShow?.url})` : '',
   };
+
+  if (isError) {
+  return <Navigate to="/login" />
+}
 
   return (
     <Layout>
@@ -73,12 +76,10 @@ const Episode = () => {
             </PanelHideContent>
             <Link
               className="border border-gray-200  rounded-full px-4 py-2 hover:scale-105"
-              to={`/show/ff4e6e5`}
+              to={`/show/${data?.show.id}`}
             >
-              <Link to={`/show/${data?.show.id}`}>
-                {' '}
                 <H2 label="Voir tous les épisodes" />
-              </Link>
+      
             </Link>
           </section>
         </>

@@ -11,23 +11,41 @@ import Paragraph from '../Typo/Paragraph/Paragraph';
 
 // Import Hook
 import { useGetWindowWidth } from '../../service/hook/useGetWindowWidth';
+import { milisecondToMinOrHour } from 'service/utils/time';
 
-// TODO : Remplacer any par les infos provenant de l'api
+// React Query
+import { UseMutationResult } from '@tanstack/react-query';
 
-// Import Interface
-import { Track } from '../../service/interface/Album';
+
 
 interface Props {
-  tracksList: Array<Track>;
+tracksList: SpotifyApi.TrackObjectFull[]
+isLoading: boolean;
+  tracksIsLiked?: {
+    id: string;
+    liked: boolean | undefined;
+  }[];
+  addToLikedTracks?: UseMutationResult<
+    SpotifyApi.SaveTracksForUserResponse,
+    unknown,
+    string[],
+    unknown
+  >;
+  removeToLikedTracks: UseMutationResult<
+    SpotifyApi.SaveTracksForUserResponse,
+    unknown,
+    string[],
+    unknown
+  >;
 }
 
-const TableArtist = ({ tracksList }: Props) => {
+const TableArtist = ({ tracksList, isLoading, tracksIsLiked, addToLikedTracks, removeToLikedTracks }: Props) => {
   const BREAKPOINT = '600px';
   const isMobile = useGetWindowWidth() <= parseInt(BREAKPOINT, 10);
-  const [selectedRow, setSelectedRow] = useState<Track | null>(null);
+  const [selectedRow, setSelectedRow] = useState<SpotifyApi.TrackObjectFull | null>(null);
 
-  const trackList5 = tracksList.slice(0, 5);
-  const trackList10 = tracksList.slice(0, 10);
+  const trackList5 = tracksList?.slice(0, 5);
+  const trackList10 = tracksList?.slice(0, 10);
 
   const [tableIsVisible, toggleTableIsVisible] = useState(false);
 
@@ -51,26 +69,50 @@ const TableArtist = ({ tracksList }: Props) => {
     setResponsiveTableStyle(responsiveStyle);
   }, [isMobile]);
 
-  const buttonLike = (rowData: any) => {
+  const onMutate = (
+    tracksState:
+      | {
+          id: string;
+          liked: boolean | undefined;
+        }
+      | undefined
+  ) => {
+    const id = tracksState?.id as string;
+    const isLiked = tracksState?.liked as boolean;
+
+    if (!isLiked) {
+      addToLikedTracks?.mutate([id]);
+    } else {
+      removeToLikedTracks.mutate([id]);
+    }
+  };
+
+  const buttonLike = ({ id }: SpotifyApi.TrackObjectFull) => {
+    const idIsLiked = tracksIsLiked?.find((item) => item.id === id);
+
     return (
-      <span className="w-full flex justify-end">
-        {rowData.liked ? (
-          <AiFillHeart
-            color="#1ed760"
-            className=" buttonLike liked"
-            size="1.2rem"
-          />
-        ) : (
-          <AiOutlineHeart
-            className="buttonLike text-lightGray hover:text-white"
-            size="1.2rem"
-          />
-        )}
-      </span>
+      <button onClick={() => onMutate(idIsLiked)}>
+        <span className="w-full flex justify-end">
+          {idIsLiked?.liked ? (
+            <AiFillHeart
+              color="#1ed760"
+              className=" buttonLike liked"
+              size="1.2rem"
+            />
+          ) : (
+            <AiOutlineHeart
+              className="buttonLike text-lightGray hover:text-white"
+              size="1.2rem"
+            />
+          )}
+        </span>
+      </button>
     );
   };
 
-  const titleContent = (rowData: any) => {
+  const titleContent = (rowData: SpotifyApi.TrackObjectFull) => {
+
+    const img = rowData?.album?.images[2]?.url
     return (
       <div
         className={`flex justify-start items-center text-left gap-3 ${
@@ -78,13 +120,13 @@ const TableArtist = ({ tracksList }: Props) => {
         }`}
       >
         <div className="w-10 h-10 object-cover object-center flex-none">
-          <img src={rowData?.img} alt={rowData?.title} />
+          <img src={img} alt={rowData?.name} />
         </div>
         <div className=" overflow-hidden title pr-3">
           <Paragraph
             size="lg"
             color="white"
-            label={rowData?.title}
+            label={rowData?.name}
             clamp
             nbrLineClamp={1}
           />
@@ -93,11 +135,15 @@ const TableArtist = ({ tracksList }: Props) => {
     );
   };
 
+ const Duration = ({duration_ms }: SpotifyApi.TrackObjectFull) => {
+    return <span>{milisecondToMinOrHour(duration_ms)}</span>;
+  };
+
   return (
     <div>
       <DataTable
         value={tableIsVisible ? trackList10 : trackList5}
-        dataKey="track"
+        dataKey="id"
         selectionMode="single"
         responsiveLayout={responsiveTableStyle}
         breakpoint={BREAKPOINT}
@@ -105,6 +151,7 @@ const TableArtist = ({ tracksList }: Props) => {
         onSelectionChange={(e) => onSelectRow(e)}
         selection={selectedRow}
         rows={5}
+        loading={isLoading}
       >
         {!isMobile && (
           <Column
@@ -119,8 +166,6 @@ const TableArtist = ({ tracksList }: Props) => {
           body={titleContent}
         />
 
-        <Column field="like" bodyStyle={{ width: '' }} />
-
         <Column
           field=""
           header=""
@@ -129,7 +174,8 @@ const TableArtist = ({ tracksList }: Props) => {
         />
         <Column
           field="duration"
-          bodyStyle={{ paddingLeft: '40px', textAlign: 'end' }}
+          bodyStyle={{ paddingLeft: '40px', paddingRight: '20px', textAlign: 'end' }}
+          body={Duration}
         />
       </DataTable>
       {tableIsVisible ? (

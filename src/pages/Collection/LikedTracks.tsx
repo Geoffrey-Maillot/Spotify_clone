@@ -1,153 +1,119 @@
-// Import Router
-import { useParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 // Import icon
 import { GoPrimitiveDot } from 'react-icons/go';
+import { AiFillHeart } from 'react-icons/ai';
 
 // Import Component
-import Layout from '../../component/Layout/Layout';
-import H1 from '../../component/Typo/H1/H1';
-import Paragraph from '../../component/Typo/Paragraph/Paragraph';
-import H2 from '../../component/Typo/H2/H2';
-import TableTracks from '../../component/Tables/TableTracks';
-import ButtonPlay from '../../component/Button/ButtonPlay/ButtonPlay';
+import Layout from 'component/Layout/Layout';
+import H1 from 'component/Typo/H1/H1';
+import Paragraph from 'component/Typo/Paragraph/Paragraph';
+import H2 from 'component/Typo/H2/H2';
+import TableTracks from 'component/Tables/TableTracks';
+import ButtonPlay from 'component/Button/ButtonPlay/ButtonPlay';
+import InfiniteScroll from 'component/UtilsComponents/InfiniteScroll';
+
+// Function
+import { chunkTable, flatAndMergeArray } from 'service/utils/arrayFunctions';
+
+// Spotify
+import {
+  useAddToLikedTracks,
+  useCheckTracksAreAlreadySaved,
+  useGetLikedTracks,
+  useRemoveFromLikedTracks,
+} from 'service/spotify/track';
+import { useGetCurrentUser } from 'service/spotify/user';
+
+// React Query
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const LikedTracks = () => {
-  const { id } = useParams();
+  const queryClient = useQueryClient();
+  const { data, isLoading, isFetching, isError, fetchNextPage, hasNextPage } =
+    useGetLikedTracks();
 
-  const tracksList = [
-    {
-      track: 1,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre',
-      artist: 'Artiste',
-      album: 'Album',
-      added: 10,
-      duration: '3:21',
-      liked: true,
+  const { data: dataUser } = useGetCurrentUser();
+  const userName = dataUser?.display_name;
+  const imgUser = dataUser?.images?.at(0)?.url;
+
+  let tracksList: any = []; //? Typer correctement
+  data?.pages.flat().forEach((track) => {
+    tracksList = [...tracksList, ...track.items];
+  });
+
+  const trackNumber = tracksList?.length;
+
+  const listIdTracks = tracksList.map((track: any) => track.track.id);
+
+  const listIdTracksChunked = chunkTable(listIdTracks, 50);
+
+  const checkIfTracksIsLiked =
+    useCheckTracksAreAlreadySaved(listIdTracksChunked);
+
+  const listTracksLikedOrNot = checkIfTracksIsLiked.map(
+    (response) => response.data
+  );
+
+  const tracksIsLiked = flatAndMergeArray(
+    listIdTracksChunked,
+    listTracksLikedOrNot
+  );
+
+  const removeLikedTracksMutation = useMutation(useRemoveFromLikedTracks, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['likedTracks']);
     },
-    {
-      track: 2,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 3,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 4,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 5,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 6,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 7,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre super long',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 8,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 9,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-    {
-      track: 10,
-      img: 'https://source.unsplash.com/random/64x64',
-      title: 'Titre 2',
-      artist: 'Artiste 2',
-      album: 'Album 2',
-      added: 10,
-      duration: '3:36',
-      liked: true,
-    },
-  ];
+  });
+
+  if (isError) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <Layout>
-      <header
-        className="h-[22rem] w-full flex flex-col justify-end items-start px-8 pb-6 ]"
-        style={{
-          background:
-            'url(https://source.unsplash.com/random/1900x600) center center no-repeat',
-          backgroundSize: 'cover',
-        }}
-      >
-        <span className="mb-4">
-          <H2 label="PLAYLIST" />
-        </span>
-        <H1 label="Titres Likés" size="xl8" />
-        <div className="mt-4 flex items-center justify-start gap-1">
-          <div className="w-6 h-6 rounded-full object-cover object-center overflow-hidden">
-            <img
-              src="https://source.unsplash.com/random/30x30"
-              alt="Unsplash"
+      <header className="h-[18rem] w-full  px-8 py-6 ] bg-gradient-to-b from-[#4B3691] to-[#2B1E53] flex item-end justify-start gap-4">
+        <div className="aspect-square hidden md:flex items-center justify-center bg-gradient-to-br from-[#4014B7] to-[#7B8F89] shadow-2xl">
+          <AiFillHeart size="5rem" color={'#fff'}/>
+        </div>
+        <div className="flex flex-col justify-end items-start">
+          <span className="mb-4">
+            <H2 label="PLAYLIST" />
+          </span>
+          <H1 label="Vos épisodes" />
+          <div className="mt-4 flex items-center justify-start gap-1">
+            <div className="w-6 h-6 rounded-full object-cover object-center overflow-hidden">
+              <img src={imgUser} alt={userName} />
+            </div>
+            <H2
+              className="hidden sm:block"
+              size="lg"
+              color="white"
+              label={userName}
             />
+            <GoPrimitiveDot color="white" size=".5rem" />
+            {trackNumber > 0 && (
+              <Paragraph
+                label={`${trackNumber} titre${trackNumber > 1 ? 's' : ''}`}
+                color="white"
+                size="lg"
+              />
+            )}
           </div>
-          <H2 size="lg" color="white" label="Geoffrey Maillot" />
-          <GoPrimitiveDot color="white" size=".5rem" />
-          <Paragraph label="418 titres" color="white" size="lg" />
         </div>
       </header>
       <div className="pt-8 pl-10 pb-4">
         <ButtonPlay size="large" />
       </div>
-      <TableTracks tracksList={tracksList} />
+      <InfiniteScroll trigger={fetchNextPage} hasNextPage={hasNextPage}>
+        <TableTracks
+          tracksList={tracksList}
+tracksIsLiked={tracksIsLiked}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          removeToLikedTracks={removeLikedTracksMutation}
+        />
+      </InfiniteScroll>
     </Layout>
   );
 };

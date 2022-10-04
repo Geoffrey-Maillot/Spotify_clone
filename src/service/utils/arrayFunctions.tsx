@@ -3,9 +3,11 @@ export const chunkTable = (
   sizeChunk: number
 ): string[][] => {
   const result = [];
-  for (let i = 0; i < array.length; i += sizeChunk) {
-    const chunk = array.slice(i, i + sizeChunk);
-    result.push(chunk);
+  if (array) {
+    for (let i = 0; i < array.length; i += sizeChunk) {
+      const chunk = array.slice(i, i + sizeChunk);
+      result.push(chunk);
+    }
   }
   return result;
 };

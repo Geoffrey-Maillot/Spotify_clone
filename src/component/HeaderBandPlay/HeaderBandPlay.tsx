@@ -14,10 +14,12 @@ import OptionPanelList from './OptionPanelList';
 // Import Component PrimeReact
 import { OverlayPanel } from 'primereact/overlaypanel';
 
+
 interface Props {
   type: 'playlist' | 'artist' | 'podcast' | 'episode';
   subscriber?: boolean;
   mutateShow?: () => void;
+mutateFollowingArtist?: () => void
 }
 
 // == Component =>
@@ -25,6 +27,7 @@ const HeaderBandPlay = ({
   type = 'playlist',
   subscriber,
   mutateShow,
+mutateFollowingArtist
 }: Props) => {
   const [isInLibrary, setIsInLibrary] = useState(false);
 
@@ -42,6 +45,15 @@ const HeaderBandPlay = ({
     }
   };
 
+  const onCLickMutateButton = () => {
+  if (type === 'podcast' && mutateShow) {
+   mutateShow()
+}
+  if (type === 'artist' && mutateFollowingArtist) {
+  mutateFollowingArtist()
+} 
+}
+
   const optionPanel = useRef<OverlayPanel>(null);
 
   // Return =>
@@ -54,7 +66,7 @@ const HeaderBandPlay = ({
       </RenderIf>
       <RenderIf bool={type === 'artist' || type === 'podcast'}>
         <button
-          onClick={mutateShow}
+          onClick={onCLickMutateButton}
           className=" py-2 px-4 h-9 rounded border-gray-500 hover:border-white border uppercase"
         >
           <H2 label={subscriber ? 'Abonné' : "S'abonné"} size="sm" />
